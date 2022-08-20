@@ -41,7 +41,7 @@
                                             <td>{{$admin->created_at->format('Y-m-d')}}</td>
                                             <td> <span class="{{!is_null($admin->email_verified_at) ? 'text-success' : 'text-danger'}}">{{$admin->email_status}}</span></td>
                                             <td><span class="{{$admin->status == 'active' ? 'text-success' : 'text-danger'}}">{{$admin->status_user}}</span></td>
-                                            <td>{{!is_null($admin->last_vist) ? $admin->last_vist->diffForHumans() : '---'}}</td>
+                                            <td>{{$admin->last_login}}</td>
                                             <td class="action-table">
                                                 <a href="{{route('admins.show',$admin->id)}}"  class="btn bg-gradient-info  waves-effect waves-light"><i class="fa fa-eye"></i></a>
                                                 @if($admin->status =='active')

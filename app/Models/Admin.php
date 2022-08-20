@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -39,4 +40,12 @@ class Admin extends Authenticatable
             get : fn() => $this->status == "active" ? __('dash.available') : __('dash.block')
         );
     }
+
+    public function lastLogin() : Attribute {
+        return Attribute::make(
+            get : fn() => !is_null($this->last_vist)? Carbon::parse($this->last_vist)->diffForHumans() : "---"
+        );
+    }
 }
+
+
