@@ -13,10 +13,12 @@
                         <i class="flag-icon flag-icon-{{session()->get('lang') == 'ar' ? 'ae' : 'us'}}"></i>
                         <span class="selected-language">{{session()->get('lang') == 'ar'  ? 'العربية' : 'English'}}</span></a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-flag">
-                            <a class="dropdown-item"  data-language="ar" onclick="performSetLocale('ar')">
-                                <i class="flag-icon flag-icon-ae"></i> العربية</a>
-                            <a class="dropdown-item" data-language="en" onclick="performSetLocale('en')">
-                                <i class="flag-icon flag-icon-us"></i> English</a>
+                            @foreach (Locales::$lang as $keyLang => $lang)
+                                <a class="dropdown-item"  data-language="{{$keyLang}}" onclick="performSetLocale('{{$keyLang}}')">
+                                    <i class="flag-icon flag-icon-{{$lang['flag']}}"></i> {{$lang['name']}}</a>
+                            
+                            @endforeach
+                          
                                
                         </div>
                     </li>
