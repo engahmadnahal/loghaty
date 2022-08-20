@@ -36,11 +36,18 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style-rtl.css')}}">
     <!-- END: Custom CSS-->
 
+       <!-- BEGIN: Toastr-->
+       <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/extensions/toastr.css')}}">
+       <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css-rtl/plugins/extensions/toastr.css')}}">
+       <!-- END: Toastr-->
+
+    @if(App::isLocale('ar'))
     <style>
           body {
                 font-family: 'Cairo', sans-serif;
             }
     </style>
+    @endif
 </head>
 <!-- END: Head-->
 
@@ -140,6 +147,7 @@
     <script src="{{asset('app-assets/js/core/app.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/components.js')}}"></script>
     <!-- END: Theme JS-->
+    <script src="{{asset('app-assets/vendors/js/extensions/toastr.min.js')}}"></script>
 
     <!-- BEGIN: Page JS-->
     <!-- END: Page JS-->
@@ -159,7 +167,7 @@
             }).then(function(response){
                 window.location.href = "{{route('home.index')}}";
             }).catch(function(error){
-                 console.log(error);
+                toastr.error(error.response.data.message,error.response.data.title, { "progressBar": true });
             });
         }
 

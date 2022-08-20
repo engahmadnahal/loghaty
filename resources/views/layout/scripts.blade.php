@@ -53,7 +53,7 @@
             axios.post(route,dataObj).then(function(response){
                 toastr.success(response.data.message,response.data.title, { "progressBar": true });
             }).catch(function(error){
-                console.log(error);
+               
                 toastr.error(error.response.data.message,error.response.data.title, { "progressBar": true });
             });
         }
@@ -64,7 +64,7 @@
                 toastr.success(response.data.message,response.data.title, { "progressBar": true });
                 el.closest(closest).remove();
             }).catch(function(error){
-                console.log(error);
+               
                 toastr.error(error.response.data.message,error.response.data.title, { "progressBar": true });
             });
         }

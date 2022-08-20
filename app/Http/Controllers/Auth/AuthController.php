@@ -34,12 +34,12 @@ class AuthController extends Controller
                 $admin->last_vist =  Carbon::now();
                 $admin->save();
                 
-                return response()->json(['message'=>'تم التسجيل بنجاح'],Response::HTTP_OK);
+                return response()->json(['title'=>__('dash.success'),'message'=>'تم التسجيل بنجاح'],Response::HTTP_OK);
             }else{
-                return response()->json(['message'=>'بيانات الدخول خاطئة'],Response::HTTP_BAD_REQUEST);
+                return response()->json(['title'=>__('dash.error'),'message'=>'بيانات الدخول خاطئة'],Response::HTTP_BAD_REQUEST);
             }
         }else{
-            return response()->json(['message'=>$validator->getMessageBag()->first()],Response::HTTP_BAD_REQUEST);
+            return response()->json(['title'=>__('dash.error'),'message'=>$validator->getMessageBag()->first()],Response::HTTP_BAD_REQUEST);
         }
     }
 
