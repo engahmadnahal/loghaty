@@ -102,8 +102,11 @@ return [
     "index_plan"=>"كل الخطط",
     "state"=>"الحالة",
     "subscripers"=>"المشتركين",
-    // "aaa"=>"",
-    // "aaa"=>"",
+    "create_classes"=>"انشاء صف جديد",
+    "new_classes"=>"صف جديد",
+    "index_classes"=>"كل الصفوف",
+    "teacher_name"=>"اسم المعلم",
+    // "new_classes"=>"",
  
 
 ];
