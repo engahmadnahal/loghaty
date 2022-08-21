@@ -83,9 +83,9 @@
 
             <li class=" nav-item"><a href="#"><i class="fa-solid fa-person-chalkboard"></i></i><span class="menu-title" data-i18n="{{__('dash.teachers')}}">{{__('dash.teachers')}}</span></a>
                 <ul class="menu-content">
-                    <li><a href="app-user-list.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
+                    <li><a href="{{route('teachers.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
                     </li>
-                    <li><a href="app-user-view.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.create')}}">{{__('dash.create')}}</span></a>
+                    <li><a href="{{route('teachers.create')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.create')}}">{{__('dash.create')}}</span></a>
                     </li>
                     </li>
                 </ul>
@@ -93,9 +93,9 @@
 
             <li class=" nav-item"><a href="#"><i class="fa-solid fa-people-roof"></i><span class="menu-title" data-i18n="{{__('dash.parents')}}">{{__('dash.parents')}}</span></a>
                 <ul class="menu-content">
-                    <li><a href="app-user-list.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
+                    <li><a href="{{route('fathers.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
                     </li>
-                    <li><a href="app-user-view.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.create')}}">{{__('dash.create')}}</span></a>
+                    <li><a href="{{route('fathers.create')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.create')}}">{{__('dash.create')}}</span></a>
                     </li>
                     </li>
                 </ul>
@@ -118,9 +118,9 @@
             </li>
             <li class=" nav-item"><a href="#"><i class="fa-solid fa-dollar-sign"></i><span class="menu-title" data-i18n="{{__('dash.plan')}}">{{__('dash.plan')}}</span></a>
                 <ul class="menu-content">
-                    <li><a href="app-user-list.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
+                    <li><a href="{{route('plans.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
                     </li>
-                    <li><a href="app-user-view.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.create')}}">{{__('dash.create')}}</span></a>
+                    <li><a href="{{route('plans.create')}}""><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.create')}}">{{__('dash.create')}}</span></a>
                     </li>
                     </li>
                 </ul>

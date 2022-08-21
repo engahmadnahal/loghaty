@@ -20,9 +20,15 @@ class Country extends Model
         return $this->hasMany(Children::class);
     }
 
+    public function teachers(){
+        return $this->hasMany(Teacher::class);
+    }
+
     public function name() : Attribute {
         return Attribute::make(
             get: fn() => App::isLocale('ar') ? $this->name_ar : $this->name_en,
         ); 
     }
+
+
 }

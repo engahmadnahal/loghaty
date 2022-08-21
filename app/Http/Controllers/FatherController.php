@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Father;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Symfony\Component\HttpFoundation\Response;
 
 class FatherController extends Controller
 {
@@ -15,6 +17,10 @@ class FatherController extends Controller
     public function index()
     {
         //
+        $fathers = Father::all();
+        return view('father.index',[
+            'fathers' => $fathers
+        ]);
     }
 
     /**
@@ -25,6 +31,8 @@ class FatherController extends Controller
     public function create()
     {
         //
+        return view('father.create');
+
     }
 
     /**
@@ -36,6 +44,29 @@ class FatherController extends Controller
     public function store(Request $request)
     {
         //
+
+        $validator = Validator($request->all(),[
+            'email' => 'required|email|unique:admins',
+            'password' => 'required|string|min:6|max:12',
+            'active'=> 'required'
+        ]);
+
+        if(!$validator->fails()){
+
+            $father = new Father;
+            $father->email = $request->input('email');
+            $father->password = Hash::make($request->input('password'));
+            $father->status = $request->input('active') == "true" ? 'active' : 'block';
+            $isSave = $father->save();
+            
+            return response()->json([
+                'title'=>$isSave ? __('msg.success') : __('msg.error'),
+                'message'=>$isSave ? __('msg.success_create') :  __('msg.error_create')
+            ],Response::HTTP_OK);
+        }else{
+            return response()->json(['title'=>__('msg.error'),'message'=>$validator->getMessageBag()->first()],Response::HTTP_BAD_REQUEST);
+
+        }
     }
 
     /**
@@ -47,6 +78,10 @@ class FatherController extends Controller
     public function show(Father $father)
     {
         //
+        return view('father.show',[
+            'father' =>$father
+        ]);
+
     }
 
     /**
@@ -58,6 +93,10 @@ class FatherController extends Controller
     public function edit(Father $father)
     {
         //
+        return view('father.edit',[
+            'father' =>$father
+        ]);
+
     }
 
     /**
@@ -70,6 +109,27 @@ class FatherController extends Controller
     public function update(Request $request, Father $father)
     {
         //
+        $validator = Validator($request->all(),[
+            'email' => 'required|email|unique:admins',
+            'password' => 'required|string|min:6|max:12',
+            'active'=> 'required'
+        ]);
+
+        if(!$validator->fails()){
+
+            $father->email = $request->input('email');
+            $father->password = Hash::make($request->input('password'));
+            $father->status = $request->input('active') == "true" ? 'active' : 'block';
+            $isSave = $father->save();
+            
+            return response()->json([
+                'title'=>$isSave ? __('msg.success') : __('msg.error'),
+                'message'=>$isSave ? __('msg.success_edit') :  __('msg.error_edit')
+            ],Response::HTTP_OK);
+        }else{
+            return response()->json(['title'=>__('msg.error'),'message'=>$validator->getMessageBag()->first()],Response::HTTP_BAD_REQUEST);
+
+        }
     }
 
     /**
@@ -81,5 +141,30 @@ class FatherController extends Controller
     public function destroy(Father $father)
     {
         //
+        $isDelete = $father->delete();
+        return response()->json([
+            'title' => $isDelete ? __('msg.success') : __('msg.error'),
+            'message' =>$isDelete ? __('msg.success_delete') : __('msg.error_delete')
+        ],$isDelete ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
+    }
+
+    /**
+     * Change the status user.
+     *
+     * @param  \App\Models\Teacher  $teacher
+     * @return \Illuminate\Http\Response
+     */
+    public function changeStatus(Father $father){
+        if($father->status == 'active'){
+            $father->status = 'block';
+        }else{
+            $father->status = 'active';
+        }
+        $isSave = $father->save();
+
+        return response()->json([
+            'title' => $isSave ? __('msg.success') : __('msg.error'),
+            'message' =>$isSave ? __('msg.success_action') : __('msg.error_action')
+        ],$isSave ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
     }
 }

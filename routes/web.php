@@ -3,7 +3,10 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\FatherController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PlanController;
+use App\Http\Controllers\TeacherController;
 use App\Models\Admin;
 use Illuminate\Support\Facades\Route;
 
@@ -41,10 +44,22 @@ Route::middleware('Local')->group(function(){
         Route::post('/admins/status/{admin}',[AdminController::class , 'changeStatus'])->name('admins.change_status');
         Route::resource('admins',AdminController::class);
 
-
-
         // ----- Country Controller Route ---------
         Route::resource('countries',CountryController::class);
+
+        // ----- teachers Controller Route ---------
+        Route::post('/teachers/status/{teacher}',[TeacherController::class , 'changeStatus'])->name('teachers.change_status');
+        Route::resource('teachers',TeacherController::class);
+
+        // ----- fathers Controller Route ---------
+        Route::post('/fathers/status/{father}',[FatherController::class , 'changeStatus'])->name('fathers.change_status');
+        Route::resource('fathers',FatherController::class);
+
+        // ----- plans Controller Route ---------
+        Route::post('/plans/status/{plan}',[PlanController::class , 'changeStatus'])->name('plans.change_status');
+        Route::resource('plans',PlanController::class);
+
+        
 
         
 

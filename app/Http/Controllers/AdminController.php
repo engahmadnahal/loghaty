@@ -63,7 +63,7 @@ class AdminController extends Controller
             'email' => 'required|email|unique:admins',
             'password' => 'required|string|min:6|max:12',
             'image_avater' => 'required|image|mimes:jpg,png,jpeg,gif',
-            'active'=> 'required|string'
+            'active'=> 'required'
         ]);
 
         if(!$validator->fails()){
@@ -182,7 +182,12 @@ class AdminController extends Controller
             'message' =>$isDelete ? __('msg.success_delete') : __('msg.error_delete')
         ],$isDelete ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
     }
-
+    /**
+     * Change the status user.
+     *
+     * @param  \App\Models\Admin  $admin
+     * @return \Illuminate\Http\Response
+     */
 
     public function changeStatus(Admin $admin){
         if($admin->status == 'active'){

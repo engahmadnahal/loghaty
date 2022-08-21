@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('sum_month');
             $table->double('price_usd');
             $table->double('price_aed');
-            $table->double('totale_child_supscrip');
+            $table->double('totale_child_subscrip');
             $table->boolean('active')->default(false);
             $table->timestamps();
         });

@@ -10,8 +10,8 @@
                 </div>
                 <ul class="nav navbar-nav float-right">
                     <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="flag-icon flag-icon-{{session()->get('lang') == 'ar' ? 'ae' : 'us'}}"></i>
-                        <span class="selected-language">{{session()->get('lang') == 'ar'  ? 'العربية' : 'English'}}</span></a>
+                        <i class="flag-icon flag-icon-{{App::isLocale('ar') == 'ar' ? 'ae' : 'us'}}"></i>
+                        <span class="selected-language">{{App::isLocale('ar') == 'ar'  ? 'العربية' : 'English'}}</span></a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-flag">
                             @foreach (Locales::$lang as $keyLang => $lang)
                                 <a class="dropdown-item"  data-language="{{$keyLang}}" onclick="performSetLocale('{{$keyLang}}')">

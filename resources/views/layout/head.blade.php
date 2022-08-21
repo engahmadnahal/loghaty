@@ -8,7 +8,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
 
-    @if(App::isLocale('en'))
+    {{-- If En or LRT --}}
+    @if(!App::isLocale('ar'))
 
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/vendors.min.css')}}">
@@ -48,11 +49,12 @@
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/forms/select/select2.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/core/colors/palette-gradient.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/app-user.css')}}">
 
     @endif
 
 
-    
+    {{-- IF AR or RTL --}}
     @if(App::isLocale('ar'))
         <!-- BEGIN: Vendor CSS-->
         <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/vendors-rtl.min.css')}}">
@@ -92,6 +94,7 @@
         <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/forms/select/select2.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
         <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css-rtl/core/colors/palette-gradient.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css-rtl/pages/app-user.css')}}">
     
     
         <!-- BEGIN: Custom CSS For Ar Lang-->
@@ -115,5 +118,9 @@
             padding: 10px;
         }
         .dataTables_length{display: none}
+
+        .page-users-view .users-view-image {
+            height: 120px;
+        }
     
     </style>
