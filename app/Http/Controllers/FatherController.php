@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Children;
 use App\Models\Father;
 use App\Models\Plan;
 use App\Models\Subscription;
@@ -98,8 +99,14 @@ class FatherController extends Controller
     public function show(Father $father)
     {
         //
+        $childrens = Children::where('father_id',$father->id)->get();
+        $subsChildrens = Children::whereHas('subscriptions',function($q) use($father){
+            $q->where('father_id',$father->id);
+        })->get();
         return view('father.show',[
-            'father' =>$father
+            'father' =>$father,
+            'childrens' => $childrens,
+            'subsChildrens' => $subsChildrens
         ]);
 
     }

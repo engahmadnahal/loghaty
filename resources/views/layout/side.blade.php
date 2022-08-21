@@ -56,8 +56,7 @@
 
             <li class=" nav-item"><a href="#"><i class="fa-solid fa-graduation-cap"></i><span class="menu-title" data-i18n="{{__('dash.classes')}}">{{__('dash.classes')}}</span></a>
                 <ul class="menu-content">
-                    <li><a href="app-user-list.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.progress_children')}}">{{__('dash.progress_children')}}</span></a>
-                    </li>
+                    
                     <li><a href="{{route('classes.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
                     </li>
                     <li><a href="{{route('classes.create')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.create')}}">{{__('dash.create')}}</span></a>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Trait\CustomTrait;
+use App\Models\Children;
+use App\Models\Classe;
 use App\Models\Country;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
@@ -105,8 +107,14 @@ class TeacherController extends Controller
     public function show(Teacher $teacher)
     {
         //
+        $childrens = Children::where('status','active')->take(5)->get();
+        $classes = Classe::whereHas('teacher',function($q){
+            $q->where('status','active');
+        })->get();
         return view('teacher.show',[
-            'teacher' =>$teacher
+            'teacher' =>$teacher,
+            'childrens' => $childrens,
+            'classes' => $classes
         ]);
 
     }

@@ -20,10 +20,10 @@ class Subscription extends Model
 
 
     public function children(){
-        return $this->hasMany(Children::class);
+        return $this->belongsTo(Children::class);
     }
     public function father(){
-        return $this->hasMany(Father::class);
+        return $this->belongsTo(Father::class);
     }
 
 }

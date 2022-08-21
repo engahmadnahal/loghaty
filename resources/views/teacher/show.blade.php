@@ -1,8 +1,8 @@
 
 @extends('layout.master')
 
-@section('title',__('dash.account_setting'))
-@section('title_page',__('dash.account_setting'))
+@section('title',__('dash.teacher_setting'))
+@section('title_page',__('dash.teacher_setting'))
 @section('content')
 <section class="page-users-view">
     <div class="row">
@@ -63,18 +63,18 @@
                     <div class="card-title mb-2">{{__('dash.classes')}}</div>
                 </div>
                 <div class="card-body">
-                    <div class="row pb-1">
-                        <div class="col-1"><i class="fa-solid fa-person-chalkboard" style=" font-size: 21px; "></i></div>
-                        <div class="col-6">الصف الثالث</div>
-                        <div class="col-5">
-                            <div class="action-table">
-                                <a href="http://127.0.0.1:8000/admins/1" class="btn bg-gradient-info  waves-effect waves-light"><i class="fa fa-eye"></i></a>
-                                <button type="button" class="btn bg-gradient-success waves-effect waves-light" onclick="performChangeStatus(1)"><i class="fa fa-unlock"></i></button>
-                                <button type="button" class="btn bg-gradient-danger waves-effect waves-light" onclick="performChangeStatus(1)"><i class="fa fa-lock"></i></button>
-                                <button type="button" class="btn bg-gradient-danger  waves-effect waves-light" onclick="performDelete(this,1)"><i class="fa fa-trash"></i></button>
+                    @forelse ($classes as $c)
+                        <div class="row pb-1">
+                            <div class="col-1"><i class="fa-solid fa-person-chalkboard" style=" font-size: 21px; "></i></div>
+                            <div class="col-6">{{$c->name}}</div>
+                            <div class="col-5">
+                                <span>{{$c->created_at->diffForHumans()}}</span>
                             </div>
-                        </div>
-                   </div>
+                    </div>
+                    @empty
+                        <p class='text-center'>{{__('dash.no_results')}} </p>
+                    @endforelse
+
                 </div>
             </div>
         </div>
@@ -86,18 +86,18 @@
                     <div class="card-title mb-2">{{__('dash.last_add_children')}}</div>
                 </div>
                 <div class="card-body">
-                    <div class="row pb-1">
-                        <div class="col-1"><i class="fa-solid fa-children" style=" font-size: 21px; "></i></div>
-                        <div class="col-6">محمد سعد</div>
-                        <div class="col-5">
-                            <div class="action-table">
-                                <a href="http://127.0.0.1:8000/admins/1" class="btn bg-gradient-info  waves-effect waves-light"><i class="fa fa-eye"></i></a>
-                                <button type="button" class="btn bg-gradient-success waves-effect waves-light" onclick="performChangeStatus(1)"><i class="fa fa-unlock"></i></button>
-                                <button type="button" class="btn bg-gradient-danger waves-effect waves-light" onclick="performChangeStatus(1)"><i class="fa fa-lock"></i></button>
-                                <button type="button" class="btn bg-gradient-danger  waves-effect waves-light" onclick="performDelete(this,1)"><i class="fa fa-trash"></i></button>
+
+                   @forelse ($childrens as $c)
+                        <div class="row pb-1">
+                            <div class="col-1"><i class="fa-solid fa-children" style=" font-size: 21px; "></i></div>
+                            <div class="col-6">{{$c->name}}</div>
+                            <div class="col-5">
+                                <span>{{$c->created_at->diffForHumans()}}</span>
                             </div>
-                        </div>
-                   </div>
+                    </div>
+                    @empty
+                        <p class='text-center'>{{__('dash.no_results')}} </p>
+                    @endforelse
                 </div>
             </div>
         </div>

@@ -113,7 +113,14 @@ return [
     "dob"=>"تاريخ الميلاد",
     "create_children"=>"اضافة طفل جديد",
     "edit_children"=>"تعديل طفل",
-    // "fatheindex_childrenrs"=>"الاباء",
+    "activity_user"=>"نشاط المستخدم",
+    "activity_plan"=>" معدل الاقبال",
+    "history_user"=>"سجل المستخدم",
+    'os_mobile' =>'نطام التشغيل',
+    'no_results'=>'لايوجد نتائج',
+    'teacher_setting' => 'اعدادات المعلم',
+    'father_setting'=>'اعدادات الاب ',
+    'plan_setting' => 'اعدادات الخطة'
  
 
 ];

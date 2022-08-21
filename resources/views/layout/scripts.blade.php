@@ -26,11 +26,19 @@
     <script src="{{asset('app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/datatables/datatable.js')}}"></script>
+    <script src="{{asset('app-assets/vendors/js/charts/echarts/echarts.min.js')}}"></script>
 
 
 
 
     <script>
+        /// ---- For Char Anlytics
+        var $dark_green = '#4ea397';
+        var $green = '#22c3aa';
+        var $light_green = '#7bd9a5';
+        var $lighten_green = '#a8e7d2';
+
+
         let date = new Date();
         document.getElementById('copyYear').innerHTML = ""+date.getFullYear();
 

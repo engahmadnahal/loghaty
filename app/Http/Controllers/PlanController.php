@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Children;
 use App\Models\Plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -85,8 +86,12 @@ class PlanController extends Controller
     public function show(Plan $plan)
     {
         //
+        $childrens = Children::whereHas('father',function($q) use($plan){
+            $q->where('plan_id',$plan->id);
+        })->get();
         return view('plan.show',[
-            'plan'=>$plan
+            'plan'=>$plan,
+            'childrens' => $childrens
         ]);
 
     }
