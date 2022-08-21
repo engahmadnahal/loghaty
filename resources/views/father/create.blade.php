@@ -33,7 +33,19 @@
                                     </div>
 
 
-                                    
+                                    <div class="col-md-12 col-12">
+                                        <div class="form-label-group">
+                                            <label for="city-column">{{__('dash.countries')}}</label>
+
+                                            <select class="select2 form-control select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true" id="plan">
+                                                @foreach ($plans as $plan)
+                                                    <option value="{{$plan->id}}">{{$plan->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+
                                     <div class="col-md-12 col-12">
                                         <div class="form-label-group">
                                             <div class="custom-control custom-switch custom-switch-success mr-2 mb-1">
@@ -64,14 +76,17 @@
     function performStore(){
         let email = document.getElementById('email').value;
         let password = document.getElementById('password').value;
+        let plan_id = document.getElementById('plan').value;
         let active = document.getElementById('active').checked;
 
-        let formData = new FormData();
-        formData.append('email',email);
-        formData.append('password',password);
-        formData.append('active',active);
-
-        performStoreWithTostar('/fathers',formData,'form');
+        let dataObj = {
+            plan_id : plan_id,
+            email : email,
+            password : password,
+            active : active
+        };
+        
+        performStoreWithTostar('/fathers',dataObj,'form');
     }
 </script>
 @endsection

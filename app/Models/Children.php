@@ -26,7 +26,7 @@ class Children extends Model
     }
 
     public function subscriptions(){
-        return $this->belongsToMany(Plan::class,'subscriptions','children_id','plan_id');
+        return $this->belongsTo(Subscription::class);
     }
 
     public function history(){

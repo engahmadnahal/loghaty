@@ -3,12 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Father;
+use App\Models\Plan;
+use App\Models\Subscription;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response;
 
 class FatherController extends Controller
 {
+
+    public $plans;
+
+    public function __construct()
+    {
+        $this->plans = Plan::where('active',true)->get();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +27,7 @@ class FatherController extends Controller
     public function index()
     {
         //
-        $fathers = Father::all();
+        $fathers = Father::with('subscriptions')->get();
         return view('father.index',[
             'fathers' => $fathers
         ]);
@@ -30,8 +40,12 @@ class FatherController extends Controller
      */
     public function create()
     {
+
+        
         //
-        return view('father.create');
+        return view('father.create',[
+            'plans' => $this->plans
+        ]);
 
     }
 
@@ -46,22 +60,28 @@ class FatherController extends Controller
         //
 
         $validator = Validator($request->all(),[
-            'email' => 'required|email|unique:admins',
+            'email' => 'required|email|unique:fathers',
             'password' => 'required|string|min:6|max:12',
+            'plan_id' => 'required|numeric|exists:plans,id',
             'active'=> 'required'
         ]);
 
+
         if(!$validator->fails()){
+
 
             $father = new Father;
             $father->email = $request->input('email');
-            $father->password = Hash::make($request->input('password'));
+            $father->password = $request->input('password');
+            $father->plan_id = $request->input('plan_id');
             $father->status = $request->input('active') == "true" ? 'active' : 'block';
-            $isSave = $father->save();
+            $father->save();
+
+
             
             return response()->json([
-                'title'=>$isSave ? __('msg.success') : __('msg.error'),
-                'message'=>$isSave ? __('msg.success_create') :  __('msg.error_create')
+                'title'=> __('msg.success'),
+                'message'=>__('msg.success_create') 
             ],Response::HTTP_OK);
         }else{
             return response()->json(['title'=>__('msg.error'),'message'=>$validator->getMessageBag()->first()],Response::HTTP_BAD_REQUEST);
@@ -94,7 +114,8 @@ class FatherController extends Controller
     {
         //
         return view('father.edit',[
-            'father' =>$father
+            'father' =>$father,
+            'plans' => $this->plans,
         ]);
 
     }
@@ -110,21 +131,26 @@ class FatherController extends Controller
     {
         //
         $validator = Validator($request->all(),[
-            'email' => 'required|email|unique:admins',
+            'email' => 'required|email',
             'password' => 'required|string|min:6|max:12',
+            'plan_id' => 'required|numeric|exists:plans,id',
             'active'=> 'required'
         ]);
 
         if(!$validator->fails()){
 
+
             $father->email = $request->input('email');
-            $father->password = Hash::make($request->input('password'));
+            $father->password = $request->input('password');
+            $father->plan_id = $request->input('plan_id');
             $father->status = $request->input('active') == "true" ? 'active' : 'block';
-            $isSave = $father->save();
+            $father->save();
+
+
             
             return response()->json([
-                'title'=>$isSave ? __('msg.success') : __('msg.error'),
-                'message'=>$isSave ? __('msg.success_edit') :  __('msg.error_edit')
+                'title'=> __('msg.success'),
+                'message'=>__('msg.success_edit') 
             ],Response::HTTP_OK);
         }else{
             return response()->json(['title'=>__('msg.error'),'message'=>$validator->getMessageBag()->first()],Response::HTTP_BAD_REQUEST);
@@ -151,7 +177,7 @@ class FatherController extends Controller
     /**
      * Change the status user.
      *
-     * @param  \App\Models\Teacher  $teacher
+     * @param  \App\Models\Father  $teacher
      * @return \Illuminate\Http\Response
      */
     public function changeStatus(Father $father){

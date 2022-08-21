@@ -12,6 +12,8 @@ class Father extends Authenticatable
 {
     use HasFactory;
 
+
+
     public function payments(){
         return $this->hasMany(Payment::class);
     }
@@ -22,6 +24,11 @@ class Father extends Authenticatable
 
     public function subscriptions(){
         return $this->hasMany(Subscription::class);
+    }
+
+    public function plan(){
+        return $this->belongsTo(Plan::class);
+        
     }
 
 

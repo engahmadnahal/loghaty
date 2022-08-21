@@ -9,15 +9,21 @@ class Subscription extends Model
 {
     use HasFactory;
 
-    public function plan(){
-        return $this->belongsTo(Plan::class);
-    }
+    protected $fillable = [
+        'start_subscrip_date',
+        'end_subscrip_date',
+        'children_id',
+        'plan_id',
+        'father_id',
+        'expire',
+    ];
+
 
     public function children(){
-        return $this->belongsTo(Children::class);
+        return $this->hasMany(Children::class);
     }
     public function father(){
-        return $this->belongsTo(Father::class);
+        return $this->hasMany(Father::class);
     }
 
 }

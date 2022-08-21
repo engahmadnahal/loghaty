@@ -19,12 +19,11 @@ return new class extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('expire')->nullable();
             $table->timestamp('start_subscrip_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('end_subscrip_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->foreignIdFor(Children::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Plan::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Father::class)->constrained()->cascadeOnDelete();
+            $table->timestamp('expire')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

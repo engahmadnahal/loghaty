@@ -101,7 +101,7 @@ return [
     "total_month"=>"عدد الاشهر",
     "index_plan"=>"كل الخطط",
     "state"=>"الحالة",
-    // "aaa"=>"",
+    "subscripers"=>"المشتركين",
     // "aaa"=>"",
     // "aaa"=>"",
  

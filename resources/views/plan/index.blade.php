@@ -16,7 +16,7 @@
                 <div class="card-content">
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
-                            <a id="addRow" href="{{route('plans.create')}}" class="col-2 btn btn-primary mb-2 waves-effect waves-light"><i class="feather icon-plus"></i>&nbsp; {{__('dash.add_new')}}</a>
+                            <a id="addRow" href="{{route('plans.create')}}" class="col-xl-2 col-md-12 col-sm-12 btn btn-primary mb-2 waves-effect waves-light"><i class="feather icon-plus"></i>&nbsp; {{__('dash.add_new')}}</a>
                             <table class="table zero-configuration">
                                 <thead>
                                     <tr>

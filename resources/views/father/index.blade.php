@@ -4,9 +4,6 @@
 @section('title_page',__('dash.index_father'))
 
 @section('content')
-
-
-
 <section id="basic-datatable">
     <div class="row">
         
@@ -16,13 +13,13 @@
                 <div class="card-content">
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
-                            <a id="addRow" href="{{route('fathers.create')}}" class="col-2 btn btn-primary mb-2 waves-effect waves-light"><i class="feather icon-plus"></i>&nbsp; {{__('dash.add_new')}}</a>
+                            <a id="addRow" href="{{route('fathers.create')}}" class="col-xl-2 col-md-12 col-sm-12 btn btn-primary mb-2 waves-effect waves-light"><i class="feather icon-plus"></i>&nbsp; {{__('dash.add_new')}}</a>
                             <table class="table zero-configuration">
                                 <thead>
                                     <tr>
                                         <th>{{__('dash.email')}}</th>
+                                        <th>{{__('dash.name_plan')}}</th>
                                         <th>{{__('dash.num_children')}}</th>
-                                        <th>{{__('dash.subscrip_plan')}}</th>
                                         <th>{{__('dash.add_date')}}</th>
                                         <th>{{__('dash.status_email')}}</th>
                                         <th>{{__('dash.status')}}</th>
@@ -32,10 +29,11 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($fathers as $father)
+                                   
                                         <tr>
                                             <td>{{$father->email}}</td>
+                                            <td>{{$father->plan->name}}</td>
                                             <td>{{$father->childrens->count()}}</td>
-                                            <td>{{$father->subscriptions->plan->name}}</td>
                                             <td>{{$father->created_at->format('Y-m-d')}}</td>
                                             <td> <span class="{{!is_null($father->email_verified_at) ? 'text-success' : 'text-danger'}}">{{$father->email_status}}</span></td>
                                             <td><span class="{{$father->status == 'active' ? 'text-success' : 'text-danger'}}">{{$father->status_user}}</span></td>

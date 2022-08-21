@@ -1,5 +1,4 @@
 @extends('layout.master')
-
 @section('title',__('dash.edit_father'))
 @section('title_page',__('dash.edit_father'))
 
@@ -32,7 +31,17 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-12 col-12">
+                                        <div class="form-label-group">
+                                            <label for="city-column">{{__('dash.countries')}}</label>
 
+                                            <select class="select2 form-control select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true" id="plan">
+                                                @foreach ($plans as $p)
+                                                    <option value="{{$p->id}}" @checked($father->plan->id == $p->id)>{{$p->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
                                     
                                     <div class="col-md-12 col-12">
                                         <div class="form-label-group">
@@ -63,16 +72,19 @@
 <script>
     function performStore(){
         let email = document.getElementById('email').value;
+        let plan_id = document.getElementById('plan').value;
         let password = document.getElementById('password').value;
         let active = document.getElementById('active').checked;
 
-        let formData = new FormData();
-        formData.append('email',email);
-        formData.append('password',password);
-        formData.append('active',active);
-        formData.append('_method','PUT');
+        let dataObj = {
+            plan_id : plan_id,
+            email : email,
+            password : password,
+            active : active,
+            _method : 'PUT'
+        };
 
-        performUpdateWithTostar('/fathers',formData);
+        performUpdateWithTostar('/fathers/{{$father->id}}',dataObj);
     }
 </script>
 @endsection

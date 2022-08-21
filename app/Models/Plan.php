@@ -11,8 +11,9 @@ class Plan extends Model
 {
     use HasFactory;
 
-    public function subscriptions(){
-        return $this->belongsToMany(Children::class,'subscriptions','plan_id','children_id');
+
+    public function fathers(){
+        return $this->hasMany(Father::class);
     }
     
     public function name() : Attribute {
