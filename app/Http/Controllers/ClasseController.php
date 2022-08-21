@@ -128,7 +128,7 @@ class ClasseController extends Controller
             
             return response()->json([
                 'title'=>$isSave ? __('msg.success') : __('msg.error'),
-                'message'=>$isSave ? __('msg.success_create') :  __('msg.error_create')
+                'message'=>$isSave ? __('msg.success_edit') :  __('msg.error_edit')
             ],Response::HTTP_OK);
         }else{
             return response()->json(['title'=>__('msg.error'),'message'=>$validator->getMessageBag()->first()],Response::HTTP_BAD_REQUEST);

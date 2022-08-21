@@ -23,7 +23,7 @@
                                         <th>{{__('dash.name')}}</th>
                                         <th>{{__('dash.teacher_name')}}</th>
                                         <th>{{__('dash.add_date')}}</th>
-                                        <th>{{__('dash.status')}}</th>
+                                        <th>{{__('dash.state')}}</th>
                                         <th>{{__('dash.actions')}}</th>
                                     </tr>
                                 </thead>

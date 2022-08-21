@@ -1,7 +1,7 @@
 @extends('layout.master')
 
-@section('title',__('dash.edit_teacher'))
-@section('title_page',__('dash.edit_teacher'))
+@section('title',__('dash.edit_children'))
+@section('title_page',__('dash.edit_children'))
 
 @section('content')
 <section id="multiple-column-form">
@@ -17,49 +17,34 @@
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="form-label-group">
-                                            <input type="text" id="fname" class="form-control" placeholder="{{__('dash.fname')}}"  value="{{$teacher->fname}}">
-                                            <label for="first-name-column">{{__('dash.fname')}}</label>
+                                            <input type="text" id="name" class="form-control" placeholder="{{__('dash.name')}}"  value="{{$children->name}}">
+                                            <label for="name">{{__('dash.name')}}</label>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-label-group">
-                                            <input type="text" id="lname" class="form-control" placeholder="{{__('dash.lname')}}"  value="{{$teacher->lname}}">
-                                            <label for="first-name-column">{{__('dash.lname')}}</label>
+                                            <input type="date" id="dob" class="form-control" placeholder="{{__('dash.dob')}}"  value="{{$children->date_of_birth}}">
+                                            <label for="dob">{{__('dash.dob')}}</label>
                                         </div>
                                     </div>
 
 
-                                    <div class="col-md-6 col-12">
+                                    <div class="col-md-12 col-12">
                                         <div class="form-label-group">
-                                            <input type="email" id="email" class="form-control" placeholder="{{__('dash.email')}}" value="{{$teacher->email}}">
-                                            <label for="email">{{__('dash.email')}}</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-label-group">
-                                            <input type="text" id="national_id" class="form-control" placeholder="{{__('dash.national_id')}}"  value="{{$teacher->national_id}}">
-                                            <label for="first-name-column">{{__('dash.national_id')}}</label>
+                                            <input type="file" id="image_avater" class="form-control" placeholder="{{__('dash.upload_image')}}" >
+                                            <label for="image_avater">{{__('dash.upload_image')}}</label>
+                                            <p class="text-muted ml-75 mt-50"><small>JPG,JPGE, GIF or PNG. </small></p>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-label-group">
-                                            <input type="text" id="mobile" class="form-control" placeholder="{{__('dash.mobile')}}"  value="{{$teacher->mobile}}">
-                                            <label for="first-name-column">{{__('dash.mobile')}}</label>
-                                        </div>
-                                    </div>
+                                            <label for="city-column">{{__('dash.fathers')}}</label>
 
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-label-group">
-                                            <label for="city-column">{{__('dash.countries')}}</label>
-
-                                            <select class="select2 form-control select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true" id="country">
-                                                @foreach ($countres as $c)
-                                                    <option value="{{$c->id}}"
-                                                        @selected($c->id == $teacher->country->id)
-                                                        >{{$c->name}}</option>
+                                            <select class="select2 form-control select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true" id="father_id" >
+                                                @foreach ($fathers as $f)
+                                                    <option value="{{$f->id}}" @checked($f->id == $children->father_id)>{{$f->email}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -67,17 +52,37 @@
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-label-group">
-                                            <input type="file" id="image_avater" class="form-control" placeholder="{{__('dash.upload_image')}}" required>
-                                            <label for="image_avater">{{__('dash.upload_image')}}</label>
-                                            <p class="text-muted ml-75 mt-50"><small>JPG,JPGE, GIF or PNG. </small></p>
+                                            <label for="city-column">{{__('dash.teacher')}}</label>
+
+                                            <select class="select2 form-control select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true" id="class_id">
+                                                @foreach ($classes as $class)
+                                                    <option value="{{$class->id}}" @checked($f->id == $children->class_id)>{{$class->name}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
+
+
+
+                                    <div class="col-md-12 col-12">
+                                        <div class="form-label-group">
+                                            <label for="city-column">{{__('dash.countries')}}</label>
+
+                                            <select class="select2 form-control select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true" id="country_id">
+                                                @foreach ($countres as $c)
+                                                    <option value="{{$c->id}}" @checked($c->id == $children->country_id)>{{$c->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    
                                     
                                     <div class="col-md-12 col-12">
                                         <div class="form-label-group">
                                             <div class="custom-control custom-switch custom-switch-success mr-2 mb-1">
                                                 <p class="mb-0">{{__('dash.active')}}</p>
-                                                <input type="checkbox" class="custom-control-input" id="active" @checked($teacher->status == 'active')>
+                                                <input type="checkbox" class="custom-control-input" id="active" @checked($children->status == 'active')>
                                                 <label class="custom-control-label" for="active"></label>
                                             </div>
                                         </div>
@@ -101,28 +106,26 @@
 @section('scripts')
 <script>
     function performUpdate(){
-        let fname = document.getElementById('fname').value;
-        let lname = document.getElementById('lname').value;
-        let country = document.getElementById('country').value;
-        let email = document.getElementById('email').value;
-        let national_id = document.getElementById('national_id').value;
-        let mobile = document.getElementById('mobile').value;
+        let name = document.getElementById('name').value;
+        let dob = document.getElementById('dob').value;
+        let country_id = document.getElementById('country_id').value;
+        let father_id = document.getElementById('father_id').value;
+        let class_id = document.getElementById('class_id').value;
         let image_avater = document.getElementById('image_avater').files[0];
         let active = document.getElementById('active').checked;
 
         let formData = new FormData();
-        formData.append('fname',fname);
-        formData.append('lname',lname);
-        formData.append('country',country);
-        formData.append('email',email);
-        formData.append('national_id',national_id);
-        formData.append('mobile',mobile);
+        formData.append('name',name);
+        formData.append('dob',dob);
+        formData.append('country_id',country_id);
+        formData.append('father_id',father_id);
+        formData.append('class_id',class_id);
         formData.append('image_avater',image_avater);
         formData.append('active',active);
         formData.append('_method','PUT');
 
   
-        performUpdateWithTostar('/teachers/{{$teacher->id}}',formData);
+        performUpdateWithTostar('/childrens/{{$children->id}}',formData);
     }
 </script>
 @endsection

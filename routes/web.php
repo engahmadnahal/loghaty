@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\ChildrenController;
 use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\FatherController;
@@ -61,8 +62,12 @@ Route::middleware('Local')->group(function(){
         Route::resource('plans',PlanController::class);
 
         // ----- classes Controller Route ---------
-        Route::post('/classes/status/{classe}',[ClasseController::class , 'changeStatus'])->name('classes.change_status');
+        Route::post('/classes/status/{class}',[ClasseController::class , 'changeStatus'])->name('classes.change_status');
         Route::resource('classes',ClasseController::class);
+
+        // ----- Children Controller Route ---------
+        Route::post('/childrens/status/{children}',[ChildrenController::class , 'changeStatus'])->name('childrens.change_status');
+        Route::resource('childrens',ChildrenController::class);
 
         
 

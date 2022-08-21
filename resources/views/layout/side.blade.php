@@ -103,9 +103,9 @@
 
             <li class=" nav-item"><a href="#"><i class="fa-solid fa-children"></i></i><span class="menu-title" data-i18n="{{__('dash.childrens')}}">{{__('dash.childrens')}}</span></a>
                 <ul class="menu-content">
-                    <li><a href="app-user-list.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
+                    <li><a href="{{route('childrens.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
                     </li>
-                    <li><a href="app-user-view.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.create')}}">{{__('dash.create')}}</span></a>
+                    <li><a href="{{route('childrens.create')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.create')}}">{{__('dash.create')}}</span></a>
                     </li>
                     </li>
                 </ul>

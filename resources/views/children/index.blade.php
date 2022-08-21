@@ -1,7 +1,7 @@
 @extends('layout.master')
 
-@section('title',__('dash.index_teacher'))
-@section('title_page',__('dash.index_teacher'))
+@section('title',__('dash.index_children'))
+@section('title_page',__('dash.index_children'))
 
 @section('content')
 
@@ -16,43 +16,44 @@
                 <div class="card-content">
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
-                            <a id="addRow" href="{{route('teachers.create')}}" class="col-xl-2 col-md-12 col-sm-12 btn btn-primary mb-2 waves-effect waves-light"><i class="feather icon-plus"></i>&nbsp; {{__('dash.add_new')}}</a>
+                            <a id="addRow" href="{{route('childrens.create')}}" class="col-xl-2 col-md-12 col-sm-12 btn btn-primary mb-2 waves-effect waves-light"><i class="feather icon-plus"></i>&nbsp; {{__('dash.add_new')}}</a>
                             <table class="table zero-configuration">
                                 <thead>
                                     <tr>
                                         <th>{{__('dash.avater')}}</th>
                                         <th>{{__('dash.name')}}</th>
                                         <th>{{__('dash.country')}}</th>
+                                        <th>{{__('dash.class')}}</th>
                                         <th>{{__('dash.add_date')}}</th>
-                                        <th>{{__('dash.status_email')}}</th>
                                         <th>{{__('dash.status')}}</th>
                                         <th>{{__('dash.last_vist')}}</th>
                                         <th>{{__('dash.actions')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($teachers as $teacher)
+
+                                    @foreach ($childrens as $children)
                                         <tr>
                                             <td><div class="avatar mr-1 avatar-lg">
-                                                <img src="{{$teacher->image_profile}}" alt="avtar img holder">
+                                                <img src="{{$children->image_profile}}" alt="avtar img holder">
                                             </div></td>
-                                            <td>{{$teacher->full_name}}</td>
-                                            <td>{{$teacher->country->name}}</td>
-                                            <td>{{$teacher->created_at->format('Y-m-d')}}</td>
-                                            <td> <span class="{{!is_null($teacher->email_verified_at) ? 'text-success' : 'text-danger'}}">{{$teacher->email_status}}</span></td>
-                                            <td><span class="{{$teacher->status == 'active' ? 'text-success' : 'text-danger'}}">{{$teacher->status_user}}</span></td>
-                                            <td>{{$teacher->last_login}}</td>
+                                            <td>{{$children->name}}</td>
+                                            <td>{{$children->country->name}}</td>
+                                            <td>{{$children->classe->name}}</td>
+                                            <td>{{$children->created_at->format('Y-m-d')}}</td>
+                                            <td><span class="{{$children->status == 'active' ? 'text-success' : 'text-danger'}}">{{$children->status_user}}</span></td>
+                                            <td>{{$children->last_login}}</td>
                                             <td class="action-table">
-                                                <a href="{{route('teachers.show',$teacher->id)}}"  class="btn bg-gradient-info  waves-effect waves-light"><i class="fa fa-eye"></i></a>
-                                                <a href="{{route('teachers.edit',$teacher->id)}}"  class="btn bg-gradient-primary   waves-effect waves-light"><i class="fa-solid fa-pen-to-square"></i></i></a>
-                                                @if($teacher->status =='active')
+                                                <a href="{{route('childrens.show',$children->id)}}"  class="btn bg-gradient-info  waves-effect waves-light"><i class="fa fa-eye"></i></a>
+                                                <a href="{{route('childrens.edit',$children->id)}}"  class="btn bg-gradient-primary   waves-effect waves-light"><i class="fa-solid fa-pen-to-square"></i></i></a>
+                                                @if($children->status =='active')
                                                 {{-- Show block btn where status user active --}}
-                                                    <button type="button" class="btn bg-gradient-danger waves-effect waves-light" onclick="performChangeStatus({{$teacher->id}})"><i class="fa fa-lock"></i></button>
+                                                    <button type="button" class="btn bg-gradient-danger waves-effect waves-light" onclick="performChangeStatus({{$children->id}})"><i class="fa fa-lock"></i></button>
                                                 @else
                                                 {{-- Show active btn where status user block --}}
-                                                    <button type="button" class="btn bg-gradient-success waves-effect waves-light" onclick="performChangeStatus({{$teacher->id}})"><i class="fa fa-unlock"></i></button>
+                                                    <button type="button" class="btn bg-gradient-success waves-effect waves-light" onclick="performChangeStatus({{$children->id}})"><i class="fa fa-unlock"></i></button>
                                                 @endif
-                                                <button type="button" class="btn bg-gradient-danger  waves-effect waves-light" onclick="performDelete(this,{{$teacher->id}})"><i class="fa fa-trash"></i></button>
+                                                <button type="button" class="btn bg-gradient-danger  waves-effect waves-light" onclick="performDelete(this,{{$children->id}})"><i class="fa fa-trash"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -72,11 +73,11 @@
 @section('scripts')
 <script>
     function performChangeStatus(id){
-        performStoreWithTostar('/teachers/status/'+id);
+        performStoreWithTostar('/childrens/status/'+id);
     }
 
     function performDelete(el,id){
-        performDeleteWithTostar('/teachers/'+id,{"_method" : 'DELETE'},el,'tr');
+        performDeleteWithTostar('/childrens/'+id,{"_method" : 'DELETE'},el,'tr');
     }
 </script>
 @endsection

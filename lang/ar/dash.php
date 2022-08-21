@@ -106,7 +106,14 @@ return [
     "new_classes"=>"صف جديد",
     "index_classes"=>"كل الصفوف",
     "teacher_name"=>"اسم المعلم",
-    // "new_classes"=>"",
+    "fathers"=>"الاباء",
+    "father"=>"الاب",
+    "class"=>"الصف",
+    "index_children"=>"الأطفال",
+    "dob"=>"تاريخ الميلاد",
+    "create_children"=>"اضافة طفل جديد",
+    "edit_children"=>"تعديل طفل",
+    // "fatheindex_childrenrs"=>"الاباء",
  
 
 ];

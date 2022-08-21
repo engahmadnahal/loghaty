@@ -2,17 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Trait\CustomTrait;
 use App\Models\Children;
+use App\Models\Classe;
+use App\Models\Country;
+use App\Models\Father;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class ChildrenController extends Controller
 {
+    use CustomTrait;
+
+
+    public $fathers;
+    public $childrenes;
+    public $countres;
+
+    public function __construct()
+    {
+        $this->fathers = Father::where('status','active')->get();
+        $this->classes = Classe::where('status','active')->get();
+        $this->countres = Country::where('active',true)->get();
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
         //
@@ -29,7 +48,12 @@ class ChildrenController extends Controller
     public function create()
     {
         //
-        return view('children.create');
+
+        return view('children.create',[
+            'fathers' => $this->fathers,
+            'classes' => $this->classes,
+            'countres' => $this->countres,
+        ]);
 
     }
 
@@ -42,6 +66,42 @@ class ChildrenController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator($request->all(),[
+            'name' => 'required|string',
+            'dob' => 'required|string',
+            'country_id' => 'required|numeric|exists:teachers,id',
+            'father_id' => 'required|numeric|exists:fathers,id',
+            'class_id' => 'required|numeric|exists:classes,id',
+            'image_avater' => 'required|image|mimes:jpg,png,jpeg,gif',
+            'active'=> 'required'
+            
+        ]);
+
+        if(!$validator->fails()){
+
+            if($request->hasFile('image_avater')){
+                $filePath = $this->uploadFile($request->file('image_avater'));
+            }
+
+            $children = new Children;
+            $children->name = $request->input('name');
+            $children->date_of_birth = $request->input('dob');
+            $children->country_id = $request->input('country_id');
+            $children->father_id = $request->input('father_id');
+            $children->classe_id = $request->input('class_id');
+            $children->os_mobile = "android";
+            $children->avater = $filePath;
+            $children->status = $request->input('active') == "true" ? 'active' : 'block';
+            $isSave = $children->save();
+            
+            return response()->json([
+                'title'=>$isSave ? __('msg.success') : __('msg.error'),
+                'message'=>$isSave ? __('msg.success_create') :  __('msg.error_create')
+            ],Response::HTTP_OK);
+        }else{
+            return response()->json(['title'=>__('msg.error'),'message'=>$validator->getMessageBag()->first()],Response::HTTP_BAD_REQUEST);
+
+        }
     }
 
     /**
@@ -54,10 +114,10 @@ class ChildrenController extends Controller
     {
 
         return view('children.show',[
-            'children' => $children
+            'children' => $children,
+            
         ]);
 
-        //
     }
 
     /**
@@ -69,7 +129,10 @@ class ChildrenController extends Controller
     public function edit(Children $children)
     {
         return view('children.edit',[
-            'children' => $children
+            'children' => $children,
+            'fathers' => $this->fathers,
+            'classes' => $this->classes,
+            'countres' => $this->countres,
         ]);
 
         //
@@ -84,9 +147,47 @@ class ChildrenController extends Controller
      */
     public function update(Request $request, Children $children)
     {
-        //
-    }
+        $validator = Validator($request->all(),[
+            'name' => 'required|string',
+            'dob' => 'required|string',
+            'country_id' => 'required|numeric|exists:teachers,id',
+            'father_id' => 'required|numeric|exists:fathers,id',
+            'class_id' => 'required|numeric|exists:classes,id',
+            $this->getImageValidate($request->hasFile('image_avater'))['image_avater'],
+            'active'=> 'required'
+            
+        ]);
 
+        if(!$validator->fails()){
+
+            $children->name = $request->input('name');
+            $children->date_of_birth = $request->input('dob');
+            $children->country_id = $request->input('country_id');
+            $children->father_id = $request->input('father_id');
+            $children->classe_id = $request->input('class_id');
+            if($request->hasFile('image_avater')){
+                $filePath = $this->uploadFile($request->file('image_avater'));
+                $children->avater = $filePath;
+            }
+            $children->status = $request->input('active') == "true" ? 'active' : 'block';
+            $isSave = $children->save();
+            
+            return response()->json([
+                'title'=>$isSave ? __('msg.success') : __('msg.error'),
+                'message'=>$isSave ? __('msg.success_create') :  __('msg.error_create')
+            ],Response::HTTP_OK);
+        }else{
+            return response()->json(['title'=>__('msg.error'),'message'=>$validator->getMessageBag()->first()],Response::HTTP_BAD_REQUEST);
+
+        }
+
+    }
+    public function getImageValidate($bool){
+        if($bool){
+            return ['image_avater' => 'nullable|image|mimes:jpg,png,jpeg,gif'];
+        }
+        return ['image_avater' => 'nullable'];
+    }
     /**
      * Remove the specified resource from storage.
      *
