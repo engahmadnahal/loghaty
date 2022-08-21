@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 
 class Game extends Model
 {
@@ -12,6 +14,11 @@ class Game extends Model
     public function level(){
         return $this->belongsTo(Level::class);
     }
+
+    public function plan(){
+        return $this->belongsTo(Plan::class);
+    }
+
 
 
     public function history(){
@@ -32,5 +39,18 @@ class Game extends Model
 
     public function qsPlaying(){
         return $this->hasMany(QsPlaying::class);
+    }
+
+    public function name() : Attribute {
+        return Attribute::make(
+            get: fn() => App::isLocale('ar') ? $this->name_ar : $this->name_en,
+        ); 
+    }
+
+
+    public function state() : Attribute {
+        return Attribute::make(
+            get:fn() => boolval($this->active)? __('dash.available') : __('dash.block'),
+        ); 
     }
 }

@@ -26,9 +26,9 @@
             </li>
             <li class=" nav-item"><a href="#"><i class="fa-solid fa-chart-simple"></i><span class="menu-title" data-i18n="{{__('dash.levels')}}">{{__('dash.levels')}}</span></a>
                 <ul class="menu-content">
-                    <li><a href="app-user-list.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
+                    <li><a href="{{route('levels.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
                     </li>
-                    <li><a href="app-user-view.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.create')}}">{{__('dash.create')}}</span></a>
+                    <li><a href="{{route('levels.create')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.create')}}">{{__('dash.create')}}</span></a>
                     </li>
                     </li>
                 </ul>
@@ -36,9 +36,9 @@
 
             <li class=" nav-item"><a href="#"><i class="fa-solid fa-book"></i><span class="menu-title" data-i18n="{{__('dash.games')}}">{{__('dash.games')}}</span></a>
                 <ul class="menu-content">
-                    <li><a href="app-user-list.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
+                    <li><a href="{{route('games.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
                     </li>
-                    <li><a href="app-user-view.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.create')}}">{{__('dash.create')}}</span></a>
+                    <li><a href="{{route('games.create')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.create')}}">{{__('dash.create')}}</span></a>
                     </li>
                     </li>
                 </ul>

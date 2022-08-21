@@ -15,12 +15,18 @@ class Plan extends Model
     public function fathers(){
         return $this->hasMany(Father::class);
     }
+
+    public function games(){
+        return $this->hasMany(Game::class);
+    }
     
     public function name() : Attribute {
         return Attribute::make(
             get: fn() => App::isLocale('ar') ? $this->name_ar : $this->name_en,
         ); 
     }
+
+    
 
     public function state() : Attribute {
         return Attribute::make(

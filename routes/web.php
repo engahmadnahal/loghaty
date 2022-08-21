@@ -6,7 +6,9 @@ use App\Http\Controllers\ChildrenController;
 use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\FatherController;
+use App\Http\Controllers\GameController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LevelController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\TeacherController;
 use App\Models\Admin;
@@ -68,6 +70,14 @@ Route::middleware('Local')->group(function(){
         // ----- Children Controller Route ---------
         Route::post('/childrens/status/{children}',[ChildrenController::class , 'changeStatus'])->name('childrens.change_status');
         Route::resource('childrens',ChildrenController::class);
+
+        // ----- Levels Controller Route ---------
+        Route::post('/levels/status/{level}',[LevelController::class , 'changeStatus'])->name('levels.change_status');
+        Route::resource('levels',LevelController::class);
+
+        // ----- Game Controller Route ---------
+        Route::post('/games/status/{game}',[GameController::class , 'changeStatus'])->name('games.change_status');
+        Route::resource('games',GameController::class);
 
         
 

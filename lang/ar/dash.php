@@ -60,7 +60,7 @@ return [
     'avater'=>'الصورة الشخصية',
     'country'=>'الدولة',
     'add_date'=>'تاريخ الانضمام',
-    'add_date2'=>'تاريخ الانضمام',
+    'add_date2'=>'تاريخ الاضافة',
     'actions'=>'الحدث',
     'view_all_notification'=>'عرض كل الاشعارات',
     'isactive'=>'مفعل',
@@ -120,7 +120,18 @@ return [
     'no_results'=>'لايوجد نتائج',
     'teacher_setting' => 'اعدادات المعلم',
     'father_setting'=>'اعدادات الاب ',
-    'plan_setting' => 'اعدادات الخطة'
+    'plan_setting' => 'اعدادات الخطة',
+    'points'=>'النقاط',
+    'total_points'=>'مجموع النقاط',
+    'index_level'=>'المستويات',
+    'level'=>'المستوى',
+    'orderd'=>'الترتيب',
+    'index_game'=>'العاب والتصنيفات',
+    'create_game'=>'انشاء لعبة جديدة',
+    'edit_game'=>'تعديل',
+    // 'points'=>'النقاط',
+    // 'points'=>'النقاط',
+    
  
 
 ];
