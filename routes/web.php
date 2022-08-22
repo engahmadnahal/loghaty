@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ArticalController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\EmailVerifiyController;
@@ -17,10 +18,13 @@ use App\Http\Controllers\QsCompleteLatterController;
 use App\Http\Controllers\QsLatterBettweenWordController;
 use App\Http\Controllers\QsOrderLatterController;
 use App\Http\Controllers\QsPlayingController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\TeacherController;
 use App\Models\Admin;
+use App\Models\Artical;
 use App\Models\Country;
 use App\Models\QsCompleteLatter;
+use App\Models\Subscription;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -111,7 +115,13 @@ Route::middleware('Local')->group(function(){
         // ----- qs_playings Controller Route ---------
         Route::resource('qs_playings',QsPlayingController::class);
 
-        
+        // ----- Subscriptions Controller Route ---------
+        Route::post('/subscriptions/getChildrens',[SubscriptionController::class , 'getChildrens']);
+        Route::delete('/subscriptions/change-subs',[SubscriptionController::class , 'changeSubs']);
+        Route::resource('subscriptions',SubscriptionController::class);
+
+        // ----- Articals Controller Route ---------
+        Route::resource('articals',ArticalController::class);
 
         
 

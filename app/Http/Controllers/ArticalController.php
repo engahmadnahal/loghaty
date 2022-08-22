@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Artical;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ArticalController extends Controller
 {
@@ -15,6 +16,11 @@ class ArticalController extends Controller
     public function index()
     {
         //
+
+        $articals = Artical::all();
+        return view('artical.index',[
+            'articals' => $articals
+        ]);
     }
 
     /**
@@ -25,6 +31,8 @@ class ArticalController extends Controller
     public function create()
     {
         //
+        return view('artical.create');
+
     }
 
     /**
@@ -36,6 +44,31 @@ class ArticalController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator($request->all(),[
+            'title_ar' => 'required|string|min:10|max:40',
+            'title_en' => 'required|string|min:10|max:40',
+            'body_ar' => 'required|string|min:50',
+            'body_en' => 'required|string|min:50',
+        ]);
+
+        if(!$validator->fails()){
+
+            $artical = new Artical;
+            $artical->title_ar = $request->input('title_ar');
+            $artical->title_en = $request->input('title_en');
+            $artical->body_ar = $request->input('body_ar');
+            $artical->body_en = $request->input('body_en');
+            $artical->admin_id = auth()->user()->id;
+            $isSave = $artical->save();
+            
+            return response()->json([
+                'title'=>$isSave ? __('msg.success') : __('msg.error'),
+                'message'=>$isSave ? __('msg.success_create') :  __('msg.error_create')
+            ],Response::HTTP_OK);
+        }else{
+            return response()->json(['title'=>__('msg.error'),'message'=>$validator->getMessageBag()->first()],Response::HTTP_BAD_REQUEST);
+
+        }
     }
 
     /**
@@ -47,6 +80,10 @@ class ArticalController extends Controller
     public function show(Artical $artical)
     {
         //
+        return view('artical.show',[
+            'artical' => $artical
+        ]);
+        
     }
 
     /**
@@ -58,6 +95,10 @@ class ArticalController extends Controller
     public function edit(Artical $artical)
     {
         //
+        return view('artical.edit',[
+            'artical' => $artical
+        ]);
+
     }
 
     /**
@@ -70,6 +111,30 @@ class ArticalController extends Controller
     public function update(Request $request, Artical $artical)
     {
         //
+        $validator = Validator($request->all(),[
+            'title_ar' => 'required|string|min:10|max:40',
+            'title_en' => 'required|string|min:10|max:40',
+            'body_ar' => 'required|string|min:50',
+            'body_en' => 'required|string|min:50',
+        ]);
+
+        if(!$validator->fails()){
+            
+            $artical->title_ar = $request->input('title_ar');
+            $artical->title_en = $request->input('title_en');
+            $artical->body_ar = $request->input('body_ar');
+            $artical->body_en = $request->input('body_en');
+            $artical->admin_id = auth()->user()->id;
+            $isSave = $artical->save();
+            
+            return response()->json([
+                'title'=>$isSave ? __('msg.success') : __('msg.error'),
+                'message'=>$isSave ? __('msg.success_create') :  __('msg.error_create')
+            ],Response::HTTP_OK);
+        }else{
+            return response()->json(['title'=>__('msg.error'),'message'=>$validator->getMessageBag()->first()],Response::HTTP_BAD_REQUEST);
+
+        }
     }
 
     /**
@@ -81,5 +146,10 @@ class ArticalController extends Controller
     public function destroy(Artical $artical)
     {
         //
+        $isDelete = $artical->delete();
+        return response()->json([
+            'title' => $isDelete ? __('msg.success') : __('msg.error'),
+            'message' =>$isDelete ? __('msg.success_delete') : __('msg.error_delete')
+        ],$isDelete ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
     }
 }

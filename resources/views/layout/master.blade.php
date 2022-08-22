@@ -5,6 +5,7 @@
 <head>
 @include('layout.head')
 <title>Loghaty - @yield('title','Dahsboard')</title>
+@yield('style')
 </head>
 <!-- END: Head-->
 <!-- BEGIN: Body-->

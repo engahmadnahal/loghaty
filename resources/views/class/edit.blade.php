@@ -1,7 +1,7 @@
 @extends('layout.master')
 
-@section('title',__('dash.create_teacher'))
-@section('title_page',__('dash.new_teacher'))
+@section('title',__('dash.edit_class'))
+@section('title_page',__('dash.edit_class'))
 @section('content')
 <section id="multiple-column-form">
     <div class="row match-height">

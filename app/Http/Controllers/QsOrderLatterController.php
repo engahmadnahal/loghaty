@@ -80,7 +80,10 @@ class QsOrderLatterController extends Controller
             $sumPointsAllQs = QsOrderLatter::where('game_id',$request->input('game_id'))->sum('points');
             $game = Game::find($request->input('game_id'));
             $totalPointLevel = $game->level->points;
-            if($sumPointsAllQs > $totalPointLevel){
+            if(
+                ($sumPointsAllQs > $totalPointLevel) || 
+                ($request->input('points') > $totalPointLevel)
+            ){
                 return response()->json([
                     'title'=> __('msg.error'),
                     'message'=>__('msg.points_grth_total_level') 
@@ -191,7 +194,10 @@ class QsOrderLatterController extends Controller
             $sumPointsAllQs = QsOrderLatter::where('game_id',$request->input('game_id'))->sum('points');
             $game = Game::find($request->input('game_id'));
             $totalPointLevel = $game->level->points;
-            if($sumPointsAllQs > $totalPointLevel){
+            if(
+                ($sumPointsAllQs > $totalPointLevel) || 
+                ($request->input('points') > $totalPointLevel)
+            ){
                 return response()->json([
                     'title'=> __('msg.error'),
                     'message'=>__('msg.points_grth_total_level') 

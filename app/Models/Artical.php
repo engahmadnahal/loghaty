@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Artical extends Model
 {
     use HasFactory;
+
+    public function admin(){
+        return $this->belongsTo(Admin::class);
+    }
 }

@@ -212,7 +212,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Locales' => App\Http\Helper\Locales::class,
-        'QusstionType' => App\Http\Helper\QusstionType::class
+        'QusstionType' => App\Http\Helper\QusstionType::class,
+        'ActiveRoute' => App\Http\Helper\ActiveRoute::class,
 
     ])->toArray(),
 
