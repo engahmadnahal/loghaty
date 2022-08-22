@@ -46,10 +46,10 @@
 
             <li class=" nav-item"><a href="#"><i class="fa-solid fa-pen-to-square"></i><span class="menu-title" data-i18n="{{__('dash.quesstion')}}">{{__('dash.quesstion')}}</span></a>
                 <ul class="menu-content">
-                    <li><a href="app-user-list.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
-                    </li>
-                    <li><a href="app-user-view.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.create')}}">{{__('dash.create')}}</span></a>
-                    </li>
+                    @foreach (QusstionType::$qs as $route => $name)
+                        <li><a href="{{route($route.'.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__($name)}}">{{__($name)}}</span></a>
+                        </li>
+                    @endforeach
                     </li>
                 </ul>
             </li>

@@ -10,8 +10,13 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\QsCompleteLatterController;
+use App\Http\Controllers\QsLatterBettweenWordController;
+use App\Http\Controllers\QsOrderLatterController;
+use App\Http\Controllers\QsPlayingController;
 use App\Http\Controllers\TeacherController;
 use App\Models\Admin;
+use App\Models\QsCompleteLatter;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -78,6 +83,20 @@ Route::middleware('Local')->group(function(){
         // ----- Game Controller Route ---------
         Route::post('/games/status/{game}',[GameController::class , 'changeStatus'])->name('games.change_status');
         Route::resource('games',GameController::class);
+
+        // ----- QsCompleteLatter Controller Route ---------
+        Route::resource('qs_complete_latters',QsCompleteLatterController::class);
+
+        // ----- Qs_latter_bettween_words Controller Route ---------
+        Route::resource('qs_latter_bettween_words',QsLatterBettweenWordController::class);
+
+        // ----- qs_order_latters Controller Route ---------
+        Route::resource('qs_order_latters',QsOrderLatterController::class);
+
+        // ----- qs_playings Controller Route ---------
+        Route::resource('qs_playings',QsPlayingController::class);
+
+        
 
         
 
