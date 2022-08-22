@@ -88,9 +88,9 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-        // return view('game.show',[
-        //     'game' => $game
-        // ]);
+        return view('game.show',[
+            'game' => $game
+        ]);
         //
     }
 

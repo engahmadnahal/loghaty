@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Children;
 use App\Models\Classe;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
@@ -80,9 +81,14 @@ class ClasseController extends Controller
     public function show(Classe $class)
     {
         //
-        // return view('class.show',[
-        //     'class' => $class
-        // ]);
+        $latestChild = Children::whereHas('classe',function($q){
+            $q->where('status','active');
+                
+        })->orderBy('created_at','desc')->get();
+        return view('class.show',[
+            'class' => $class,
+            'latestChild' => $latestChild
+        ]);
     }
 
     /**

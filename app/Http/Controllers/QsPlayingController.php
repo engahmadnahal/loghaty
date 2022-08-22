@@ -144,13 +144,14 @@ class QsPlayingController extends Controller
      * @param  \App\Models\QsPlaying  $QsPlaying
      * @return \Illuminate\Http\Response
      */
-    public function show(QsPlaying $QsPlaying)
-    {
-        return view('QsPlaying.show',[
-            'QsPlaying' => $QsPlaying
-        ]);
-        //
-    }
+    // public function show(QsPlaying $QsPlaying)
+    // {
+    //     return view('QsPlaying.show',[
+    //         'QsPlaying' => $QsPlaying
+    //     ]);
+
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.

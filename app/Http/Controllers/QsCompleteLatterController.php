@@ -84,7 +84,10 @@ class QsCompleteLatterController extends Controller
             $sumPointsAllQs = QsCompleteLatter::where('game_id',$request->input('game_id'))->sum('points');
             $game = Game::find($request->input('game_id'));
             $totalPointLevel = $game->level->points;
-            if($sumPointsAllQs > $totalPointLevel){
+            if(
+                ($sumPointsAllQs > $totalPointLevel) || 
+                ($request->input('points') > $totalPointLevel)
+                ){
                 return response()->json([
                     'title'=> __('msg.error'),
                     'message'=>__('msg.points_grth_total_level') 
@@ -141,13 +144,14 @@ class QsCompleteLatterController extends Controller
      * @param  \App\Models\QsCompleteLatter  $QsCompleteLatter
      * @return \Illuminate\Http\Response
      */
-    public function show(QsCompleteLatter $QsCompleteLatter)
-    {
-        return view('QsCompleteLatter.show',[
-            'QsCompleteLatter' => $QsCompleteLatter
-        ]);
-        //
-    }
+    // public function show(QsCompleteLatter $QsCompleteLatter)
+    // {
+    //     // return view('QsCompleteLatter.show',[
+    //     //     'QsCompleteLatter' => $QsCompleteLatter
+    //     // ]);
+    //     return redirect()->route('qs_complete_latters.edit');
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.

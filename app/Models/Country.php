@@ -30,5 +30,11 @@ class Country extends Model
         ); 
     }
 
+    public function state() : Attribute {
+        return Attribute::make(
+            get:fn() => $this->status = 'active' ? __('dash.available') : __('dash.block'),
+        ); 
+    }
+
 
 }

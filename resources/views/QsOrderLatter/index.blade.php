@@ -36,7 +36,7 @@
                                             <td>{{$q->points}}</td>
                                             <td>{{$q->created_at->format('Y-m-d')}}</td>
                                             <td class="action-table">
-                                                <a href="{{route('qs_order_latters.show',$q->id)}}"  class="btn bg-gradient-info  waves-effect waves-light"><i class="fa fa-eye"></i></a>
+                                                {{-- <a href="{{route('qs_order_latters.show',$q->id)}}"  class="btn bg-gradient-info  waves-effect waves-light"><i class="fa fa-eye"></i></a> --}}
                                                 <a href="{{route('qs_order_latters.edit',$q->id)}}"  class="btn bg-gradient-primary   waves-effect waves-light"><i class="fa-solid fa-pen-to-square"></i></i></a>
                                                 <button type="button" class="btn bg-gradient-danger  waves-effect waves-light" onclick="performDelete(this,{{$q->id}})"><i class="fa fa-trash"></i></button>
                                             </td>

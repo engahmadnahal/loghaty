@@ -10,5 +10,7 @@ return [
     'error_delete' => 'حدث خطأ اثناء الحذف',
     'success_action' =>'تم العملية بنجاح',
     'error_action' =>'حدث خطأ اثناء تنفيذ العملية',
+    'points_grth_total_level'=>'لقد تجاوزت عدد النقاط في هذا المستوى',
+
     
 ];

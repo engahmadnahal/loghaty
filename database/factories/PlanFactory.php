@@ -18,6 +18,13 @@ class PlanFactory extends Factory
     {
         return [
             //
+            'name_en' => 'Free Plan',
+            'name_ar' => 'الخطة المجانية',
+            'sum_month' => 99999,
+            'price_usd' => 0.00,
+            'price_aed' => 0.00,
+            'totale_child_subscrip' => 9999,
+            'active' => true,
         ];
     }
 }

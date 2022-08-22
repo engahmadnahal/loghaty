@@ -129,13 +129,15 @@ class QsOrderLatterController extends Controller
      * @param  \App\Models\QsOrderLatter  $QsOrderLatter
      * @return \Illuminate\Http\Response
      */
-    public function show(QsOrderLatter $QsOrderLatter)
-    {
-        return view('QsOrderLatter.show',[
-            'QsOrderLatter' => $QsOrderLatter
-        ]);
-        //
-    }
+    // public function show(QsOrderLatter $QsOrderLatter)
+    // {
+    //     // return view('QsOrderLatter.show',[
+    //     //     'QsOrderLatter' => $QsOrderLatter
+    //     // ]);
+    //     return redirect()->route('qs_order_latters.edit');
+
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.

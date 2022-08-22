@@ -150,13 +150,15 @@ class QsLatterBettweenWordController extends Controller
      * @param  \App\Models\QsLatterBettweenWord  $QsLatterBettweenWord
      * @return \Illuminate\Http\Response
      */
-    public function show(QsLatterBettweenWord $QsLatterBettweenWord)
-    {
-        return view('QsLatterBettweenWord.show',[
-            'QsLatterBettweenWord' => $QsLatterBettweenWord
-        ]);
-        //
-    }
+    // public function show(QsLatterBettweenWord $QsLatterBettweenWord)
+    // {
+    //     return redirect()->route('qs_latter_bettween_words.edit');
+
+    //     // return view('QsLatterBettweenWord.show',[
+    //     //     'QsLatterBettweenWord' => $QsLatterBettweenWord
+    //     // ]);
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.

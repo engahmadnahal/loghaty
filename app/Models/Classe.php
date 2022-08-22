@@ -32,7 +32,7 @@ class Classe extends Model
 
     public function state() : Attribute {
         return Attribute::make(
-            get:fn() => boolval($this->active)? __('dash.available') : __('dash.block'),
+            get:fn() => $this->status = 'active' ? __('dash.available') : __('dash.block'),
         ); 
     }
     
