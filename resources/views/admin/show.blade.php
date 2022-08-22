@@ -89,7 +89,7 @@
 
                             {{-- This is New Tab Change Password --}}
                             <div class="tab-pane fade" id="account-vertical-password" role="tabpanel" aria-labelledby="account-pill-password" aria-expanded="false">
-                                <form novalidate="">
+                                <form novalidate="" id='change'>
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-group">
@@ -116,7 +116,7 @@
                                             </div>
                                         </div>
                                         <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
-                                            <button type="button" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0 waves-effect waves-light">{{__('dash.save')}}
+                                            <button type="button" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0 waves-effect waves-light" onclick="performResetPassword()">{{__('dash.save')}}
                                                 </button>
                                             <button type="reset" class="btn btn-outline-warning waves-effect waves-light">{{__('dash.reset')}}</button>
                                         </div>
@@ -153,6 +153,15 @@
             
         performUpdateWithTostar('/admins/{{$admin->id}}',formData);
 
+    }
+
+    function performResetPassword(){
+        let dataObj = {
+            old_password:document.getElementById('old_password').value,
+            new_password:document.getElementById('new_password').value,
+            new_password_confirmation:document.getElementById('confr_password').value,
+        };
+        performStoreWithTostar('/change-password',dataObj,'change');
     }
 </script>
 @endsection

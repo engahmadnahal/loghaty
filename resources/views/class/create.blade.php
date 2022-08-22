@@ -31,7 +31,7 @@
 
 
 
-                                    <div class="col-md-6 col-12">
+                                    <div class="col-md-12 col-12">
                                         <div class="form-label-group">
                                             <label for="city-column">{{__('dash.countries')}}</label>
 

@@ -182,7 +182,16 @@ return [
     'num_fathers'=> 'عدد الاباء',
     'num_permission'=> 'عدد الصلاحيات',
     'num_class'=> 'عدد الصفوف',
-    // 'num_fathers'=> '',
+    'send_email'=> 'ارسل ايميل',
+    'send_email_forgot'=> 'أرسل ايمل لاعادة كلمة المرور',
+    'send_email_forgot_body'=> 'سيتم ارسال لك ايميل لتتمكن من استعادة حسابك',
+
+    'reset_password'=> ' إعادة تعيين كلمة المرور',
+    'reset_password_title'=> 'إعادة تعيين كلمة المرور',
+    'reset_password_body'=> 'قم باعادة كتابة كلمة المرور الجديدة',
+    'old_password_error'=>'كلمة المرور القديمة خاطئة',
+    'success_change' => 'تم التغير بنجاح '
+
  
     
 

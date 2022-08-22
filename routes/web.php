@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\ChangePasswordController;
+use App\Http\Controllers\Auth\EmailVerifiyController;
+use App\Http\Controllers\Auth\RessetPasswordController;
 use App\Http\Controllers\ChildrenController;
 use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\CountryController;
@@ -37,17 +40,27 @@ Route::middleware('Local')->group(function(){
     Route::middleware('guest')->group(function(){
         Route::get('login', [AuthController::class , 'loginPage'])->name('auth.login_page');
         Route::post('/login', [AuthController::class , 'login'])->name('auth.login');
+        Route::get('/forgot',[RessetPasswordController::class , 'showForgot'])->name('auth.forgot');
+        Route::post('/reset',[RessetPasswordController::class , 'sendLinkReset'])->name('auth.reset');
+        Route::get('/reset-password/{token}',[RessetPasswordController::class , 'showResetPassword'])->name('password.reset');
+        Route::post('/reset-password',[RessetPasswordController::class , 'resetPassword'])->name('auth.reset_password');
     });
 
+    Route::middleware('auth:admin')->group(function(){
+        Route::get('/verifiy-email',[EmailVerifiyController::class , 'showVerifiyEmail'])->name('verification.notice');
+        Route::get('/verifiy/{id}/{hash}',[EmailVerifiyController::class , 'verifiyEmail'])->name('verification.verify');
+        Route::post('/send-verifiy',[EmailVerifiyController::class , 'sendVerifiyEmail'])->middleware('throttle:1,1')->name('verification.send');
+    });
 
 
     /// -------------------- Auth Routes -------------
 
-    Route::middleware('auth:admin')->group(function(){
+    Route::middleware('auth:admin','verified')->group(function(){
         // ----- Global Settings Route ---------
         Route::post('logout', [AuthController::class , 'logoutUser'])->name('auth.logout');
         Route::get('/',[HomeController::class , 'index'])->name('home.index');
         Route::post('/set-local',[HomeController::class , 'setLocal'])->name('set_local');
+        Route::post('/change-password',[ChangePasswordController::class , 'changePassword'])->name('auth.change_password');
 
 
         // ----- Admin Controller Route ---------

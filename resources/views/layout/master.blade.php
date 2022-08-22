@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html class="loading" lang="{{session()->get('lang') == 'ar' ? 'ar' : 'en'}}" data-textdirection="{{session()->get('lang') == 'ar'  ? 'rtl' : 'ltr'}}">
+<html class="loading" lang="{{App::isLocale('ar') ? 'ar' : 'en'}}" data-textdirection="{{App::isLocale('ar') ? 'rtl' : 'ltr'}}">
 <!-- BEGIN: Head-->
 <head>
 @include('layout.head')
