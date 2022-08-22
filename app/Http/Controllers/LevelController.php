@@ -86,9 +86,9 @@ class LevelController extends Controller
      */
     public function show(Level $level)
     {
-        return view('level.show',[
-            'level' => $level
-        ]);
+        // return view('level.show',[
+        //     'level' => $level
+        // ]);
 
         //
     }

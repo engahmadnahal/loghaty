@@ -2,8 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
+use App\Models\Children;
+use App\Models\Classe;
+use App\Models\Father;
+use App\Models\Game;
+use App\Models\Level;
+use App\Models\Plan;
+use App\Models\Subscription;
+use App\Models\Teacher;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 use Symfony\Component\HttpFoundation\Response;
 
 class HomeController extends Controller
@@ -16,7 +26,30 @@ class HomeController extends Controller
     public function index()
     {
         //
-        return view('index');
+        $admins = Admin::where('status','active')->get();
+        $teachers = Teacher::where('status','active')->get();
+        $childrens = Children::where('status','active')->get();
+        $fathers = Father::where('status','active')->count();
+        $classes = Classe::where('status','active')->get();
+        $totalSub = Subscription::where('expire','<>',null)->count();
+        $plans = Plan::where('active',true)->count();
+        $levles = Level::where('active',true)->count();
+        $games = Game::where('active',true)->count();
+        $permission = Permission::count();
+        
+        return view('index',[
+            'admins' =>$admins ,
+            'teachers' =>$teachers ,
+            'childrens' =>$childrens ,
+            'fathers' =>$fathers ,
+            'classes' =>$classes ,
+            'totalSub' =>$totalSub ,
+            'plans' =>$plans ,
+            'levles' =>$levles ,
+            'games' =>$games ,
+            'permission' =>$permission ,
+           
+        ]);
     }
 
     /**

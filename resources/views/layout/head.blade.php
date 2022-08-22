@@ -112,6 +112,8 @@
 
         <!-- END: Custom CSS For Ar Lang -->
     @endif
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/dashboard-analytics.css')}}">
+
     <style>
 
         .action-table button , .action-table a{
@@ -122,5 +124,8 @@
         .page-users-view .users-view-image {
             height: 120px;
         }
+        .tippy-content {
+    display: none !important;
+}
     
     </style>

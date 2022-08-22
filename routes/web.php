@@ -16,6 +16,7 @@ use App\Http\Controllers\QsOrderLatterController;
 use App\Http\Controllers\QsPlayingController;
 use App\Http\Controllers\TeacherController;
 use App\Models\Admin;
+use App\Models\Country;
 use App\Models\QsCompleteLatter;
 use Illuminate\Support\Facades\Route;
 
@@ -54,6 +55,7 @@ Route::middleware('Local')->group(function(){
         Route::resource('admins',AdminController::class);
 
         // ----- Country Controller Route ---------
+        Route::post('/countries/status/{country}',[CountryController::class , 'changeStatus'])->name('countries.change_status');
         Route::resource('countries',CountryController::class);
 
         // ----- teachers Controller Route ---------

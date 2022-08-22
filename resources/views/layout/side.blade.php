@@ -1,7 +1,7 @@
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
-            <li class="nav-item mr-auto"><a class="navbar-brand" href="#">
+            <li class="nav-item mr-auto"><a class="navbar-brand" href="{{route('home.index')}}">
                     <div class="brand-logo"></div>
                     <h2 class="brand-text mb-0">{{__('dash.app_name')}}</h2>
                 </a></li>
@@ -12,7 +12,7 @@
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class=" nav-item"><a href="index.html"><i class="fa-solid fa-house"></i></i><span class="menu-title" data-i18n="{{__('dash.home')}}">{{__('dash.home')}}</span></a>
                 <ul class="menu-content">
-                    <li class="active"><a href="dashboard-analytics.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">{{__('dash.anlytics')}}</span></a>
+                    <li class="active"><a href="{{route('home.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">{{__('dash.anlytics')}}</span></a>
                     </li>
                     
                 </ul>

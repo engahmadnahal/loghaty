@@ -1,14 +1,13 @@
 @extends('layout.master')
 
-@section('title',__('dash.create_admin'))
+@section('title',__('dash.new_countriy'))
+@section('title_page',__('dash.new_countriy'))
 @section('content')
 <section id="multiple-column-form">
     <div class="row match-height">
         <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">{{__('dash.new_countriy')}}</h4>
-                </div>
+               
                 <div class="card-content">
                     <div class="card-body">
                         <form class="form" id="form">

@@ -80,9 +80,9 @@ class ClasseController extends Controller
     public function show(Classe $class)
     {
         //
-        return view('class.show',[
-            'class' => $class
-        ]);
+        // return view('class.show',[
+        //     'class' => $class
+        // ]);
     }
 
     /**

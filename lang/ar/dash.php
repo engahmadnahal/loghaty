@@ -143,8 +143,8 @@ return [
     'answer_ar' => 'الاجابة عربي',
 
     'image_one' => 'الصورة الاولى',
-    'image_one' => 'الصورة الثانية',
-    'image_one' => 'الصورة الثالثة',
+    'image_two' => 'الصورة الثانية',
+    'image_three' => 'الصورة الثالثة',
 
     'image' => 'صورة ',
 
@@ -157,6 +157,9 @@ return [
     'option_three_ar' => 'الخيار الثالث عربي',
     'option_three_en' => 'الخيار الثالث انجليزي',
 
+    'option_foure_ar' => 'الخيار الرابع عربي',
+    'option_foure_en' => 'الخيار الرابع انجليزي',
+
     'create_qs'=>'انشاء سؤال',
     'edit_qs'=>'تعديل سؤال',
     'index_qs'=>'كل الأسئلة',
@@ -164,6 +167,24 @@ return [
     'qs_latter_bettween_words' => 'الحرف بين الكلمات',
     'qs_order_latters' => 'رتب الحروف',
     'qs_playings' => ' العب ',
+
+    'body_ar' => ' السؤال كاملاً ( سيتم قراءته صوتياً)',
+    'body_en' => 'السؤال كاملاً بالانجليزية ( سيتم قراءته صوتياً )',
+    'index_country'=>'كل الدول',
+    'edit_countriy' => 'تعديل الدولة',
+    'last_login' => ' التحركات في لوحة التحكم',
+    'num_admins'=> 'عدد المالكين',
+    'num_teachers'=> 'عدد المعلمين',
+    'num_subscripers'=> 'عدد المشتركين',
+    'num_levels'=> 'عدد المستويات',
+    'num_games'=> 'عدد العاب',
+    'num_childrens'=> 'عدد الأطفال',
+    'num_fathers'=> 'عدد الاباء',
+    'num_permission'=> 'عدد الصلاحيات',
+    'num_class'=> 'عدد الصفوف',
+    // 'num_fathers'=> '',
+ 
+    
 
 
 ];

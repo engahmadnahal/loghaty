@@ -27,6 +27,8 @@
     <script src="{{asset('app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/datatables/datatable.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/charts/echarts/echarts.min.js')}}"></script>
+    <script src="{{asset('app-assets/js/scripts/pages/dashboard-analytics.js')}}"></script>
+
 
 
 

@@ -30,10 +30,10 @@ class Classe extends Model
     }
 
 
-    public function statusClass() : Attribute {
+    public function state() : Attribute {
         return Attribute::make(
-            get : fn() => $this->status == "active" ? __('dash.available') : __('dash.block')
-        );
+            get:fn() => boolval($this->active)? __('dash.available') : __('dash.block'),
+        ); 
     }
     
 }

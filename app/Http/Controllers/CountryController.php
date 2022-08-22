@@ -16,6 +16,11 @@ class CountryController extends Controller
     public function index()
     {
         //
+
+        $countries = Country::all();
+        return view('country.index',[
+            'countries' => $countries
+        ]);
     }
 
     /**
@@ -76,6 +81,9 @@ class CountryController extends Controller
     public function edit(Country $country)
     {
         //
+        return view('country.edit',[
+            'country'=>$country
+        ]);
     }
 
     /**
@@ -88,6 +96,21 @@ class CountryController extends Controller
     public function update(Request $request, Country $country)
     {
         //
+        $validator = Validator($request->all(),[
+            'name_en'=>'required|string',
+            'name_en'=>'required|string',
+            'active'=>'nullable|boolean'
+        ]);
+
+        if(!$validator->fails()){
+            $country->name_en = $request->input('name_en');
+            $country->name_ar = $request->input('name_ar');
+            $country->active = $request->input('active');
+            $isSave = $country->save();
+            return response()->json(['title'=>__('msg.success'),'message'=>$isSave ? __('msg.success_edit') : __('msg.error_edit')],Response::HTTP_OK);
+        }else{
+            return response()->json(['title'=>__('msg.error'),'message'=>$validator->getMessageBag()->first()],Response::HTTP_BAD_REQUEST);
+        }
     }
 
     /**
@@ -99,5 +122,31 @@ class CountryController extends Controller
     public function destroy(Country $country)
     {
         //
+        $isDelete = $country->delete();
+        return response()->json([
+            'title' => $isDelete ? __('msg.success') : __('msg.error'),
+            'message' =>$isDelete ? __('msg.success_delete') : __('msg.error_delete')
+        ],$isDelete ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
+    }
+
+
+   /**
+     * Change the status user.
+     *
+     * @param  \App\Models\Country $country
+     * @return \Illuminate\Http\Response
+     */
+    public function changeStatus(Country $country){
+        if($country->active){
+            $country->active = false;
+        }else{
+            $country->active = true;
+        }
+        $isSave = $country->save();
+
+        return response()->json([
+            'title' => $isSave ? __('msg.success') : __('msg.error'),
+            'message' =>$isSave ? __('msg.success_action') : __('msg.error_action')
+        ],$isSave ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
     }
 }
