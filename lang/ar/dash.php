@@ -254,7 +254,11 @@ return [
     "Delete-role"=> "حذف المسميات"	,
     "Read-role"=> "عرض المسميات",
     "giv_admin_permission"=> "اعطاء صلاحيات للادمن"	,
-    'block_system' => 'صلاحيات الحظر على النظام'
+    'block_system' => 'صلاحيات الحظر على النظام',
+    'last_add_teacher'=>'اخر المعلمين المضافين',
+    'last_subs'=>'أخر الاشتراكات',
+    'last_login_father'=>'زيارات اولياء الامور',
+    'history_analytics'=>'سجل المستخدمين',
     // 'aa'=>'',
 
 

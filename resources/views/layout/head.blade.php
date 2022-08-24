@@ -128,5 +128,7 @@
         .tippy-content {
     display: none !important;
 }
-    
+.card a.anlytics {
+    color: #616261;
+}
     </style>

@@ -7,6 +7,7 @@ use App\Models\Children;
 use App\Models\Classe;
 use App\Models\Father;
 use App\Models\Game;
+use App\Models\History;
 use App\Models\Level;
 use App\Models\Plan;
 use App\Models\Subscription;
@@ -30,24 +31,30 @@ class HomeController extends Controller
         $teachers = Teacher::where('status','active')->get();
         $childrens = Children::where('status','active')->get();
         $fathers = Father::where('status','active')->count();
+        $fathersData = Father::where('status','active')->get();
         $classes = Classe::where('status','active')->get();
-        $totalSub = Subscription::where('expire','<>',null)->count();
+        $totalSub = Subscription::where('expire',null)->count();
+        $subsData = Subscription::where('expire',null)->get();
         $plans = Plan::where('active',true)->count();
         $levles = Level::where('active',true)->count();
         $games = Game::where('active',true)->count();
         $permission = Permission::count();
+        $histores = History::all();
         
         return view('index',[
+            'histores'=>$histores,
             'admins' =>$admins ,
             'teachers' =>$teachers ,
             'childrens' =>$childrens ,
             'fathers' =>$fathers ,
+            'fathersData' =>$fathersData ,
             'classes' =>$classes ,
             'totalSub' =>$totalSub ,
             'plans' =>$plans ,
             'levles' =>$levles ,
             'games' =>$games ,
             'permission' =>$permission ,
+            'subsData' => $subsData
            
         ]);
     }
