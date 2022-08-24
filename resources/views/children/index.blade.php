@@ -16,7 +16,9 @@
                 <div class="card-content">
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
+                            @can('Create-children')
                             <a id="addRow" href="{{route('childrens.create')}}" class="col-xl-2 col-md-12 col-sm-12 btn btn-primary mb-2 waves-effect waves-light"><i class="feather icon-plus"></i>&nbsp; {{__('dash.add_new')}}</a>
+                            @endcan
                             <table class="table zero-configuration">
                                 <thead>
                                     <tr>
@@ -44,16 +46,26 @@
                                             <td><span class="{{$children->status == 'active' ? 'text-success' : 'text-danger'}}">{{$children->status_user}}</span></td>
                                             <td>{{$children->last_login}}</td>
                                             <td class="action-table">
+                                                @can('Read-children')
                                                 <a href="{{route('childrens.show',$children->id)}}"  class="btn bg-gradient-info  waves-effect waves-light"><i class="fa fa-eye"></i></a>
+                                                @endcan
+                                                @can('Update-children')
                                                 <a href="{{route('childrens.edit',$children->id)}}"  class="btn bg-gradient-primary   waves-effect waves-light"><i class="fa-solid fa-pen-to-square"></i></i></a>
+                                                @endcan
                                                 @if($children->status =='active')
                                                 {{-- Show block btn where status user active --}}
+                                                    @can('block_system')
                                                     <button type="button" class="btn bg-gradient-danger waves-effect waves-light" onclick="performChangeStatus({{$children->id}})"><i class="fa fa-lock"></i></button>
+                                                    @endcan
                                                 @else
-                                                {{-- Show active btn where status user block --}}
+                                                    {{-- Show active btn where status user block --}}
+                                                    @can('block_system')
                                                     <button type="button" class="btn bg-gradient-success waves-effect waves-light" onclick="performChangeStatus({{$children->id}})"><i class="fa fa-unlock"></i></button>
+                                                    @endcan
                                                 @endif
+                                                @can('Delete-children')
                                                 <button type="button" class="btn bg-gradient-danger  waves-effect waves-light" onclick="performDelete(this,{{$children->id}})"><i class="fa fa-trash"></i></button>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

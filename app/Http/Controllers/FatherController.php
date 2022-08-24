@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Children;
+use App\Models\Country;
 use App\Models\Father;
 use App\Models\Plan;
 use App\Models\Subscription;
@@ -15,10 +16,12 @@ class FatherController extends Controller
 {
 
     public $plans;
+    public $countres;
 
     public function __construct()
     {
         $this->plans = Plan::where('active',true)->get();
+        $this->countres = Country::where('active',true)->get();
     }
     /**
      * Display a listing of the resource.
@@ -45,7 +48,8 @@ class FatherController extends Controller
         
         //
         return view('father.create',[
-            'plans' => $this->plans
+            'plans' => $this->plans,
+            'countres' => $this->countres
         ]);
 
     }
@@ -75,6 +79,7 @@ class FatherController extends Controller
             $father->email = $request->input('email');
             $father->password = $request->input('password');
             $father->plan_id = $request->input('plan_id');
+            $father->country_id = $request->input('country_id');
             $father->status = $request->input('active') == "true" ? 'active' : 'block';
             $father->save();
 
@@ -123,6 +128,7 @@ class FatherController extends Controller
         return view('father.edit',[
             'father' =>$father,
             'plans' => $this->plans,
+            'countres' => $this->countres
         ]);
 
     }
@@ -139,7 +145,7 @@ class FatherController extends Controller
         //
         $validator = Validator($request->all(),[
             'email' => 'required|email',
-            'password' => 'required|string|min:6|max:12',
+            'password' => 'nullable|string|min:6|max:12',
             'plan_id' => 'required|numeric|exists:plans,id',
             'active'=> 'required'
         ]);
@@ -148,8 +154,12 @@ class FatherController extends Controller
 
 
             $father->email = $request->input('email');
-            $father->password = $request->input('password');
+            if(!is_null($request->input('password'))){
+
+                $father->password =  $request->input('password') ;
+            }
             $father->plan_id = $request->input('plan_id');
+            $father->country_id = $request->input('country_id');
             $father->status = $request->input('active') == "true" ? 'active' : 'block';
             $father->save();
 

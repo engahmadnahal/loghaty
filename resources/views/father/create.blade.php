@@ -32,7 +32,18 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-md-12 col-12">
+                                        <div class="form-label-group">
+                                            <label for="city-column">{{__('dash.countries')}}</label>
 
+                                            <select class="select2 form-control select2-hidden-accessible" data-select2-id="3" tabindex="-1" aria-hidden="true" id="country_id">
+                                                @foreach ($countres as $c)
+                                                    <option value="{{$c->id}}">{{$c->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
                                     <div class="col-md-12 col-12">
                                         <div class="form-label-group">
                                             <label for="city-column">{{__('dash.countries')}}</label>
@@ -77,13 +88,15 @@
         let email = document.getElementById('email').value;
         let password = document.getElementById('password').value;
         let plan_id = document.getElementById('plan').value;
+        let country_id = document.getElementById('country_id').value;
         let active = document.getElementById('active').checked;
 
         let dataObj = {
             plan_id : plan_id,
             email : email,
             password : password,
-            active : active
+            active : active,
+            country_id : country_id
         };
         
         performStoreWithTostar('/fathers',dataObj,'form');

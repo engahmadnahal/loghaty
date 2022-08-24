@@ -10,10 +10,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Permission\Traits\HasRoles;
 
 class Admin extends Authenticatable
 {
-    use HasFactory,Notifiable,SoftDeletes;
+    use HasFactory,Notifiable,SoftDeletes,HasRoles;
 
     public function articles(){
         return $this->hasMany(Artical::class);

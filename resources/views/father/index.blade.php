@@ -13,7 +13,9 @@
                 <div class="card-content">
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
+                            @can('Create-father')
                             <a id="addRow" href="{{route('fathers.create')}}" class="col-xl-2 col-md-12 col-sm-12 btn btn-primary mb-2 waves-effect waves-light"><i class="feather icon-plus"></i>&nbsp; {{__('dash.add_new')}}</a>
+                            @endcan
                             <table class="table zero-configuration">
                                 <thead>
                                     <tr>
@@ -39,21 +41,29 @@
                                             <td><span class="{{$father->status == 'active' ? 'text-success' : 'text-danger'}}">{{$father->status_user}}</span></td>
                                             <td>{{$father->last_login}}</td>
                                             <td class="action-table">
+                                                @can('Read-father')
                                                 <a href="{{route('fathers.show',$father->id)}}"  class="btn bg-gradient-info  waves-effect waves-light"><i class="fa fa-eye"></i></a>
+                                                @endcan
+                                                @can('Update-father')
                                                 <a href="{{route('fathers.edit',$father->id)}}"  class="btn bg-gradient-primary   waves-effect waves-light"><i class="fa-solid fa-pen-to-square"></i></i></a>
+                                                @endcan
                                                 @if($father->status =='active')
+                                                @can('block_system')
                                                 {{-- Show block btn where status user active --}}
                                                     <button type="button" class="btn bg-gradient-danger waves-effect waves-light" onclick="performChangeStatus({{$father->id}})"><i class="fa fa-lock"></i></button>
-                                                @else
+                                                    @endcan
+                                                    @else
+                                                @can('block_system')
                                                 {{-- Show active btn where status user block --}}
                                                     <button type="button" class="btn bg-gradient-success waves-effect waves-light" onclick="performChangeStatus({{$father->id}})"><i class="fa fa-unlock"></i></button>
-                                                @endif
+                                                    @endcan
+                                                    @endif
+                                                @can('Delete-father')
                                                 <button type="button" class="btn bg-gradient-danger  waves-effect waves-light" onclick="performDelete(this,{{$father->id}})"><i class="fa fa-trash"></i></button>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach
-                                    
-                                    
                                 </tbody>
                             </table>
                         </div>

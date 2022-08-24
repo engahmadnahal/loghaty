@@ -35,7 +35,7 @@
 
                                     <div class="col-md-12 col-12">
                                         <div class="form-label-group">
-                                            <label for="city-column">{{__('dash.countries')}}</label>
+                                            <label for="teacher_id">{{__('dash.teacher')}}</label>
 
                                             <select class="select2 form-control select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true" id="teacher_id">
                                                 @foreach ($teachers as $t)

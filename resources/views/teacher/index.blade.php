@@ -16,7 +16,9 @@
                 <div class="card-content">
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
+                            @can('Create-teacher')
                             <a id="addRow" href="{{route('teachers.create')}}" class="col-xl-2 col-md-12 col-sm-12 btn btn-primary mb-2 waves-effect waves-light"><i class="feather icon-plus"></i>&nbsp; {{__('dash.add_new')}}</a>
+                            @endcan
                             <table class="table zero-configuration">
                                 <thead>
                                     <tr>
@@ -43,8 +45,13 @@
                                             <td><span class="{{$teacher->status == 'active' ? 'text-success' : 'text-danger'}}">{{$teacher->status_user}}</span></td>
                                             <td>{{$teacher->last_login}}</td>
                                             <td class="action-table">
+                                                @can('read-teacher')
                                                 <a href="{{route('teachers.show',$teacher->id)}}"  class="btn bg-gradient-info  waves-effect waves-light"><i class="fa fa-eye"></i></a>
+                                                @endcan
+                                                @can('Update-teacher')
                                                 <a href="{{route('teachers.edit',$teacher->id)}}"  class="btn bg-gradient-primary   waves-effect waves-light"><i class="fa-solid fa-pen-to-square"></i></i></a>
+                                                @endcan
+                                                @can('block_system')
                                                 @if($teacher->status =='active')
                                                 {{-- Show block btn where status user active --}}
                                                     <button type="button" class="btn bg-gradient-danger waves-effect waves-light" onclick="performChangeStatus({{$teacher->id}})"><i class="fa fa-lock"></i></button>
@@ -52,7 +59,10 @@
                                                 {{-- Show active btn where status user block --}}
                                                     <button type="button" class="btn bg-gradient-success waves-effect waves-light" onclick="performChangeStatus({{$teacher->id}})"><i class="fa fa-unlock"></i></button>
                                                 @endif
+                                                @endcan
+                                                @can('Delete-teacher')
                                                 <button type="button" class="btn bg-gradient-danger  waves-effect waves-light" onclick="performDelete(this,{{$teacher->id}})"><i class="fa fa-trash"></i></button>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

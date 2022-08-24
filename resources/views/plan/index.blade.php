@@ -16,7 +16,9 @@
                 <div class="card-content">
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
+                            @can('Create-plan')
                             <a id="addRow" href="{{route('plans.create')}}" class="col-xl-2 col-md-12 col-sm-12 btn btn-primary mb-2 waves-effect waves-light"><i class="feather icon-plus"></i>&nbsp; {{__('dash.add_new')}}</a>
+                            @endcan
                             <table class="table zero-configuration">
                                 <thead>
                                     <tr>
@@ -41,8 +43,13 @@
                                             <td><span class="{{boolval($plan->active) ? 'text-success' : 'text-danger'}}">{{$plan->state}}</span></td>
                                             <td>{{$plan->created_at->format('Y-m-d')}}</td>
                                             <td class="action-table">
+                                                @can('Read-plan')
                                                 <a href="{{route('plans.show',$plan->id)}}"  class="btn bg-gradient-info  waves-effect waves-light"><i class="fa fa-eye"></i></a>
+                                                @endcan
+                                                @can('Update-plan')
                                                 <a href="{{route('plans.edit',$plan->id)}}"  class="btn bg-gradient-primary   waves-effect waves-light"><i class="fa-solid fa-pen-to-square"></i></i></a>
+                                                @endcan
+                                                @can('block_system')
                                                 @if($plan->active)
                                                 {{-- Show block btn where status user active --}}
                                                     <button type="button" class="btn bg-gradient-danger waves-effect waves-light" onclick="performChangeStatus({{$plan->id}})"><i class="fa fa-lock"></i></button>
@@ -50,7 +57,10 @@
                                                 {{-- Show active btn where status user block --}}
                                                     <button type="button" class="btn bg-gradient-success waves-effect waves-light" onclick="performChangeStatus({{$plan->id}})"><i class="fa fa-unlock"></i></button>
                                                 @endif
+                                                @endcan
+                                                @can('Delete-plan')
                                                 <button type="button" class="btn bg-gradient-danger  waves-effect waves-light" onclick="performDelete(this,{{$plan->id}})"><i class="fa fa-trash"></i></button>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

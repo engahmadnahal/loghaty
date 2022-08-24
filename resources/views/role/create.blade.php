@@ -1,7 +1,7 @@
 @extends('layout.master')
 
-@section('title',__('dash.create_game'))
-@section('title_page',__('dash.create_game'))
+@section('title',__('dash.create_children'))
+@section('title_page',__('dash.create_children'))
 
 @section('content')
 <section id="multiple-column-form">
@@ -33,27 +33,15 @@
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-label-group">
-                                            <label for="city-column">{{__('dash.level')}}</label>
-
-                                            <select class="select2 form-control select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true" id="level_id">
-                                                @foreach ($levels as $level)
-                                                    <option value="{{$level->id}}">{{$level->name}}</option>
-                                                @endforeach
-                                            </select>
+                                            <input type="number" id="points" class="form-control" placeholder="{{__('dash.points')}}"  required>
+                                            <label for="points">{{__('dash.points')}}</label>
                                         </div>
                                     </div>
 
-                                    
-
                                     <div class="col-md-6 col-12">
                                         <div class="form-label-group">
-                                            <label for="city-column">{{__('dash.plan')}}</label>
-
-                                            <select class="select2 form-control select2-hidden-accessible" data-select2-id="2" tabindex="-1" aria-hidden="true" id="plan_id">
-                                                @foreach ($plans as $plan)
-                                                    <option value="{{$plan->id}}">{{$plan->name}}</option>
-                                                @endforeach
-                                            </select>
+                                            <input type="number" id="orderd" class="form-control" placeholder="{{__('dash.orderd')}}"  required>
+                                            <label for="number">{{__('dash.orderd')}}</label>
                                         </div>
                                     </div>
 
@@ -90,21 +78,21 @@
     function performStore(){
         let name_ar = document.getElementById('name_ar').value;
         let name_en = document.getElementById('name_en').value;
-        let plan_id = document.getElementById('plan_id').value;
-        let level_id = document.getElementById('level_id').value;
+        let orderd = document.getElementById('orderd').value;
+        let points = document.getElementById('points').value;
         let active = document.getElementById('active').checked;
 
         let dataObj = {
             name_ar : name_ar,
             name_en : name_en,
-            level_id : level_id,
-            plan_id : plan_id,
-            active : active,
+            orderd : orderd,
+            points : points,
+            active : active
 
         };
 
   
-        performStoreWithTostar('/games',dataObj,'form');
+        performStoreWithTostar('/levels',dataObj,'form');
     }
 </script>
 @endsection

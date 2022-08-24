@@ -214,6 +214,7 @@ return [
         'Locales' => App\Http\Helper\Locales::class,
         'QusstionType' => App\Http\Helper\QusstionType::class,
         'ActiveRoute' => App\Http\Helper\ActiveRoute::class,
+        'CustomPermission' => App\Http\Helper\CustomPermission::class,
 
     ])->toArray(),
 

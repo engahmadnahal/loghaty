@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Trait\CustomTrait;
 use App\Models\Admin;
 use App\Models\Country;
+use App\Models\GroupPermission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
 use Symfony\Component\HttpFoundation\Response;
 
 class AdminController extends Controller
@@ -204,6 +206,51 @@ class AdminController extends Controller
     }
 
 
+
+    public function editUserPermission(Request $request , Admin $admin){
+        $permissions = Permission::where('guard_name','admin')->get();
+        $adminPermissions = $admin->permissions;
+        if(count($adminPermissions) > 0){
+            foreach($permissions as $permission){
+                $permission->setAttribute('assign',false);
+                foreach($adminPermissions as $empPermission){
+                    if($empPermission->id == $permission->id){
+                        $permission->setAttribute('assign',true);
+                    }
+                }
+            }
+        }
+        return view('admin.permission',['admin'=>$admin,'permissions'=>$permissions]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Patient  $patient
+     * @return \Illuminate\Http\Response
+     */
+    public function updateUserPermission(Request $request , Admin $admin ){
+
+        $validator = Validator($request->all(),[
+            'permission_id' =>'required|exists:permissions,id'
+        ]);
+
+        if(!$validator->fails()){
+            $permission = Permission::findOrFail($request->input('permission_id'));
+            if($admin->hasPermissionTo($permission)){
+                $admin->revokePermissionTo($permission);
+            }else{
+                $admin->givePermissionTo($permission);
+            }
+            return response()->json([
+                'title' => __('msg.success'),
+            'message' => __('msg.giv_permission')
+            ],Response::HTTP_OK);
+        }else{
+        return response()->json(['title'=>__('msg.error'),'message'=>$validator->getMessageBag()->first()],Response::HTTP_BAD_REQUEST);
+        }
+    }
 
   
 }
