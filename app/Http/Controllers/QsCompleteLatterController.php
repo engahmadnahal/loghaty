@@ -14,6 +14,12 @@ class QsCompleteLatterController extends Controller
     
     //
 
+    public function __construct()
+    {
+        $this->authorizeResource(QsCompleteLatter::class,'qs_complete_latters');
+        
+    }
+
 
     /**
      * Display a listing of the resource.

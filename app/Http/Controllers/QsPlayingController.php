@@ -16,6 +16,11 @@ class QsPlayingController extends Controller
     
     //
 
+    public function __construct()
+    {
+        $this->authorizeResource(QsPlaying::class,'QsPlaying');
+        
+    }
 
     /**
      * Display a listing of the resource.

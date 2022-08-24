@@ -8,6 +8,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ArticalController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(Artical::class,'artical');
+        
+    }
     /**
      * Display a listing of the resource.
      *

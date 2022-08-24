@@ -12,6 +12,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SubscriptionController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(Subscription::class,'subscription');
+        
+    }
     /**
      * Display a listing of the resource.
      *

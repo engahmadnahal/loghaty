@@ -16,7 +16,11 @@ class QsOrderLatterController extends Controller
     
     //
 
-
+    public function __construct()
+    {
+        $this->authorizeResource(QsOrderLatter::class,'QsOrderLatter');
+        
+    }
     /**
      * Display a listing of the resource.
      *

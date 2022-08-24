@@ -21,6 +21,8 @@ class ChildrenController extends Controller
 
     public function __construct()
     {
+        $this->authorizeResource(Children::class,'children');
+
         $this->fathers = Father::where('status','active')->get();
         $this->classes = Classe::where('status','active')->get();
         $this->countres = Country::where('active',true)->get();

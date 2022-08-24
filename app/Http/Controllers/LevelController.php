@@ -8,6 +8,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 class LevelController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(Level::class,'level');
+        
+    }
     /**
      * Display a listing of the resource.
      *

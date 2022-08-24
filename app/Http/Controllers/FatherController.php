@@ -20,6 +20,7 @@ class FatherController extends Controller
 
     public function __construct()
     {
+        $this->authorizeResource(Father::class,'father');
         $this->plans = Plan::where('active',true)->get();
         $this->countres = Country::where('active',true)->get();
     }

@@ -19,6 +19,7 @@ class AdminController extends Controller
 
     public function __construct()
     {
+        $this->authorizeResource(Admin::class,'admin');
         $this->countres = Country::where('active',true)->get();
     }
     /**

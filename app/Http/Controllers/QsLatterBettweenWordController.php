@@ -15,7 +15,11 @@ class QsLatterBettweenWordController extends Controller
     
     //
 
-
+    public function __construct()
+    {
+        $this->authorizeResource(QsLatterBettweenWord::class,'QsLatterBettweenWord');
+        
+    }
     /**
      * Display a listing of the resource.
      *

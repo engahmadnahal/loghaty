@@ -19,6 +19,7 @@ class TeacherController extends Controller
 
     public function __construct()
     {
+        $this->authorizeResource(Teacher::class,'teacher');
         $this->countres = Country::where('active',true)->get();
     }
     /**
