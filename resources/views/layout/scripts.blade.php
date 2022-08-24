@@ -1,5 +1,5 @@
 
-    {{-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> --}}
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- BEGIN: Vendor JS-->
     <script src="{{asset('app-assets/vendors/js/vendors.min.js')}}"></script>
     <!-- BEGIN Vendor JS-->
@@ -50,20 +50,30 @@
         
         // For Store Data 
         function performStoreWithTostar(route,dataObj,idForm){
-            sweetLoad();
-            axios.post(route,dataObj).then(function(response){
-                toastr.success(response.data.message,response.data.title, { "progressBar": true });
+            try{
+                sweetLoad();
+                axios.post(route,dataObj).then(function(response){
+                    toastr.success(response.data.message,response.data.title, { "progressBar": true });
+                    removSweet();
+                    if(idForm != undefined){
+                        document.getElementById(idForm).reset();
+                    }
+                }).catch(function(error){
+                    toastr.error(error.response.data.message,error.response.data.title, { "progressBar": true });
+                });
+            }catch(error){
                 removSweet();
-                if(idForm != undefined){
-                    document.getElementById(idForm).reset();
-                }
-            }).catch(function(error){
-                toastr.error(error.response.data.message,error.response.data.title, { "progressBar": true });
-            });
+                errorSweet('حدث خطأ اثناء تنفيذ العملية');
+            }
+
         }
 
         // For update Data
         function performUpdateWithTostar(route,dataObj){
+            try{
+
+
+            
                 sweetLoad();
             axios.post(route,dataObj).then(function(response){
                 toastr.success(response.data.message,response.data.title, { "progressBar": true });
@@ -73,10 +83,15 @@
                
                 toastr.error(error.response.data.message,error.response.data.title, { "progressBar": true });
             });
+        }catch(error){
+                removSweet();
+                errorSweet('حدث خطأ اثناء تنفيذ العملية');
+            }
         }
 
         // For Delete Data
         function performDeleteWithTostar(route,dataObj,el,closest){
+            try{
             sweetLoad();
             axios.post(route,dataObj).then(function(response){
                 toastr.success(response.data.message,response.data.title, { "progressBar": true });
@@ -86,10 +101,15 @@
                
                 toastr.error(error.response.data.message,error.response.data.title, { "progressBar": true });
             });
+        }catch(error){
+                removSweet();
+                errorSweet('حدث خطأ اثناء تنفيذ العملية');
+            }
         }
 
         // For Store Data without alert
         function performStoreWithOutTostar(route,dataObj,actionSuccess,actionError){
+            try{
             sweetLoad();
             axios.post(route,dataObj).then(function(response){
                 actionSuccess();
@@ -97,6 +117,10 @@
             }).catch(function(error){
                 actionError();
             });
+        }catch(error){
+                removSweet();
+                errorSweet('حدث خطأ اثناء تنفيذ العملية');
+            }
         }
 
 
@@ -135,6 +159,16 @@
         function removSweet(){
             let sweet = document.getElementsByClassName('swal2-container');
             sweet[0].remove();
+        }
+
+        function errorSweet(msg){
+            Swal.fire({
+                title: "حدث خطأ!",
+                text: ""+msg,
+                type: "error",
+                confirmButtonClass: 'btn btn-primary',
+                buttonsStyling: false,
+            });
         }
         
     </script>
