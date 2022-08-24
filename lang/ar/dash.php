@@ -259,7 +259,45 @@ return [
     'last_subs'=>'أخر الاشتراكات',
     'last_login_father'=>'زيارات اولياء الامور',
     'history_analytics'=>'سجل المستخدمين',
-    // 'aa'=>'',
+    'revers_notification'=>'استقبال الاشعارات',
+    'body' => 'المحتوى',
+    'notfy_add_children_body' => 'تم اضافة طفل جديد للنظام',
+    'notfy_add_children_title' => '  طفل جديد ',
+
+    'notfy_add_teacher_body' => 'تم اضافة معلم جديد للنظام',
+    'notfy_add_teacher_title' => '  معلم جديد ',
+
+    'notfy_add_admin_body' => 'تم اضافة مالك جديد للنظام',
+    'notfy_add_admin_title' => '  مالك جديد ',
+
+    'notfy_add_father_body' => 'تم اضافة اب جديد للنظام',
+    'notfy_add_father_title' => '  اب جديد ',
+
+
+
+    'notfy_add_level_body' => 'تم اضافة مستوى جديد للنظام',
+    'notfy_add_level_title' => '  مستوى جديد ',
+
+    'notfy_add_game_body' => 'تم اضافة لعبة جديدة للنظام',
+    'notfy_add_game_title' => '  لعبة جديدة ',
+
+    'notfy_add_qs_body' => 'تم اضافة سؤال جديد للنظام',
+    'notfy_add_qs_title' => '  سؤال جديد ',
+
+    'notfy_add_class_body' => 'تم اضافة صف جديد للنظام',
+    'notfy_add_class_title' => '  صف جديد ',
+
+    'notfy_add_plan_body' => 'تم اضافة خطة جديدة للنظام',
+    'notfy_add_plan_title' => '  خطة جديدة ',
+
+    'notfy_add_subs_body' => 'تم اضافة مشترك جديد للنظام',
+    'notfy_add_subs_title' => '  مشترك جديد ',
+
+    'notfy_add_artical_body' => 'تم اضافة سياسة او مقالة جديد للنظام',
+    'notfy_add_artical_title' => '  سياسة او مقالة جديدة ',
+
+    'notfy_add_country_body' => 'تم اضافة دولة جديد للنظام',
+    'notfy_add_country_title' => '  دولة جديدة ',
 
 
 ];

@@ -234,7 +234,7 @@
                 <ul class="list-group list-group-flush">
                     @foreach ($teachers->take(7) as $t)
                     <li class="list-group-item">
-                        <span class="badge badge-pill bg-primary float-right">{{$t->last_login}} </span>
+                        <span class="badge badge-pill bg-primary float-right">{{$t->created_at->diffForhumans()}} </span>
                         {{$t->full_name}}
                     </li>
                     @endforeach
@@ -347,6 +347,7 @@
                         {{$c->name}}
                     </li>
                     @endforeach
+                   
                    
                 </ul>
             </div>

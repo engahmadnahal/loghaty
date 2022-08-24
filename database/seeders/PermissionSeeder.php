@@ -101,7 +101,8 @@ class PermissionSeeder extends Seeder
         // Permission::create(['guard_name'=>'admin','name' => 'Read-role']);
 
         // Permission::create(['guard_name'=>'admin','name' => 'giv_admin_permission']);
-        Permission::create(['guard_name'=>'admin','name' => 'block_system']);
+        // Permission::create(['guard_name'=>'admin','name' => 'block_system']);
+        Permission::create(['guard_name'=>'admin','name' => 'revers_notification']);
         
 
 

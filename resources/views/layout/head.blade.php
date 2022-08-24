@@ -131,4 +131,9 @@
 .card a.anlytics {
     color: #616261;
 }
+.page-users-view .users-view-permission table .tableCustomRow td{
+    padding-bottom: 7px;
+    border-bottom: 1px solid #ebebeb;
+    background: #fafafa;
+}
     </style>

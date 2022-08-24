@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\Country;
+use App\Notifications\AdminNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Symfony\Component\HttpFoundation\Response;
 
 class CountryController extends Controller
@@ -60,6 +63,17 @@ class CountryController extends Controller
             $country->name_ar = $request->input('name_ar');
             $country->active = $request->input('active');
             $isSave = $country->save();
+            $data = [
+                'title' => __('dash.notfy_country_game_title'),
+                'body' => __('dash.notfy_country_game_body') . App::isLocal('ar') ? $country->name_ar : $country->name_en
+            ];
+            // Send Notification only Admin has permission revers_notification
+            $admins = Admin::all();
+            foreach($admins as $a){
+                if($a->hasPermissionTo('revers_notification')){
+                    $a->notify(new AdminNotification($data));
+                }
+            }
             return response()->json(['title'=>__('msg.success'),'message'=>$isSave ? __('msg.success_create') : __('msg.error_create')],Response::HTTP_OK);
         }else{
             return response()->json(['title'=>__('msg.error'),'message'=>$validator->getMessageBag()->first()],Response::HTTP_BAD_REQUEST);

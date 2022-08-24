@@ -62,7 +62,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($permissions as $pr )
-                                <tr>
+                                <tr class="tableCustomRow">
                                     <td>{{++$loop->index}}</td>
                                     <td>{{__('dash.'.$pr->name)}}</td>
                                     <td>

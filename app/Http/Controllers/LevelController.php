@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\Level;
+use App\Notifications\AdminNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Symfony\Component\HttpFoundation\Response;
 
 class LevelController extends Controller
@@ -70,6 +73,18 @@ class LevelController extends Controller
             $level->active = $request->input('active') == "true" ? true : false;
             $level->save();
 
+            // Data For Notification AdminNotification
+            $data = [
+                'title' => __('dash.notfy_add_level_title'),
+                'body' => __('dash.notfy_add_level_body') . App::isLocal('ar') ? $level->name_ar : $level->name_en
+            ];
+            // Send Notification only Admin has permission revers_notification
+            $admins = Admin::all();
+            foreach($admins as $a){
+                if($a->hasPermissionTo('revers_notification')){
+                    $a->notify(new AdminNotification($data));
+                }
+            }
 
             
             return response()->json([

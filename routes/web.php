@@ -69,6 +69,9 @@ Route::middleware('Local')->group(function(){
 
         // ----- Admin Controller Route ---------
         Route::post('/admins/status/{admin}',[AdminController::class , 'changeStatus'])->name('admins.change_status');
+        Route::get('/admins/notification',[AdminController::class , 'showNotification'])->name('admins.notification');
+        Route::post('/admins/notification/read',[AdminController::class , 'readNotification'])->name('admins.read_notification');
+        
         Route::get('/admins/{admin}/permission/edit',[AdminController::class , 'editUserPermission'])->name('admins.permissions');
         Route::put('/admins/{admin}/permission/update',[AdminController::class , 'updateUserPermission'])->name('admins.update_permissions');
         Route::resource('admins',AdminController::class);

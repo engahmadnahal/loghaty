@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Trait\CustomTrait;
+use App\Models\Admin;
 use App\Models\Children;
 use App\Models\Classe;
 use App\Models\Country;
 use App\Models\Father;
+use App\Notifications\AdminNotification;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -71,7 +73,7 @@ class ChildrenController extends Controller
         $validator = Validator($request->all(),[
             'name' => 'required|string',
             'dob' => 'required|string',
-            'country_id' => 'required|numeric|exists:teachers,id',
+            'country_id' => 'required|numeric|exists:countries,id',
             'father_id' => 'required|numeric|exists:fathers,id',
             'class_id' => 'required|numeric|exists:classes,id',
             'image_avater' => 'required|image|mimes:jpg,png,jpeg,gif',
@@ -96,6 +98,20 @@ class ChildrenController extends Controller
             $children->status = $request->input('active') == "true" ? 'active' : 'block';
             $isSave = $children->save();
             
+
+            // Data For Notification AdminNotification
+            $data = [
+                'title' => __('dash.notfy_add_children_title'),
+                'body' => __('dash.notfy_add_children_body').' ' . $children->name
+            ];
+            // Send Notification only Admin has permission revers_notification
+            $admins = Admin::all();
+            foreach($admins as $a){
+                if($a->hasPermissionTo('revers_notification')){
+                    $a->notify(new AdminNotification($data));
+                }
+            }
+
             return response()->json([
                 'title'=>$isSave ? __('msg.success') : __('msg.error'),
                 'message'=>$isSave ? __('msg.success_create') :  __('msg.error_create')
@@ -152,7 +168,7 @@ class ChildrenController extends Controller
         $validator = Validator($request->all(),[
             'name' => 'required|string',
             'dob' => 'required|string',
-            'country_id' => 'required|numeric|exists:teachers,id',
+            'country_id' => 'required|numeric|exists:countries,id',
             'father_id' => 'required|numeric|exists:fathers,id',
             'class_id' => 'required|numeric|exists:classes,id',
             $this->getImageValidate($request->hasFile('image_avater'))['image_avater'],

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\Children;
 use App\Models\Plan;
+use App\Notifications\AdminNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -72,6 +75,18 @@ class PlanController extends Controller
             $plan->totale_child_subscrip = intval($request->input('totale_child_subscrip'));
             $plan->active = $request->input('active') == "true" ? true : false;
             $isSave = $plan->save();
+
+            $data = [
+                'title' => __('dash.notfy_plan_game_title'),
+                'body' => __('dash.notfy_plan_game_body') . App::isLocal('ar') ? $plan->name_ar : $plan->name_en
+            ];
+            // Send Notification only Admin has permission revers_notification
+            $admins = Admin::all();
+            foreach($admins as $a){
+                if($a->hasPermissionTo('revers_notification')){
+                    $a->notify(new AdminNotification($data));
+                }
+            }
             
             return response()->json([
                 'title'=>$isSave ? __('msg.success') : __('msg.error'),

@@ -23,40 +23,44 @@
                         </div>
                     </li>
                     
-                    <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i class="ficon feather icon-search"></i></a>
-                        <div class="search-input">
-                            <div class="search-input-icon"><i class="feather icon-search primary"></i></div>
-                            <input class="input" type="text" placeholder="Explore Vuexy..." tabindex="-1" data-search="template-list">
-                            <div class="search-input-close"><i class="feather icon-x"></i></div>
-                            <ul class="search-list search-list-main"></ul>
-                        </div>
-                    </li>
-                    <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown">
-                        <i class="ficon feather icon-bell"></i>
-                        @if(auth()->user()->unreadNotifications->count() > 0)
-                        <span class="badge badge-pill badge-primary badge-up">{{auth()->user()->unreadNotifications->count()}}</span>
-                        @endif
-                    </a>
+                
+                    @can('revers_notification')
+                    <li class="dropdown dropdown-notification nav-item">
+                        <a class="nav-link nav-link-label" href="#" data-toggle="dropdown">
+                            <i class="ficon feather icon-bell"></i>
+                            @if(auth()->user()->unreadNotifications->count() > 0)
+                            <span class="badge badge-pill badge-primary badge-up">{{auth()->user()->unreadNotifications->count()}}</span>
+                            @endif
+                        </a>
                         <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                             <li class="dropdown-menu-header">
                                 <div class="dropdown-header m-0 p-2">
                                     <span class="notification-title">{{__('dash.my_notification')}}</span>
                                 </div>
                             </li>
+                            @forelse (auth()->user()->unreadNotifications as $ntf)
                             <li class="scrollable-container media-list">
-                                <a class="d-flex justify-content-between" href="javascript:void(0)">
+                                <a class="d-flex justify-content-between" href="{{route('admins.notification')}}">
                                     <div class="media d-flex align-items-start">
                                         <div class="media-left"></div>
                                         <div class="media-body">
-                                            <h6 class="primary media-heading">You have new order!</h6><small class="notification-text"> Are your going to meet me tonight?</small>
+                                            <h6 class="primary media-heading">{{$ntf->data['title']}}</h6><small class="notification-text"> {{$ntf->data['body']}}</small>
                                         </div><small>
-                                            <time class="media-meta" datetime="2015-06-11T18:29:20+08:00">9 hours ago</time></small>
+                                            <time class="media-meta" datetime="{{$ntf->created_at->diffForHumans()}}">{{$ntf->created_at->diffForHumans()}}</time></small>
                                     </div>
                                 </a>
                             </li>
-                            <li class="dropdown-menu-footer"><a class="dropdown-item p-1 text-center" href="javascript:void(0)">{{__('dash.view_all_notification')}}</a></li>
+                            @empty
+                                <p class="text-center"></p>
+                                <li class="scrollable-container media-list">
+                                    <p class="text-center">{{__('dash.no_results')}}</p>
+                                </li>
+                            @endforelse
+
+                            <li class="dropdown-menu-footer"><a class="dropdown-item p-1 text-center" href="{{route('admins.notification')}}">{{__('dash.view_all_notification')}}</a></li>
                         </ul>
                     </li>
+                    @endcan
 
                     <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                             <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600">{{auth()->user()->name}}</span><span class="user-status">{{__('dash.available')}}</span></div><span>

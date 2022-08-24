@@ -98,4 +98,8 @@ class AdminPolicy
         return $user->hasPermissionTo('Delete-admin') ? $this->allow() : $this->deny();
         //
     }
+
+    public function showNotification($user){
+        return $user->hasPermissionTo('revers_notification') ? $this->allow() : $this->deny();
+    }
 }

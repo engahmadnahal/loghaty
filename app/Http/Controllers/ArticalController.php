@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\Artical;
+use App\Notifications\AdminNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Symfony\Component\HttpFoundation\Response;
 
 class ArticalController extends Controller
@@ -67,6 +70,17 @@ class ArticalController extends Controller
             $artical->admin_id = auth()->user()->id;
             $isSave = $artical->save();
             
+            $data = [
+                'title' => __('dash.notfy_add_artical_title'),
+                'body' => __('dash.notfy_add_artical_body') . App::isLocal('ar') ? $artical->name_ar : $artical->name_en
+            ];
+            // Send Notification only Admin has permission revers_notification
+            $admins = Admin::all();
+            foreach($admins as $a){
+                if($a->hasPermissionTo('revers_notification')){
+                    $a->notify(new AdminNotification($data));
+                }
+            }
             return response()->json([
                 'title'=>$isSave ? __('msg.success') : __('msg.error'),
                 'message'=>$isSave ? __('msg.success_create') :  __('msg.error_create')

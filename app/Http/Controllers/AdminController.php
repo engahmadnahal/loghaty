@@ -253,5 +253,39 @@ class AdminController extends Controller
         }
     }
 
+
+    public function showNotification(){
+
+        return view('admin.notification');
+    }
+
+    public function readNotification(){
+        auth()->user()->unreadNotifications->markAsRead();
+    }
+
+
+    /// This Methods For Coustom Add Method to Policy
+    public function resourceAbilityMap(){
+        return [
+            'show' => 'view',
+            'create' => 'create',
+            'store' => 'create',
+            'edit' => 'update',
+            'update' => 'update',
+            'destroy' => 'delete',
+            'showNotification'=>'showNotification'
+        ];
+    }
+
+    /**
+     * Get the list of resource methods which do not have model parameters.
+     *
+     * @return array
+     */
+    protected function resourceMethodsWithoutModels()
+    {
+        return ['index', 'create', 'store','showNotification'];
+    }
+
   
 }
