@@ -113,7 +113,12 @@
 
         <!-- END: Custom CSS For Ar Lang -->
     @endif
+
+    {{-- Global --}}
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/dashboard-analytics.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/animate/animate.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/extensions/sweetalert2.min.css')}}">
+
 
     <style>
 

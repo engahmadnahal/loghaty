@@ -1,4 +1,5 @@
 
+    {{-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> --}}
     <!-- BEGIN: Vendor JS-->
     <script src="{{asset('app-assets/vendors/js/vendors.min.js')}}"></script>
     <!-- BEGIN Vendor JS-->
@@ -14,7 +15,6 @@
     <script src="{{asset('app-assets/js/core/app.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/components.js')}}"></script>
     <!-- END: Theme JS-->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="{{asset('app-assets/vendors/js/extensions/toastr.min.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/forms/select/select2.full.min.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/forms/select/form-select2.js')}}"></script>
@@ -28,6 +28,7 @@
     <script src="{{asset('app-assets/js/scripts/datatables/datatable.js')}}"></script>
     <script src="{{asset('app-assets/vendors/js/charts/echarts/echarts.min.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/pages/dashboard-analytics.js')}}"></script>
+    <script src="{{asset('app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
 
 
 
@@ -45,11 +46,14 @@
         document.getElementById('copyYear').innerHTML = ""+date.getFullYear();
 
 
+
         
         // For Store Data 
         function performStoreWithTostar(route,dataObj,idForm){
+            sweetLoad();
             axios.post(route,dataObj).then(function(response){
                 toastr.success(response.data.message,response.data.title, { "progressBar": true });
+                removSweet();
                 if(idForm != undefined){
                     document.getElementById(idForm).reset();
                 }
@@ -60,8 +64,11 @@
 
         // For update Data
         function performUpdateWithTostar(route,dataObj){
+                sweetLoad();
             axios.post(route,dataObj).then(function(response){
                 toastr.success(response.data.message,response.data.title, { "progressBar": true });
+                removSweet();
+
             }).catch(function(error){
                
                 toastr.error(error.response.data.message,error.response.data.title, { "progressBar": true });
@@ -70,8 +77,10 @@
 
         // For Delete Data
         function performDeleteWithTostar(route,dataObj,el,closest){
+            sweetLoad();
             axios.post(route,dataObj).then(function(response){
                 toastr.success(response.data.message,response.data.title, { "progressBar": true });
+                removSweet();
                 el.closest(closest).remove();
             }).catch(function(error){
                
@@ -81,8 +90,10 @@
 
         // For Store Data without alert
         function performStoreWithOutTostar(route,dataObj,actionSuccess,actionError){
+            sweetLoad();
             axios.post(route,dataObj).then(function(response){
                 actionSuccess();
+                removSweet();
             }).catch(function(error){
                 actionError();
             });
@@ -100,6 +111,32 @@
             performStoreWithOutTostar('/set-local',{keylang : lang},success,error);
 
         }
+        function sweetLoad(){
+            var timerInterval
+                Swal.fire({
+                    title: 'Loading...!',
+                onBeforeOpen: function () {
+                    Swal.showLoading()
+                },
+                onClose: function () {
+                    clearInterval(timerInterval)
+                }
+                
+                }).then(function (result) {
+                if (
+                    // Read more about handling dismissals
+                    result.dismiss === Swal.DismissReason.timer
+                ) {
+                    console.log('I was closed by the timer')
+                }
+                })
+        }
+
+        function removSweet(){
+            let sweet = document.getElementsByClassName('swal2-container');
+            sweet[0].remove();
+        }
+        
     </script>
 
    
