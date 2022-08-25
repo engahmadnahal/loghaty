@@ -10,10 +10,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Passport\HasApiTokens;
 
 class Teacher extends Authenticatable
 {
-    use HasFactory,Notifiable,SoftDeletes;
+    use HasFactory,Notifiable,SoftDeletes,HasApiTokens;
 
     public function classes(){
         return $this->hasMany(Classe::class);

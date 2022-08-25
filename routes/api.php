@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\AuthForgotPasswordController;
+use App\Http\Controllers\Api\Auth\AuthLoginController;
+use App\Http\Controllers\Api\FatherController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +17,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::middleware('Local')->group(function(){
+
+    Route::middleware('guest')->prefix('v1')->group(function(){
+        Route::post('/auth/father/register', [FatherController::class , 'register']);
+        Route::post('/auth/login', [AuthLoginController::class , 'login']);
+        Route::post('/auth/send-code', [AuthForgotPasswordController::class , 'sendEmailCode']);
+        Route::post('/auth/check-code', [AuthForgotPasswordController::class , 'checkCode']);
+        Route::post('/auth/reset', [AuthForgotPasswordController::class , 'resetPassword']);
+
+    });
+    
+
+    
+    
+    /// ------- Auth Route
+    Route::middleware('auth:api-techer,api-father')->prefix('v1')->group(function(){
+        Route::controller(FatherController::class)->group(function(){
+            Route::post('father/{father}/setting','sendSetting');
+            Route::get('father/{father}/setting','getSetting');
+            
+        });
+    });
+
 });
+

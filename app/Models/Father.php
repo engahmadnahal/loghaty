@@ -7,10 +7,13 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class Father extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory,HasRoles,Notifiable,HasApiTokens;
 
 
 
@@ -31,6 +34,14 @@ class Father extends Authenticatable
         
     }
 
+    public function country(){
+        return $this->belongsTo(Country::class);
+        
+    }
+
+    public function setting(){
+        return $this->hasOne(Setting::class);
+    }
 
 
     public function emailStatus() : Attribute {
@@ -49,5 +60,11 @@ class Father extends Authenticatable
         return Attribute::make(
             get : fn() => !is_null($this->last_vist)? Carbon::parse($this->last_vist)->diffForHumans() : "---"
         );
+    }
+
+
+
+    public function findForPassport($username){
+        return $this->where('email',$username)->first();
     }
 }

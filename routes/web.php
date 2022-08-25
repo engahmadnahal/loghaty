@@ -20,11 +20,13 @@ use App\Http\Controllers\QsOrderLatterController;
 use App\Http\Controllers\QsPlayingController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\TeacherController;
+use App\Mail\ResetUserPassword;
 use App\Models\Admin;
 use App\Models\Artical;
 use App\Models\Country;
 use App\Models\QsCompleteLatter;
 use App\Models\Subscription;
+use Illuminate\Mail\Markdown;
 use Illuminate\Support\Facades\Route;
 
 /*

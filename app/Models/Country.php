@@ -23,6 +23,10 @@ class Country extends Model
     public function teachers(){
         return $this->hasMany(Teacher::class);
     }
+    public function fathers(){
+        return $this->hasMany(Father::class);
+    }
+
 
     public function name() : Attribute {
         return Attribute::make(

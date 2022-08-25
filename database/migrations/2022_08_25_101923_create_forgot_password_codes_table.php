@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Children;
-use App\Models\Father;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('settings', function (Blueprint $table) {
+        Schema::create('forgot_password_codes', function (Blueprint $table) {
             $table->id();
-            $table->enum('lang_text',['ar','en'])->default('ar');
-            $table->enum('lang_voice',['ar','en'])->default('ar');
-            $table->boolean('is_music')->default(true);
-            $table->foreignIdFor(Father::class)->constrained()->cascadeOnDelete();
-            $table->softDeletes();
+            $table->string('email');
+            $table->string('code');
             $table->timestamps();
         });
     }
@@ -33,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('settings');
+        Schema::dropIfExists('forgot_password_codes');
     }
 };

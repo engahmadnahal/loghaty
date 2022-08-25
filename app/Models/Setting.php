@@ -8,8 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Setting extends Model
 {
     use HasFactory;
+   
+    protected $fillable = [
+        'father_id',
+        'lang_text',
+        'lang_voice',
+        'is_music'
+    ];
 
-    public function children(){
-        return $this->belongsTo(Children::class);
+    public function father(){
+        return $this->belongsTo(Father::class);
     }
+
 }

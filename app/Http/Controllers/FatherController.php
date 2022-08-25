@@ -69,6 +69,7 @@ class FatherController extends Controller
             'email' => 'required|email|unique:fathers',
             'password' => 'required|string|min:6|max:12',
             'plan_id' => 'required|numeric|exists:plans,id',
+            'country_id' => 'required|numeric|exists:countries,id',
             'active'=> 'required'
         ]);
 
@@ -148,6 +149,7 @@ class FatherController extends Controller
             'email' => 'required|email',
             'password' => 'nullable|string|min:6|max:12',
             'plan_id' => 'required|numeric|exists:plans,id',
+            'country_id' => 'required|numeric|exists:countries,id',
             'active'=> 'required'
         ]);
 

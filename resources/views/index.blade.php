@@ -343,7 +343,7 @@
                 <ul class="list-group list-group-flush">
                     @foreach ($childrens->take(7) as $c)
                     <li class="list-group-item">
-                        <span class="badge badge-pill bg-primary float-right">{{$c->last_login}} </span>
+                        <span class="badge badge-pill bg-primary float-right">{{$c->created_at->diffForHumans()}} </span>
                         {{$c->name}}
                     </li>
                     @endforeach

@@ -28,10 +28,10 @@ class HomeController extends Controller
     {
         //
         $admins = Admin::where('status','active')->get();
-        $teachers = Teacher::where('status','active')->get();
-        $childrens = Children::where('status','active')->get();
+        $teachers = Teacher::where('status','active')->latest()->get();
+        $childrens = Children::where('status','active')->latest()->get();
         $fathers = Father::where('status','active')->count();
-        $fathersData = Father::where('status','active')->get();
+        $fathersData = Father::where('status','active')->latest()->get();
         $classes = Classe::where('status','active')->get();
         $totalSub = Subscription::where('expire',null)->count();
         $subsData = Subscription::where('expire',null)->get();
