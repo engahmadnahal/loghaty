@@ -28,7 +28,13 @@ class ApiMsg {
         'send_code' => 'تم ارسال الرمز بنجاح',
         'expire_code' => 'انتهت صلاحية الرمز',
         'data_null' => 'لايوجد بيانات',
-        'default_data' => 'هذه البيانات الافتراضية'
+        'default_data' => 'هذه البيانات الافتراضية',
+        'success_get' => 'تم جلب البيانات بنجاح',
+        'success_subs' => 'تم الاشتراك بنجاح' ,
+        'already_added' => 'مضاف فعلا' ,
+
+        
+
 
 
 
@@ -57,7 +63,10 @@ class ApiMsg {
         'send_code' => 'Send Code is successfully',
         'expire_code' => 'Expire This code',
         'data_null' => 'Data is not Found',
-        'default_data' => "This data is default"
+        'default_data' => "This data is default",
+        'success_get' => 'Get Data Is successfully',
+        'success_subs' => 'Subscribed successfully' ,
+        'already_added' => 'already added' ,
 
     ];
 

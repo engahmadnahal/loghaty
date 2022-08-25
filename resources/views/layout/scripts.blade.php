@@ -54,13 +54,13 @@
                 sweetLoad();
                 axios.post(route,dataObj).then(function(response){
                     toastr.success(response.data.message,response.data.title, { "progressBar": true });
-                    removSweet();
                     if(idForm != undefined){
                         document.getElementById(idForm).reset();
                     }
                 }).catch(function(error){
                     toastr.error(error.response.data.message,error.response.data.title, { "progressBar": true });
                 });
+                removSweet();
             }catch(error){
                 removSweet();
                 errorSweet('حدث خطأ اثناء تنفيذ العملية');
@@ -77,12 +77,13 @@
                 sweetLoad();
             axios.post(route,dataObj).then(function(response){
                 toastr.success(response.data.message,response.data.title, { "progressBar": true });
-                removSweet();
 
             }).catch(function(error){
                
                 toastr.error(error.response.data.message,error.response.data.title, { "progressBar": true });
             });
+            removSweet();
+
         }catch(error){
                 removSweet();
                 errorSweet('حدث خطأ اثناء تنفيذ العملية');
@@ -95,12 +96,13 @@
             sweetLoad();
             axios.post(route,dataObj).then(function(response){
                 toastr.success(response.data.message,response.data.title, { "progressBar": true });
-                removSweet();
                 el.closest(closest).remove();
             }).catch(function(error){
                
                 toastr.error(error.response.data.message,error.response.data.title, { "progressBar": true });
             });
+            removSweet();
+
         }catch(error){
                 removSweet();
                 errorSweet('حدث خطأ اثناء تنفيذ العملية');
@@ -113,10 +115,10 @@
             sweetLoad();
             axios.post(route,dataObj).then(function(response){
                 actionSuccess();
-                removSweet();
             }).catch(function(error){
                 actionError();
             });
+            removSweet();
         }catch(error){
                 removSweet();
                 errorSweet('حدث خطأ اثناء تنفيذ العملية');

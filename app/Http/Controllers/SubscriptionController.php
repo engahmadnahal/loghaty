@@ -70,8 +70,8 @@ class SubscriptionController extends Controller
         if(!$validator->fails()){
 
 
-            $fhater = Father::find($request->input('father_id'));
-            $plan = $fhater->plan;
+            $father = Father::find($request->input('father_id'));
+            $plan = $father->plan;
             $start = Carbon::now();
             $end = Carbon::now()->addMonths($plan->sum_month);
             $sumFatherSubs = Subscription::where('father_id',$request->input('father_id'))->count();

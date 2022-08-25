@@ -8,6 +8,7 @@ use App\Http\Resources\FatherResource;
 use App\Http\Resources\MainResource;
 use App\Models\Father;
 use App\Models\Setting;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
@@ -84,7 +85,7 @@ class FatherController extends Controller
             return response()->json([
                 'status'=>true,
                 'title'=> ApiMsg::getMsg($request,'success'),
-            ],Response::HTTP_BAD_REQUEST);
+            ],Response::HTTP_OK);
         }else{
             return response()->json([
                 'status'=>false,
@@ -115,4 +116,52 @@ class FatherController extends Controller
         }
         
     }
+
+
+    public function getInfo(Request $request,Father $father){
+        $data = [
+            'email' => $father->email,
+            'password' => '*************',
+            'country' => $father->country->name
+        ];
+        return new MainResource($data,Response::HTTP_OK,ApiMsg::getMsg($request,'success_get'));     
+    }
+
+
+    public function editInfo(Request $request,Father $father){
+        $validator = Validator($request->all(),[
+            'email' => 'required|string',
+            'password' => 'required|min:6|max:12|confirmed',
+        ]);
+
+        if(!$validator->fails()){
+
+            $father->email = $request->input('email');
+            $father->password = Hash::make($request->input('password'));
+            $father->save();
+
+            return $this->grantPGCT($request);
+        }else{
+            return response()->json([
+                'status'=>false,
+                'title'=> ApiMsg::getMsg($request,'error'),
+                'message'=> $validator->getMessageBag()->first()
+            ],Response::HTTP_BAD_REQUEST);
+        }
+
+    }
+
+    public function sendVist(Request $request,Father $father){
+
+        $father->last_vist = Carbon::now();
+        $father->save();
+       
+            return response()->json([
+                'status'=>true,
+                'title'=> ApiMsg::getMsg($request,'success'),
+            ],Response::HTTP_OK);
+
+    }
+
+
 }
