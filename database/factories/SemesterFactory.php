@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Classe>
  */
-class ClasseFactory extends Factory
+class SemestersFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,6 +18,10 @@ class ClasseFactory extends Factory
     {
         return [
             //
+            'name_en' => 'Class One',
+            'name_ar' => 'الصف الاول',
+            'teacher_id' => 1,
+            'status' => 'active',
         ];
     }
 }

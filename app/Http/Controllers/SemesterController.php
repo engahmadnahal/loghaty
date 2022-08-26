@@ -4,20 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use App\Models\Children;
-use App\Models\Plan;
+use App\Models\Semester;
+use App\Models\Teacher;
 use App\Notifications\AdminNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response;
 
-class PlanController extends Controller
+class SemesterController extends Controller
 {
-
     public function __construct()
     {
-        $this->authorizeResource(Plan::class,'plan');
-        
+        $this->authorizeResource(Semester::class,'semester');
+        // dd($this->getMiddleware());
+
     }
     /**
      * Display a listing of the resource.
@@ -27,9 +27,8 @@ class PlanController extends Controller
     public function index()
     {
         //
-        $plans = Plan::all();
-        return view('plan.index',[
-            'plans' => $plans
+        return view('class.index',[
+            'classes' => Semester::all()
         ]);
     }
 
@@ -41,8 +40,9 @@ class PlanController extends Controller
     public function create()
     {
         //
-        return view('plan.create');
-
+        return view('class.create',[
+            'teachers' => Teacher::where('status','active')->get(),
+        ]);
     }
 
     /**
@@ -55,30 +55,25 @@ class PlanController extends Controller
     {
         //
         $validator = Validator($request->all(),[
-            'name_en' => 'required|string|min:4',
-            'name_ar' => 'required|string|min:4',
-            'sum_month'=> 'required|string',
-            'price_usd'=> 'required|string',
-            'price_aed'=> 'required|string',
-            'totale_child_subscrip'=> 'required|string',
-            'active'=> 'required',
+            'name_en' => 'required|string',
+            'name_ar' => 'required|string',
+            'teacher_id' => 'required|numeric|exists:teachers,id',
+            'active'=> 'required'
+            
         ]);
 
         if(!$validator->fails()){
 
-            $plan = new Plan;
-            $plan->name_en = $request->input('name_en');
-            $plan->name_ar = $request->input('name_ar');
-            $plan->sum_month = intval($request->input('sum_month'));
-            $plan->price_usd = doubleval($request->input('price_usd'));
-            $plan->price_aed = doubleval($request->input('price_aed'));
-            $plan->totale_child_subscrip = intval($request->input('totale_child_subscrip'));
-            $plan->active = $request->input('active') == "true" ? true : false;
-            $isSave = $plan->save();
-
+            $semester = new Semester;
+            $semester->name_en = $request->input('name_en');
+            $semester->name_ar = $request->input('name_ar');
+            $semester->teacher_id = $request->input('teacher_id');
+            $semester->status = $request->input('active') == "true" ? 'active' : 'block';
+            $isSave = $semester->save();
+            
             $data = [
-                'title' => __('dash.notfy_plan_game_title'),
-                'body' => __('dash.notfy_plan_game_body') . App::isLocal('ar') ? $plan->name_ar : $plan->name_en
+                'title' => __('dash.notfy_add_class_title'),
+                'body' => __('dash.notfy_add_class_body') . App::isLocal('ar') ? $semester->name_ar : $semester->name_en
             ];
             // Send Notification only Admin has permission revers_notification
             $admins = Admin::all();
@@ -87,7 +82,6 @@ class PlanController extends Controller
                     $a->notify(new AdminNotification($data));
                 }
             }
-            
             return response()->json([
                 'title'=>$isSave ? __('msg.success') : __('msg.error'),
                 'message'=>$isSave ? __('msg.success_create') :  __('msg.error_create')
@@ -101,66 +95,63 @@ class PlanController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Plan  $plan
+     * @param  \App\Models\Semester  $semester
      * @return \Illuminate\Http\Response
      */
-    public function show(Plan $plan)
+    public function show(Semester $semester)
     {
         //
-        $childrens = Children::whereHas('father',function($q) use($plan){
-            $q->where('plan_id',$plan->id);
-        })->get();
-        return view('plan.show',[
-            'plan'=>$plan,
-            'childrens' => $childrens
+        $latestChild = Children::whereHas('semester',function($q){
+            $q->where('status','active');
+                
+        })->where('semester_id',$semester->id)->orderBy('created_at','desc')->get();
+        return view('class.show',[
+            'class' => $semester,
+            'latestChild' => $latestChild
         ]);
-
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Plan  $plan
+     * @param  \App\Models\Semester  $semester
      * @return \Illuminate\Http\Response
      */
-    public function edit(Plan $plan)
+    public function edit(Semester $semester)
     {
         //
-        return view('plan.edit',[
-            'plan'=>$plan
+        return view('class.edit',[
+            'class' => $semester,
+            'teachers' => Teacher::where('status','active')->get(),
         ]);
-
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Plan  $plan
+     * @param  \App\Models\Semester  $semester
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Plan $plan)
+    public function update(Request $request, Semester $semester)
     {
+        //
         $validator = Validator($request->all(),[
-            'name_en' => 'required|string|min:4',
-            'name_ar' => 'required|string|min:4',
-            'sum_month'=> 'required|string',
-            'price_usd'=> 'required|string',
-            'price_aed'=> 'required|string',
-            'totale_child_subscrip'=> 'required|string',
-            'active'=> 'required',
+            'name_en' => 'required|string',
+            'name_ar' => 'required|string',
+            'teacher_id' => 'required|numeric|exists:teachers,id',
+            'active'=> 'required'
+            
         ]);
 
         if(!$validator->fails()){
-
-            $plan->name_en = $request->input('name_en');
-            $plan->name_ar = $request->input('name_ar');
-            $plan->sum_month = intval($request->input('sum_month'));
-            $plan->price_usd = doubleval($request->input('price_usd'));
-            $plan->price_aed = doubleval($request->input('price_aed'));
-            $plan->totale_child_subscrip = intval($request->input('totale_child_subscrip'));
-            $plan->active = $request->input('active') == "true" ? true : false;
-            $isSave = $plan->save();
+            
+            $semester->name_en = $request->input('name_en');
+            $semester->name_ar = $request->input('name_ar');
+            $semester->teacher_id = $request->input('teacher_id');
+            $semester->status = $request->input('active') == "true" ? 'active' : 'block';
+            $isSave = $semester->save();
+            
             return response()->json([
                 'title'=>$isSave ? __('msg.success') : __('msg.error'),
                 'message'=>$isSave ? __('msg.success_edit') :  __('msg.error_edit')
@@ -174,34 +165,34 @@ class PlanController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Plan  $plan
+     * @param  \App\Models\Semester  $semester
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Plan $plan)
+    public function destroy(Semester $semester)
     {
         //
-        $isDelete = $plan->delete();
+        $isDelete = $semester->delete();
         return response()->json([
             'title' => $isDelete ? __('msg.success') : __('msg.error'),
             'message' =>$isDelete ? __('msg.success_delete') : __('msg.error_delete')
         ],$isDelete ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
+        //
     }
 
 
-   /**
+    /**
      * Change the status user.
      *
-     * @param  \App\Models\Teacher  $teacher
+     * @param  \App\Models\Semester  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function changeStatus(Plan $plan){
-        if($plan->active){
-            $plan->active = false;
+    public function changeStatus(Semester $semester){
+        if($semester->status == 'active'){
+            $semester->status = 'block';
         }else{
-            $plan->active = true;
+            $semester->status = 'active';
         }
-        $isSave = $plan->save();
-
+        $isSave = $semester->save();
         return response()->json([
             'title' => $isSave ? __('msg.success') : __('msg.error'),
             'message' =>$isSave ? __('msg.success_action') : __('msg.error_action')

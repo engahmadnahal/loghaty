@@ -8,11 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\App;
 
-
-class Classe extends Model
+class Semester extends Model
 {
-    protected $table = 'classes';
+    use HasFactory,SoftDeletes;
 
+    protected $fillable = [
+        'name_en' ,
+        'name_ar',
+     'teacher_id',
+         'status'
+    ];
     public function teacher(){
         return $this->belongsTo(Teacher::class);
     }
@@ -37,5 +42,4 @@ class Classe extends Model
             get:fn() => $this->status = 'active' ? __('dash.available') : __('dash.block'),
         ); 
     }
-    
 }

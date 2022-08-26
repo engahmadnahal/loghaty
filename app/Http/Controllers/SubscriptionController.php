@@ -73,7 +73,7 @@ class SubscriptionController extends Controller
             $father = Father::find($request->input('father_id'));
             $plan = $father->plan;
             $start = Carbon::now();
-            $end = Carbon::now()->addMonths($plan->sum_month);
+            $end = Carbon::now()->addMonths($plan->id != 1 ? $plan->sum_month : 24);
             $sumFatherSubs = Subscription::where('father_id',$request->input('father_id'))->count();
 
             if($plan->totale_child_subscrip < $sumFatherSubs){
@@ -122,7 +122,6 @@ class SubscriptionController extends Controller
         //
         $validator = Validator($request->all(),[
             'father_id' => 'required|string|exists:fathers,id',
-            'plan_id' => 'required|string|exists:plans,id',
             'children_id' =>'required|string|exists:childrens,id',
         ]);
 

@@ -165,7 +165,7 @@
     <div class="col-lg-3 col-sm-6 col-12">
         
         <div class="card">
-            <a href="{{route('classes.index')}}" class='anlytics'>
+            <a href="{{route('semesters.index')}}" class='anlytics'>
             <div class="card-header d-flex align-items-start pb-0">
                 <div>
                     <h2 class="text-bold-700 mb-0">{{$classes->count()}}</h2>

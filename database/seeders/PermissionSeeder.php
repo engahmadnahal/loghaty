@@ -29,7 +29,7 @@ class PermissionSeeder extends Seeder
         // $articalG = 12;
         // $permissionG = 13;
         // $roleG = 14;
-        // //
+        //
         Permission::create(['guard_name'=>'admin','name' => 'Create-level']);
         Permission::create(['guard_name'=>'admin','name' => 'Update-level']);
         Permission::create(['guard_name'=>'admin','name' => 'Delete-level']);
@@ -45,10 +45,10 @@ class PermissionSeeder extends Seeder
         Permission::create(['guard_name'=>'admin','name' => 'Delete-qs']);
         Permission::create(['guard_name'=>'admin','name' => 'Read-qs']);
 
-        Permission::create(['guard_name'=>'admin','name' => 'Create-class']);
-        Permission::create(['guard_name'=>'admin','name' => 'Update-class']);
-        Permission::create(['guard_name'=>'admin','name' => 'Delete-class']);
-        Permission::create(['guard_name'=>'admin','name' => 'Read-class']);
+        Permission::create(['guard_name'=>'admin','name' => 'Create-semester']);
+        Permission::create(['guard_name'=>'admin','name' => 'Update-semester']);
+        Permission::create(['guard_name'=>'admin','name' => 'Delete-semester']);
+        Permission::create(['guard_name'=>'admin','name' => 'Read-semester']);
 
         Permission::create(['guard_name'=>'admin','name' => 'Create-admin']);
         Permission::create(['guard_name'=>'admin','name' => 'Update-admin']);
@@ -103,6 +103,7 @@ class PermissionSeeder extends Seeder
         Permission::create(['guard_name'=>'admin','name' => 'giv_admin_permission']);
         Permission::create(['guard_name'=>'admin','name' => 'block_system']);
         Permission::create(['guard_name'=>'admin','name' => 'revers_notification']);
+
         
 
 

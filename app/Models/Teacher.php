@@ -17,7 +17,7 @@ class Teacher extends Authenticatable
     use HasFactory,Notifiable,HasApiTokens;
 
     public function classes(){
-        return $this->hasMany(Classe::class);
+        return $this->hasMany(Semester::class);
     }
 
     public function country(){

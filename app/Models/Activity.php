@@ -11,6 +11,6 @@ class Activity extends Model
     use HasFactory;
 
     public function class(){
-        return $this->belongsTo(Classe::class);
+        return $this->belongsTo(Semester::class);
     }
 }

@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\Admin;
-use App\Models\Classe;
+use App\Models\Semester;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ClassePolicy
+class SemesterPolicy
 {
     use HandlesAuthorization;
 
@@ -18,20 +18,22 @@ class ClassePolicy
      */
     public function viewAny($user)
     {
-        return $user->hasPermissionTo('Read-class') ? $this->allow() : $this->deny();
+
+        //
+        return $user->hasPermissionTo('Read-semester') ? $this->allow() : $this->deny();
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\Admin  $admin
-     * @param  \App\Models\Classe  $class
+     * @param  \App\Models\Semester  $semester
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view($user, Classe $classe)
+    public function view($user, Semester $semester)
     {
-        dd(1);
-        return $user->hasPermissionTo('Read-class') ? $this->allow() : $this->deny();
+        //
+        return $user->hasPermissionTo('Read-semester') ? $this->allow() : $this->deny();
     }
 
     /**
@@ -42,54 +44,59 @@ class ClassePolicy
      */
     public function create($user)
     {
-        return $user->hasPermissionTo('Create-class') ? $this->allow() : $this->deny();
+        return $user->hasPermissionTo('Create-semester') ? $this->allow() : $this->deny();
+        //
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\Admin  $admin
-     * @param  \App\Models\Classe  $class
+     * @param  \App\Models\Semester  $semester
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update($user, Classe $class)
+    public function update($user, Semester $semester)
     {
-        return $user->hasPermissionTo('Update-class') ? $this->allow() : $this->deny();
+        return $user->hasPermissionTo('Update-semester') ? $this->allow() : $this->deny();
+        //
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\Admin  $admin
-     * @param  \App\Models\Classe  $class
+     * @param  \App\Models\Semester  $semester
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete($user, Classe $class)
+    public function delete($user, Semester $semester)
     {
-        return $user->hasPermissionTo('Delete-class') ? $this->allow() : $this->deny();
+        return $user->hasPermissionTo('Delete-semester') ? $this->allow() : $this->deny();
+        //
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\Admin  $admin
-     * @param  \App\Models\Classe  $class
+     * @param  \App\Models\Semester  $semester
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore($user, Classe $class)
+    public function restore($user, Semester $semester)
     {
-        return $user->hasPermissionTo('Delete-class') ? $this->allow() : $this->deny();
+        return $user->hasPermissionTo('Delete-semester') ? $this->allow() : $this->deny();
+        //
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\Admin  $admin
-     * @param  \App\Models\Classe  $class
+     * @param  \App\Models\Semester  $semester
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete($user, Classe $class)
+    public function forceDelete($user, Semester $semester)
     {
-        return $user->hasPermissionTo('Delete-class') ? $this->allow() : $this->deny();
+        return $user->hasPermissionTo('Delete-semester') ? $this->allow() : $this->deny();
+        //
     }
 }

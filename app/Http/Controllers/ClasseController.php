@@ -11,11 +11,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Symfony\Component\HttpFoundation\Response;
 
-class ClasseController extends Controller
+class SemesterControllerClasseController extends Controller
 {
     public function __construct()
     {
-        $this->authorizeResource(Classe::class,'classe');
+        $this->authorizeResource(Semester::class,'classe');
+        // dd($this->getMiddleware());
+
     }
     /**
      * Display a listing of the resource.
@@ -96,7 +98,7 @@ class ClasseController extends Controller
      * @param  \App\Models\Classe  $class
      * @return \Illuminate\Http\Response
      */
-    public function show(Classe $class)
+    public function show(Classe $classe)
     {
         //
         $latestChild = Children::whereHas('classe',function($q){
@@ -104,7 +106,7 @@ class ClasseController extends Controller
                 
         })->orderBy('created_at','desc')->get();
         return view('class.show',[
-            'class' => $class,
+            'classe' => $classe,
             'latestChild' => $latestChild
         ]);
     }

@@ -14,14 +14,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('classes', function (Blueprint $table) {
-            $table->id();
-            $table->string('name_en');
-            $table->string('name_ar');
-            $table->foreignIdFor(Teacher::class)->constrained()->cascadeOnDelete();
-            $table->softDeletes();
-            $table->timestamps();
-        });
+        // Schema::create('classes', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('name_en');
+        //     $table->string('name_ar');
+        //     $table->foreignIdFor(Teacher::class)->constrained()->cascadeOnDelete();
+        //     $table->softDeletes();
+        //     $table->timestamps();
+        // });
     }
 
     /**

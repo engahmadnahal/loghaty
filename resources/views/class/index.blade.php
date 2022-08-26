@@ -16,8 +16,8 @@
                 <div class="card-content">
                     <div class="card-body card-dashboard">
                         <div class="table-responsive">
-                            @can('Create-class')
-                            <a id="addRow" href="{{route('classes.create')}}" class="col-xl-2 col-md-12 col-sm-12 btn btn-primary mb-2 waves-effect waves-light"><i class="feather icon-plus"></i>&nbsp; {{__('dash.add_new')}}</a>
+                            @can('Create-semester')
+                            <a id="addRow" href="{{route('semesters.create')}}" class="col-xl-2 col-md-12 col-sm-12 btn btn-primary mb-2 waves-effect waves-light"><i class="feather icon-plus"></i>&nbsp; {{__('dash.add_new')}}</a>
                             @endcan
                             <table class="table zero-configuration">
                                 <thead>
@@ -37,11 +37,11 @@
                                             <td>{{$class->created_at->format('Y-m-d')}}</td>
                                             <td><span class="{{$class->status == 'active' ? 'text-success' : 'text-danger'}}">{{$class->state}}</span></td>
                                             <td class="action-table">
-                                                @can('Read-class')
-                                                <a href="{{route('classes.show',$class->id)}}"  class="btn bg-gradient-info  waves-effect waves-light"><i class="fa fa-eye"></i></a>
+                                                @can('Read-semester')
+                                                <a href="{{route('semesters.show',$class->id)}}"  class="btn bg-gradient-info  waves-effect waves-light"><i class="fa fa-eye"></i></a>
                                                 @endcan
-                                                @can('Update-class')
-                                                <a href="{{route('classes.edit',$class->id)}}"  class="btn bg-gradient-primary   waves-effect waves-light"><i class="fa-solid fa-pen-to-square"></i></i></a>
+                                                @can('Update-semester')
+                                                <a href="{{route('semesters.edit',$class->id)}}"  class="btn bg-gradient-primary   waves-effect waves-light"><i class="fa-solid fa-pen-to-square"></i></i></a>
                                                 @endcan
                                                 @if($class->status =='active')
                                                 @can('block_system')
@@ -54,7 +54,7 @@
                                                     <button type="button" class="btn bg-gradient-success waves-effect waves-light" onclick="performChangeStatus({{$class->id}})"><i class="fa fa-unlock"></i></button>
                                                @endcan
                                                     @endif
-                                                    @can('Delete-class')
+                                                    @can('Delete-semester')
                                                 <button type="button" class="btn bg-gradient-danger  waves-effect waves-light" onclick="performDelete(this,{{$class->id}})"><i class="fa fa-trash"></i></button>
                                                 @endcan
                                             </td>
@@ -76,11 +76,11 @@
 @section('scripts')
 <script>
     function performChangeStatus(id){
-        performStoreWithTostar('/classes/status/'+id);
+        performStoreWithTostar('/semesters/status/'+id);
     }
 
     function performDelete(el,id){
-        performDeleteWithTostar('/classes/'+id,{"_method" : 'DELETE'},el,'tr');
+        performDeleteWithTostar('/semesters/'+id,{"_method" : 'DELETE'},el,'tr');
     }
 </script>
 @endsection

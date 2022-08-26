@@ -10,6 +10,7 @@ use App\Models\Game;
 use App\Models\History;
 use App\Models\Level;
 use App\Models\Plan;
+use App\Models\Semester;
 use App\Models\Subscription;
 use App\Models\Teacher;
 use Illuminate\Auth\Events\Validated;
@@ -32,7 +33,7 @@ class HomeController extends Controller
         $childrens = Children::where('status','active')->latest()->get();
         $fathers = Father::where('status','active')->count();
         $fathersData = Father::where('status','active')->latest()->get();
-        $classes = Classe::where('status','active')->get();
+        $semesters = Semester::where('status','active')->get();
         $totalSub = Subscription::where('expire',null)->count();
         $subsData = Subscription::where('expire',null)->get();
         $plans = Plan::where('active',true)->count();
@@ -48,7 +49,7 @@ class HomeController extends Controller
             'childrens' =>$childrens ,
             'fathers' =>$fathers ,
             'fathersData' =>$fathersData ,
-            'classes' =>$classes ,
+            'classes' =>$semesters ,
             'totalSub' =>$totalSub ,
             'plans' =>$plans ,
             'levles' =>$levles ,

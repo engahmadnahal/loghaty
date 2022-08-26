@@ -18,6 +18,7 @@ use App\Http\Controllers\QsCompleteLatterController;
 use App\Http\Controllers\QsLatterBettweenWordController;
 use App\Http\Controllers\QsOrderLatterController;
 use App\Http\Controllers\QsPlayingController;
+use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\TeacherController;
 use App\Mail\ResetUserPassword;
@@ -95,8 +96,8 @@ Route::middleware('Local')->group(function(){
         Route::resource('plans',PlanController::class);
 
         // ----- classes Controller Route ---------
-        Route::post('/classes/status/{class}',[ClasseController::class , 'changeStatus'])->name('classes.change_status');
-        Route::resource('classes',ClasseController::class);
+        Route::post('/semesters/status/{semester}',[SemesterController::class , 'changeStatus'])->name('semesters.change_status');
+        Route::resource('semesters',SemesterController::class);
 
         // ----- Children Controller Route ---------
         Route::post('/childrens/status/{children}',[ChildrenController::class , 'changeStatus'])->name('childrens.change_status');

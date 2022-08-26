@@ -17,8 +17,8 @@ class Children extends Model
         return $this->belongsTo(Father::class);
     }
 
-    public function classe(){
-        return $this->belongsTo(Classe::class);
+    public function semester(){
+        return $this->belongsTo(Semester::class);
     }
 
     public function country(){

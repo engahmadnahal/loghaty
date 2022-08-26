@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('classes', function (Blueprint $table) {
-            //
-            $table->enum('status',['active','block'])->default('active')->after('name_ar');
-        });
+        // Schema::table('classes', function (Blueprint $table) {
+        //     //
+        //     // $table->enum('status',['active','block'])->default('active')->after('name_ar');
+        // });
     }
 
     /**

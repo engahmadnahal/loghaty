@@ -79,18 +79,18 @@
             @endcanany
 
 
-            @canany(['Create-class','Update-class','Delete-class','Read-class'])
+            @canany(['Create-semester','Update-semester','Delete-semester','Read-semester'])
 
             <li class=" nav-item"><a href="#"><i class="fa-solid fa-graduation-cap"></i><span class="menu-title" data-i18n="{{__('dash.classes')}}">{{__('dash.classes')}}</span></a>
                 <ul class="menu-content">
-                    @canany(['Update-class','Read-class','Delete-class'])
+                    @canany(['Update-semester','Read-semester','Delete-semester'])
                     
-                    <li class="{{ActiveRoute::isActive('classes.index')}}"><a  href="{{route('classes.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
+                    <li class="{{ActiveRoute::isActive('semesters.index')}}"><a  href="{{route('semesters.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
                     </li>
                     @endcanany
 
-                    @can('Create-class')
-                    <li class="{{ActiveRoute::isActive('classes.create')}}"><a  href="{{route('classes.create')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.create')}}">{{__('dash.create')}}</span></a>
+                    @can('Create-semester')
+                    <li class="{{ActiveRoute::isActive('semesters.create')}}"><a  href="{{route('semesters.create')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.create')}}">{{__('dash.create')}}</span></a>
                     </li>
                     @endcan
                     </li>

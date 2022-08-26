@@ -17,6 +17,13 @@ class Father extends Authenticatable
     use HasFactory,HasRoles,Notifiable,HasApiTokens,SoftDeletes;
 
 
+    protected $fillabel = [
+        'email',
+        'password',
+         'plan_id',
+      'country_id',
+          'status',
+    ];
 
     public function payments(){
         return $this->hasMany(Payment::class);

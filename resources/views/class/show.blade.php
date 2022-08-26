@@ -44,7 +44,7 @@
                             </tbody></table>
                         </div>
                         <div class="col-12">
-                            <a href="{{route('classes.edit',$class->id)}}" class="btn btn-primary mr-1 waves-effect waves-light"><i class="feather icon-edit-1"></i> {{__('dash.edit')}}</a>
+                            <a href="{{route('semesters.edit',$class->id)}}" class="btn btn-primary mr-1 waves-effect waves-light"><i class="feather icon-edit-1"></i> {{__('dash.edit')}}</a>
                         </div>
                     </div>
                 </div>

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('teachers', function (Blueprint $table) {
             //
-            $table->string('avater')->after('email');
+            $table->string('avater')->nullable()->after('email');
         });
     }
 
