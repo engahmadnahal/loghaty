@@ -14,7 +14,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class Admin extends Authenticatable
 {
-    use HasFactory,SoftDeletes,Notifiable,HasRoles;
+    use HasFactory,Notifiable,HasRoles,SoftDeletes;
 
     public function articles(){
         return $this->hasMany(Artical::class);

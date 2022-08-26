@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Setting extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory;
    
     protected $fillable = [
         'father_id',

@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Father extends Authenticatable
 {
-    use HasFactory,SoftDeletes,HasRoles,Notifiable,HasApiTokens;
+    use HasFactory,HasRoles,Notifiable,HasApiTokens,SoftDeletes;
 
 
 

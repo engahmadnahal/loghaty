@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Activity extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory;
 
     public function class(){
         return $this->belongsTo(Classe::class);

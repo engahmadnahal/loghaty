@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Level extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory;
 
     public function games(){
         return $this->hasMany(Game::class);

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Artical extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory;
 
     public function admin(){
         return $this->belongsTo(Admin::class);

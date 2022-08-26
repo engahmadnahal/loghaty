@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class GroupPermission extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory;
 }

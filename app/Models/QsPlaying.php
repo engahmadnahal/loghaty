@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class QsPlaying extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory;
 
     public function game(){
         return $this->belongsTo(Game::class);

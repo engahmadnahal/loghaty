@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Country extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory;
     
     public function admins(){
         return $this->hasMany(Admin::class);

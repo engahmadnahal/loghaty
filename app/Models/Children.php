@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Children extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory;
 
     public function father(){
         return $this->belongsTo(Father::class);

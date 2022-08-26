@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\App;
 
 class Classe extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory;
 
     public function teacher(){
         return $this->belongsTo(Teacher::class);

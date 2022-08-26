@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Plan extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory;
 
 
     public function fathers(){

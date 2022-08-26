@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class History extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory;
 
     public function level(){
         return $this->belongsTo(Level::class);

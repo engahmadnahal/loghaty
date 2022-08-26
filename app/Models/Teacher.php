@@ -14,7 +14,7 @@ use Laravel\Passport\HasApiTokens;
 
 class Teacher extends Authenticatable
 {
-    use HasFactory,SoftDeletes,Notifiable,HasApiTokens;
+    use HasFactory,Notifiable,HasApiTokens;
 
     public function classes(){
         return $this->hasMany(Classe::class);

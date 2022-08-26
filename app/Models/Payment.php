@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Payment extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory;
 
     public function owner(){
         return $this->belongsTo(Father::class);
