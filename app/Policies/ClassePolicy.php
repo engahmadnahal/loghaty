@@ -25,10 +25,10 @@ class ClassePolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\Admin  $admin
-     * @param  \App\Models\Classe  $classe
+     * @param  \App\Models\Classe  $class
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view($user, Classe $classe)
+    public function view($user, Classe $class)
     {
         return $user->hasPermissionTo('Read-class') ? $this->allow() : $this->deny();
     }
@@ -48,11 +48,12 @@ class ClassePolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\Admin  $admin
-     * @param  \App\Models\Classe  $classe
+     * @param  \App\Models\Classe  $class
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update($user, Classe $classe)
+    public function update($user, Classe $class)
     {
+        dd(1);
         return $user->hasPermissionTo('Update-class') ? $this->allow() : $this->deny();
     }
 
@@ -60,10 +61,10 @@ class ClassePolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\Admin  $admin
-     * @param  \App\Models\Classe  $classe
+     * @param  \App\Models\Classe  $class
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete($user, Classe $classe)
+    public function delete($user, Classe $class)
     {
         return $user->hasPermissionTo('Delete-class') ? $this->allow() : $this->deny();
     }
@@ -72,10 +73,10 @@ class ClassePolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\Admin  $admin
-     * @param  \App\Models\Classe  $classe
+     * @param  \App\Models\Classe  $class
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore($user, Classe $classe)
+    public function restore($user, Classe $class)
     {
         return $user->hasPermissionTo('Delete-class') ? $this->allow() : $this->deny();
     }
@@ -84,10 +85,10 @@ class ClassePolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\Admin  $admin
-     * @param  \App\Models\Classe  $classe
+     * @param  \App\Models\Classe  $class
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete($user, Classe $classe)
+    public function forceDelete($user, Classe $class)
     {
         return $user->hasPermissionTo('Delete-class') ? $this->allow() : $this->deny();
     }

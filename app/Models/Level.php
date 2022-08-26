@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use PhpParser\Node\Expr\FuncCall;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Level extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
 
     public function games(){
         return $this->hasMany(Game::class);

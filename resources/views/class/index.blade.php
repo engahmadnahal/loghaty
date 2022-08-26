@@ -32,11 +32,10 @@
                                 <tbody>
                                     @foreach ($classes as $class)
                                         <tr>
-                                            
                                             <td>{{$class->name}}</td>
                                             <td>{{$class->teacher->full_name}}</td>
                                             <td>{{$class->created_at->format('Y-m-d')}}</td>
-                                            <td><span class="{{$class->status == 'active' ? 'text-success' : 'text-danger'}}">{{$class->status_class}}</span></td>
+                                            <td><span class="{{$class->status == 'active' ? 'text-success' : 'text-danger'}}">{{$class->state}}</span></td>
                                             <td class="action-table">
                                                 @can('Read-class')
                                                 <a href="{{route('classes.show',$class->id)}}"  class="btn bg-gradient-info  waves-effect waves-light"><i class="fa fa-eye"></i></a>

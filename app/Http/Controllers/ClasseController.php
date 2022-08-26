@@ -15,8 +15,7 @@ class ClasseController extends Controller
 {
     public function __construct()
     {
-        $this->authorizeResource(Classe::class,'Classe');
-        
+        $this->authorizeResource(Classe::class,'classe');
     }
     /**
      * Display a listing of the resource.
@@ -197,4 +196,6 @@ class ClasseController extends Controller
             'message' =>$isSave ? __('msg.success_action') : __('msg.error_action')
         ],$isSave ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
     }
+
+
 }

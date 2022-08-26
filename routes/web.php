@@ -132,8 +132,6 @@ Route::middleware('Local')->group(function(){
 
         
 
-        
-
     });
 
     

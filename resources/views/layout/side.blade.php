@@ -34,7 +34,7 @@
             @canany(['Create-level','Update-level','Delete-level','Read-level'])
                 <li class=" nav-item"><a href="#"><i class="fa-solid fa-chart-simple"></i><span class="menu-title" data-i18n="{{__('dash.levels')}}">{{__('dash.levels')}}</span></a>
                     <ul class="menu-content">
-                        @canany('Update-level','Read-level','Delete-level')
+                        @canany(['Update-level','Read-level','Delete-level'])
                         <li class="{{ActiveRoute::isActive('levels.index')}}"><a  href="{{route('levels.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
                         </li>
                         @endcanany
@@ -51,7 +51,7 @@
 
             <li class=" nav-item"><a href="#"><i class="fa-solid fa-book"></i><span class="menu-title" data-i18n="{{__('dash.games')}}">{{__('dash.games')}}</span></a>
                 <ul class="menu-content">
-                    @canany('Update-game','Read-game','Delete-game')
+                    @canany(['Update-game','Read-game','Delete-game'])
                     <li class="{{ActiveRoute::isActive('games.index')}}"><a  href="{{route('games.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
                     </li>
                     @endcanany
@@ -83,11 +83,12 @@
 
             <li class=" nav-item"><a href="#"><i class="fa-solid fa-graduation-cap"></i><span class="menu-title" data-i18n="{{__('dash.classes')}}">{{__('dash.classes')}}</span></a>
                 <ul class="menu-content">
-                    @canany('Update-class','Read-class','Delete-class')
+                    @canany(['Update-class','Read-class','Delete-class'])
                     
                     <li class="{{ActiveRoute::isActive('classes.index')}}"><a  href="{{route('classes.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
                     </li>
                     @endcanany
+
                     @can('Create-class')
                     <li class="{{ActiveRoute::isActive('classes.create')}}"><a  href="{{route('classes.create')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.create')}}">{{__('dash.create')}}</span></a>
                     </li>
@@ -133,7 +134,7 @@
 
             <li class=" nav-item"><a href="#"><i class="fa-solid fa-person-chalkboard"></i></i><span class="menu-title" data-i18n="{{__('dash.teachers')}}">{{__('dash.teachers')}}</span></a>
                 <ul class="menu-content">
-                    @canany('Update-teacher','Read-teacher','Delete-teacher')
+                    @canany(['Update-teacher','Read-teacher','Delete-teacher'])
 
                     <li class="{{ActiveRoute::isActive('teachers.index')}}"><a  href="{{route('teachers.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
                     </li>
@@ -151,7 +152,7 @@
 
             <li class=" nav-item"><a href="#"><i class="fa-solid fa-people-roof"></i><span class="menu-title" data-i18n="{{__('dash.parents')}}">{{__('dash.parents')}}</span></a>
                 <ul class="menu-content">
-                    @canany('Update-father','Read-father','Delete-father')
+                    @canany(['Update-father','Read-father','Delete-father'])
 
                     <li class="{{ActiveRoute::isActive('fathers.index')}}"><a  href="{{route('fathers.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
                     </li>
@@ -170,7 +171,7 @@
 
             <li class=" nav-item"><a href="#"><i class="fa-solid fa-children"></i></i><span class="menu-title" data-i18n="{{__('dash.childrens')}}">{{__('dash.childrens')}}</span></a>
                 <ul class="menu-content">
-                    @canany('Update-children','Read-children','Delete-children')
+                    @canany(['Update-children','Read-children','Delete-children'])
 
                     <li class="{{ActiveRoute::isActive('childrens.index')}}" ><a href="{{route('childrens.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
                     </li>
@@ -202,7 +203,7 @@
 
             <li class=" nav-item"><a href="#"><i class="fa-solid fa-dollar-sign"></i><span class="menu-title" data-i18n="{{__('dash.plan')}}">{{__('dash.plan')}}</span></a>
                 <ul class="menu-content">
-                    @canany('Update-plan','Read-plan','Delete-plan')
+                    @canany(['Update-plan','Read-plan','Delete-plan'])
 
                     <li class="{{ActiveRoute::isActive('plans.index')}}" ><a href="{{route('plans.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
                     </li>
@@ -221,7 +222,7 @@
 
             <li class=" nav-item"><a href="#"><i class="fa-solid fa-user-tie"></i><span class="menu-title" data-i18n="{{__('dash.subscripers')}}">{{__('dash.subscripers')}}</span></a>
                 <ul class="menu-content">
-                    @canany('Update-subscrip','Read-subscrip','Delete-subscrip')
+                    @canany(['Update-subscrip','Read-subscrip','Delete-subscrip'])
 
                     <li class="{{ActiveRoute::isActive('subscriptions.index')}}"><a  href="{{route('subscriptions.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
                     </li>
@@ -252,7 +253,7 @@
 
             <li class=" nav-item"><a href="#"><i class="fa-solid fa-city"></i><span class="menu-title" data-i18n="{{__('dash.countries')}}">{{__('dash.countries')}}</span></a>
                 <ul class="menu-content">
-                    @canany('Update-country','Read-country','Delete-country')
+                    @canany(['Update-country','Read-country','Delete-country'])
 
                     <li class="{{ActiveRoute::isActive('countries.index')}}"><a  href="{{route('countries.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
                     </li>
@@ -271,7 +272,7 @@
 
             <li class=" nav-item"><a href="#"><i class="fa-solid fa-pencil"></i><span class="menu-title" data-i18n="{{__('dash.articals')}}">{{__('dash.articals')}}</span></a>
                 <ul class="menu-content">
-                    @canany('Update-artical','Read-artical','Delete-artical')
+                    @canany(['Update-artical','Read-artical','Delete-artical'])
 
                     <li class="{{ActiveRoute::isActive('articals.index')}}"><a  href="{{route('articals.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
                     </li>

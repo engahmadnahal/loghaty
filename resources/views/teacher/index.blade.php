@@ -45,7 +45,7 @@
                                             <td><span class="{{$teacher->status == 'active' ? 'text-success' : 'text-danger'}}">{{$teacher->status_user}}</span></td>
                                             <td>{{$teacher->last_login}}</td>
                                             <td class="action-table">
-                                                @can('read-teacher')
+                                                @can('Read-teacher')
                                                 <a href="{{route('teachers.show',$teacher->id)}}"  class="btn bg-gradient-info  waves-effect waves-light"><i class="fa fa-eye"></i></a>
                                                 @endcan
                                                 @can('Update-teacher')

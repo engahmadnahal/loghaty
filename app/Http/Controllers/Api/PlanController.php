@@ -13,13 +13,10 @@ use App\Models\Plan;
 use App\Models\Subscription;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Spatie\FlareClient\Api;
 use Symfony\Component\HttpFoundation\Response;
 
 class PlanController extends Controller
 {
-    //
-
     public function getPlans(Request $request){
         $plans = Plan::where('active',true)->get();
         return new MainResource(PlanResource::collection($plans),Response::HTTP_OK,ApiMsg::getMsg($request,'success_get'));
@@ -46,7 +43,6 @@ class PlanController extends Controller
             ],Response::HTTP_BAD_REQUEST);
         }
     }
-
 
     /// This method add childrens auto , where num children eqaul plan total child subs
     public function addAllChildrensSubs(Father $father){

@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Children extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
 
     public function father(){
         return $this->belongsTo(Father::class);
