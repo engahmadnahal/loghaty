@@ -65,7 +65,7 @@ class TeacherController extends Controller
             'national_id' => 'required|string',
             'mobile' => 'required|string',
             'country' => 'required|numeric|exists:countries,id',
-            'email' => 'required|email|unique:admins',
+            'email' => 'required|email|unique:teachers',
             'password' => 'required|string|min:6|max:12',
             'image_avater' => 'required|image|mimes:jpg,png,jpeg,gif',
             'active'=> 'required'

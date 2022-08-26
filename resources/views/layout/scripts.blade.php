@@ -57,10 +57,11 @@
                     if(idForm != undefined){
                         document.getElementById(idForm).reset();
                     }
+                    removSweet();
                 }).catch(function(error){
                     toastr.error(error.response.data.message,error.response.data.title, { "progressBar": true });
+                    removSweet();
                 });
-                removSweet();
             }catch(error){
                 removSweet();
                 errorSweet('حدث خطأ اثناء تنفيذ العملية');
@@ -77,12 +78,13 @@
                 sweetLoad();
             axios.post(route,dataObj).then(function(response){
                 toastr.success(response.data.message,response.data.title, { "progressBar": true });
+                removSweet();
 
             }).catch(function(error){
+            removSweet();
                
                 toastr.error(error.response.data.message,error.response.data.title, { "progressBar": true });
             });
-            removSweet();
 
         }catch(error){
                 removSweet();
@@ -97,11 +99,13 @@
             axios.post(route,dataObj).then(function(response){
                 toastr.success(response.data.message,response.data.title, { "progressBar": true });
                 el.closest(closest).remove();
+            removSweet();
+
             }).catch(function(error){
+            removSweet();
                
                 toastr.error(error.response.data.message,error.response.data.title, { "progressBar": true });
             });
-            removSweet();
 
         }catch(error){
                 removSweet();
@@ -115,10 +119,13 @@
             sweetLoad();
             axios.post(route,dataObj).then(function(response){
                 actionSuccess();
+            removSweet();
+
             }).catch(function(error){
                 actionError();
-            });
             removSweet();
+
+            });
         }catch(error){
                 removSweet();
                 errorSweet('حدث خطأ اثناء تنفيذ العملية');
@@ -160,6 +167,7 @@
 
         function removSweet(){
             let sweet = document.getElementsByClassName('swal2-container');
+            document.body.classList.remove('swal2-shown','swal2-height-auto')
             sweet[0].remove();
         }
 
