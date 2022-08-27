@@ -93,7 +93,7 @@ class ChildrenController extends Controller
             $children->date_of_birth = $request->input('dob');
             $children->country_id = $request->input('country_id');
             $children->father_id = $request->input('father_id');
-            $children->classe_id = $request->input('class_id');
+            $children->semester_id = $request->input('class_id');
             $children->avater = $filePath;
             $children->status = $request->input('active') == "true" ? 'active' : 'block';
             $isSave = $children->save();
@@ -182,7 +182,7 @@ class ChildrenController extends Controller
             $children->date_of_birth = $request->input('dob');
             $children->country_id = $request->input('country_id');
             $children->father_id = $request->input('father_id');
-            $children->classe_id = $request->input('class_id');
+            $children->semester_id = $request->input('class_id');
             if($request->hasFile('image_avater')){
                 $filePath = $this->uploadFile($request->file('image_avater'));
                 $children->avater = $filePath;
