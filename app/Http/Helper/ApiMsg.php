@@ -32,6 +32,8 @@ class ApiMsg {
         'success_get' => 'تم جلب البيانات بنجاح',
         'success_subs' => 'تم الاشتراك بنجاح' ,
         'already_added' => 'مضاف فعلا' ,
+        'success_add' => 'تم الاضافة بنجاح'
+
 
         
 
@@ -67,6 +69,7 @@ class ApiMsg {
         'success_get' => 'Get Data Is successfully',
         'success_subs' => 'Subscribed successfully' ,
         'already_added' => 'already added' ,
+        'success_add' => 'Add is successfully'
 
     ];
 

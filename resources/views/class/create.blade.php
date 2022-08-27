@@ -88,7 +88,7 @@
         };
 
   
-        performStoreWithTostar('/classes',dataObj,'form');
+        performStoreWithTostar('/semesters',dataObj,'form');
     }
 </script>
 @endsection

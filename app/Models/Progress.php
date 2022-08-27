@@ -14,4 +14,8 @@ class Progress extends Model
     public function level(){
         return $this->belongsTo(Level::class);
     }
+
+    public function children(){
+        return $this->belongsTo(Children::class);
+    }
 }

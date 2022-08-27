@@ -299,5 +299,8 @@ return [
     'notfy_add_country_body' => 'تم اضافة دولة جديد للنظام',
     'notfy_add_country_title' => '  دولة جديدة ',
 
+    'notfy_subs_game_title' => ' اضافة لعبة ',
+    'notfy_subs_game_body' => 'تم اضافة لعبة جديدة',
+
 
 ];

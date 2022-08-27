@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Api\Auth\AuthForgotPasswordController;
 use App\Http\Controllers\Api\Auth\AuthLoginController;
+use App\Http\Controllers\Api\ChildrenController;
 use App\Http\Controllers\Api\FatherController;
 use App\Http\Controllers\Api\PlanController;
+use App\Http\Controllers\Api\SemesterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -59,6 +61,22 @@ Route::middleware('Local')->group(function(){
 
             
             
+        });
+
+        Route::controller(SemesterController::class)->group(function(){
+            Route::get('classes','getAllSemester');
+            Route::get('classes/{semester}','getSingleSemester');
+            Route::post('classes/{semester}/add','addChildToClass');
+            Route::post('classes/create','createSemester');
+        });
+
+        Route::controller(ChildrenController::class)->group(function(){
+            Route::get('childrens','getAllChildren');
+            Route::get('childrens/{children}','getSingleChildren');
+            Route::post('childrens/{children}/delete','deleteChildren');
+            Route::post('childrens/add','addChildren');
+            Route::post('childrens/{children}/progress','sendProgress');
+            Route::get('childrens/{children}/certificates','getCertificates');
         });
 
     });

@@ -84,7 +84,7 @@
         };
 
   
-        performUpdateWithTostar('/classes/{{$class->id}}',dataObj);
+        performUpdateWithTostar('/semesters/{{$class->id}}',dataObj);
     }
 </script>
 @endsection

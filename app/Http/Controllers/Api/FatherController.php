@@ -50,8 +50,8 @@ class FatherController extends Controller
     function grantPGCT(Request $request){
         $response = Http::asForm()->post('http://127.0.0.1:81/oauth/token',[
             'grant_type' => 'password',
-            'client_id' => '5',
-            'client_secret'=>'QaeEsrU6CqkDQR8E2tQXqlNnlNfmUaOqzhvMeLOq',
+            'client_id' => env('FATHER_CLIENT_ID'),
+            'client_secret'=>env('FATHER_CLIENT_SECRET'),
             'username' => $request->input('email'),
             'password' =>$request->input('password'),
             'scope' => '*'
@@ -62,6 +62,8 @@ class FatherController extends Controller
 
         return new MainResource(new FatherResource($father),Response::HTTP_OK,ApiMsg::getMsg($request,'success_create'));     
     }
+
+    
 
 
     public function sendSetting(Request $request, Father $father){

@@ -91,11 +91,11 @@ class AuthLoginController extends Controller
             'client_secret' => ''
         ];
         if($type == 'teacher'){
-            $arr['client_id'] = '6';
-            $arr['client_secret'] = 'CCoZ0zXe8X9hP5nDxBJShtXFsfiwRt9Tx8YzallQ';
+            $arr['client_id'] = env('TEACHER_CLIENT_ID');
+            $arr['client_secret'] = env('TEACHER_CLIENT_SECRET');
         }else{
-            $arr['client_id'] = '5';
-            $arr['client_secret'] = 'QaeEsrU6CqkDQR8E2tQXqlNnlNfmUaOqzhvMeLOq';
+            $arr['client_id'] = env('FATHER_CLIENT_ID');
+            $arr['client_secret'] = env('FATHER_CLIENT_SECRET');
         }
 
         return $arr;

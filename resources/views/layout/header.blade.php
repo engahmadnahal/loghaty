@@ -38,7 +38,7 @@
                                     <span class="notification-title">{{__('dash.my_notification')}}</span>
                                 </div>
                             </li>
-                            @forelse (auth()->user()->unreadNotifications as $ntf)
+                            @forelse (auth()->user()->unreadNotifications->take(5) as $ntf)
                             <li class="scrollable-container media-list">
                                 <a class="d-flex justify-content-between" href="{{route('admins.notification')}}">
                                     <div class="media d-flex align-items-start">

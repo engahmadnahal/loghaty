@@ -26,7 +26,7 @@ return new class extends Migration
             $table->timestamp('last_vist')->nullable();
             $table->foreignIdFor(Father::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Country::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Semester::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Semester::class)->nullable()->constrained()->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });

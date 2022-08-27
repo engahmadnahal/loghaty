@@ -26,7 +26,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (auth()->user()->notifications as $ntf)
+                                    @foreach (auth()->user()->unreadNotifications as $ntf)
                                         <tr>
                                             
                                             <td>{{$ntf->data['title']}}</td>

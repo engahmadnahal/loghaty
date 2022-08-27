@@ -12,6 +12,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Children extends Model
 {
     use HasFactory;
+    protected $fillable = [
+    'name',
+    'date_of_birth',
+    'country_id',
+    'father_id',
+    'semester_id',
+    'os_mobile',
+    'avater'];
 
     public function father(){
         return $this->belongsTo(Father::class);
