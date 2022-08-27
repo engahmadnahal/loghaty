@@ -41,7 +41,7 @@
                                             </div></td>
                                             <td>{{$children->name}}</td>
                                             <td>{{$children->country->name}}</td>
-                                            <td>{{$children->classe->name}}</td>
+                                            <td>{{$children->semester->name}}</td>
                                             <td>{{$children->created_at->format('Y-m-d')}}</td>
                                             <td><span class="{{$children->status == 'active' ? 'text-success' : 'text-danger'}}">{{$children->status_user}}</span></td>
                                             <td>{{$children->last_login}}</td>
