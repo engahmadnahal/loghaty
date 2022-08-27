@@ -76,7 +76,7 @@ class ChildrenController extends Controller
             'dob' => 'required|string',
             'country_id' => 'required|numeric|exists:countries,id',
             'father_id' => 'required|numeric|exists:fathers,id',
-            'class_id' => 'required|numeric|exists:classes,id',
+            'class_id' => 'required|numeric|exists:semesters,id',
             'image_avater' => 'required|image|mimes:jpg,png,jpeg,gif',
             'active'=> 'required'
             
@@ -170,7 +170,7 @@ class ChildrenController extends Controller
             'dob' => 'required|string',
             'country_id' => 'required|numeric|exists:countries,id',
             'father_id' => 'required|numeric|exists:fathers,id',
-            'class_id' => 'required|numeric|exists:classes,id',
+            'class_id' => 'required|numeric|exists:semesters,id',
             $this->getImageValidate($request->hasFile('image_avater'))['image_avater'],
             'active'=> 'required'
             
