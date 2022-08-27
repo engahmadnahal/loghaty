@@ -8,6 +8,7 @@ use App\Models\Children;
 use App\Models\Classe;
 use App\Models\Country;
 use App\Models\Father;
+use App\Models\Semester;
 use App\Notifications\AdminNotification;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,7 +27,7 @@ class ChildrenController extends Controller
         $this->authorizeResource(Children::class,'children');
 
         $this->fathers = Father::where('status','active')->get();
-        $this->classes = Classe::where('status','active')->get();
+        $this->classes = Semester::where('status','active')->get();
         $this->countres = Country::where('active',true)->get();
     }
     /**

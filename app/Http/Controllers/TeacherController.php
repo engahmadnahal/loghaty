@@ -6,6 +6,7 @@ use App\Http\Trait\CustomTrait;
 use App\Models\Children;
 use App\Models\Classe;
 use App\Models\Country;
+use App\Models\Semester;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -109,7 +110,7 @@ class TeacherController extends Controller
     {
         //
         $childrens = Children::where('status','active')->take(5)->get();
-        $classes = Classe::whereHas('teacher',function($q){
+        $classes = Semester::whereHas('teacher',function($q){
             $q->where('status','active');
         })->get();
         return view('teacher.show',[
