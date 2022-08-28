@@ -302,5 +302,7 @@ return [
     'notfy_subs_game_title' => ' اضافة لعبة ',
     'notfy_subs_game_body' => 'تم اضافة لعبة جديدة',
 
+    'last_playing_game' => 'اخر الالعاب المستخدمة'
+
 
 ];

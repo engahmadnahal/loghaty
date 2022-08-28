@@ -63,7 +63,7 @@
                     @forelse ($game->history as $g)
                     <div class="row pb-1">
                         <div class="col-1"><i class="fa-solid fa-person-chalkboard" style=" font-size: 21px; "></i></div>
-                        <div class="col-6">{{$g->children->classe->name}}</div>
+                        <div class="col-6">{{$g->children->semester->name}}</div>
                         <div class="col-5">
                             <div class="action-table">
                                 <span>{{$g->created_at->diffForHumans()}}</span>

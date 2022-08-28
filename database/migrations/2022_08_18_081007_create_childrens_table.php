@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('avater')->nullable();
             $table->enum('status',['active','block'])->default('active');
             $table->timestamp('last_vist')->nullable();
+            $table->integer('sum_day')->default(0);
             $table->foreignIdFor(Father::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Country::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Semester::class)->nullable()->constrained()->cascadeOnDelete();

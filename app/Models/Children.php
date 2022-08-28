@@ -41,8 +41,12 @@ class Children extends Model
         return $this->hasMany(Subscription::class);
     }
 
-    public function history(){
+    public function histories(){
         return $this->hasMany(History::class);
+    }
+
+    public function activities(){
+        return $this->hasMany(Activity::class);
     }
     
     public function imageProfile() : Attribute {

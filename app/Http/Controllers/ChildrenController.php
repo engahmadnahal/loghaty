@@ -8,6 +8,7 @@ use App\Models\Children;
 use App\Models\Classe;
 use App\Models\Country;
 use App\Models\Father;
+use App\Models\History;
 use App\Models\Semester;
 use App\Notifications\AdminNotification;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ class ChildrenController extends Controller
         $this->authorizeResource(Children::class,'children');
 
         $this->fathers = Father::where('status','active')->get();
-        $this->classes = Semester::where('status','active')->get();
+        $this->semesters = Semester::where('status','active')->get();
         $this->countres = Country::where('active',true)->get();
     }
     /**
@@ -56,7 +57,7 @@ class ChildrenController extends Controller
 
         return view('children.create',[
             'fathers' => $this->fathers,
-            'classes' => $this->classes,
+            'classes' => $this->semesters,
             'countres' => $this->countres,
         ]);
 
@@ -131,11 +132,45 @@ class ChildrenController extends Controller
     public function show(Children $children)
     {
 
+        
+
         return view('children.show',[
-            'children' => $children,
+            'children' => $children
             
         ]);
 
+    }
+
+    public function getAnlyt(Request $request , Children $children){
+        $result = [];
+        $count = 1;
+        $histores = $children->histories;
+        $temp = $histores[0]->created_at->format('Y-m-d');
+        $histores->map(function($t) use(&$count,&$temp,&$result){
+            $date = $t->created_at->format('Y-m-d');
+            if($date == $temp){ 
+                $count++;
+            }else{
+                $count = 0;
+            }
+            $temp = $date;
+            if(!array_key_exists($date,$result)){
+                $result[$temp] = $count;
+            }else{
+                $result[$temp] = $count;
+            }
+        });
+
+        $anlyt = [];
+        foreach($result As $k => $r){
+            $data = [$k,$r];
+            array_push($anlyt,$data);
+        }
+
+        return response()->json([
+            'title' => __('msg.success'),
+            'data' => $anlyt
+        ]);
     }
 
     /**
@@ -149,7 +184,7 @@ class ChildrenController extends Controller
         return view('children.edit',[
             'children' => $children,
             'fathers' => $this->fathers,
-            'classes' => $this->classes,
+            'classes' => $this->semesters,
             'countres' => $this->countres,
         ]);
 

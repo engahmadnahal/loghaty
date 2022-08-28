@@ -40,7 +40,7 @@
                                 </tr>
                                 <tr>
                                     <td class="font-weight-bold">{{__('dash.class')}}</td>
-                                    <td>{{$children->classe->name}}</td>
+                                    <td>{{$children->semester->name}}</td>
                                 </tr>
                                 <tr>
                                     <td class="font-weight-bold">{{__('dash.country')}}</td>

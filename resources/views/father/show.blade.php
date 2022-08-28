@@ -47,7 +47,30 @@
         <!-- account end -->
         <!-- information start -->
         <div class="col-md-6 col-12 ">
-            <div class="card">
+            <div class="card" style="height: 469.227px;">
+                <div class="card-content">
+                    <div class="card-body">
+                        <h4 class="card-title">{{__('dash.subscripers')}}</h4>
+                    </div>
+                   @forelse ($subsChildrens as $c)
+
+                    <ul class="list-group list-group-flush">
+                        <a href="{{route('childrens.show',$c->id)}}">
+                            <li class="list-group-item">
+                                <span class="badge badge-pill bg-primary float-right">{{$c->created_at->diffForHumans()}}</span>
+                                {{$c->name}}
+                            </li>
+                        </a>
+                       
+                    </ul>
+                    @empty
+                    <p class='text-center'>{{__('dash.no_results')}} </p>
+                    
+                    @endforelse
+
+                </div>
+            </div>
+            {{-- <div class="card">
                 <div class="card-header">
                     <div class="card-title mb-2">{{__('dash.subscripers')}}</div>
                 </div>
@@ -66,12 +89,37 @@
                         <p class='text-center'>{{__('dash.no_results')}} </p>
                     @endforelse
                 </div>
-            </div>
+            </div> --}}
         </div>
         <!-- information start -->
         <!-- social links end -->
         <div class="col-md-6 col-12 ">
-            <div class="card">
+            <div class="card" style="height: 469.227px;">
+                <div class="card-content">
+                    <div class="card-body">
+                        <h4 class="card-title">{{__('dash.childrens')}}</h4>
+                    </div>
+                   @forelse ($childrens as $c)
+
+                    <ul class="list-group list-group-flush">
+                        <a href="{{route('childrens.show',$c->id)}}">
+                            <li class="list-group-item">
+                                <span class="badge badge-pill bg-primary float-right">{{$c->created_at->diffForHumans()}}</span>
+                                {{$c->name}}
+                            </li>
+                        </a>
+                       
+                    </ul>
+                    @empty
+                    <p class='text-center'>{{__('dash.no_results')}} </p>
+                    
+                    @endforelse
+
+                </div>
+            </div>
+
+
+            {{-- <div class="card">
                 <div class="card-header">
                     <div class="card-title mb-2">{{__('dash.childrens')}}</div>
                 </div>
@@ -88,7 +136,7 @@
                         <p class='text-center'>{{__('dash.no_results')}} </p>
                     @endforelse
                 </div>
-            </div>
+            </div> --}}
         </div>
         <!-- social links end -->
         <!-- permissions start -->

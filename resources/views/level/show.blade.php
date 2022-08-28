@@ -59,7 +59,7 @@
                     @forelse ($level->history as $c)
                         <div class="row pb-1">
                             <div class="col-1"><i class="fa-solid fa-person-chalkboard" style=" font-size: 21px; "></i></div>
-                            <div class="col-6">{{$c->children->classe->name}}</div>
+                            <div class="col-6">{{$c->children->semester->name}}</div>
                             <div class="col-5">
                                 <div class="action-table">
                                     <span>{{$c->created_at->diffForHumans()}}</span>

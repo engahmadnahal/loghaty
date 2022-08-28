@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ArticalController;
 use App\Http\Controllers\Api\Auth\AuthForgotPasswordController;
 use App\Http\Controllers\Api\Auth\AuthLoginController;
 use App\Http\Controllers\Api\ChildrenController;
@@ -76,7 +77,16 @@ Route::middleware('Local')->group(function(){
             Route::post('childrens/{children}/delete','deleteChildren');
             Route::post('childrens/add','addChildren');
             Route::post('childrens/{children}/progress','sendProgress');
+            Route::get('childrens/{children}/progress','getProgress');
             Route::get('childrens/{children}/certificates','getCertificates');
+            Route::post('childrens/{children}/history','sendHistory');
+            Route::post('childrens/{children}/last-vist','sendDateLastVist');
+
+        });
+
+        Route::controller(ArticalController::class)->group(function(){
+            Route::get('articals','getAllArtical');
+            Route::get('articals/{artical}','getSingleArtical');
         });
 
     });

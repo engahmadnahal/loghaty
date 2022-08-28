@@ -101,6 +101,7 @@ Route::middleware('Local')->group(function(){
 
         // ----- Children Controller Route ---------
         Route::post('/childrens/status/{children}',[ChildrenController::class , 'changeStatus'])->name('childrens.change_status');
+        Route::get('/childrens/{children}/anlytics',[ChildrenController::class ,'getAnlyt'])->name('childrens.anlytics');
         Route::resource('childrens',ChildrenController::class);
 
         // ----- Levels Controller Route ---------
