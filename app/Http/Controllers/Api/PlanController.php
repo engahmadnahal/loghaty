@@ -27,10 +27,15 @@ class PlanController extends Controller
             'father_id' => 'required|exists:fathers,id'
         ]);
         if(!$validator->fails()){
+            (new PaymentController)->sendPaymentAndSubs($request);
             $father = Father::find($request->input('father_id'));
+
+            // Start Change Plan if pyment Success
             $father->plan_id = $plan->id;
             $father->save();
+            // Add All Children refernsese father
             $this->addAllChildrensSubs($father);
+            // End Change Plan if pyment Success
             return response()->json([
                 'status' => true,
                 'title' => ApiMsg::getMsg($request,'success')

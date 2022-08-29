@@ -11,6 +11,7 @@ use App\Models\Father;
 use App\Models\History;
 use App\Models\Semester;
 use App\Notifications\AdminNotification;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -145,32 +146,40 @@ class ChildrenController extends Controller
         $result = [];
         $count = 1;
         $histores = $children->histories;
-        $temp = $histores[0]->created_at->format('Y-m-d');
-        $histores->map(function($t) use(&$count,&$temp,&$result){
-            $date = $t->created_at->format('Y-m-d');
-            if($date == $temp){ 
-                $count++;
-            }else{
-                $count = 0;
+        if(!is_null($histores->first())){
+            $temp = $histores->first()->created_at->format('Y-m-d');
+            $histores->map(function($t) use(&$count,&$temp,&$result){
+                $date = $t->created_at->format('Y-m-d');
+                if($date == $temp){ 
+                    $count++;
+                }else{
+                    $count = 1;
+                }
+                $temp = $date;
+                if(!array_key_exists($date,$result)){
+                    $result[$temp] = $count;
+                }else{
+                    $result[$temp] = $count;
+                }
+            });
+    
+            $anlyt = [];
+            foreach($result As $k => $r){
+                $data = [$k,$r];
+                array_push($anlyt,$data);
             }
-            $temp = $date;
-            if(!array_key_exists($date,$result)){
-                $result[$temp] = $count;
-            }else{
-                $result[$temp] = $count;
-            }
-        });
-
-        $anlyt = [];
-        foreach($result As $k => $r){
-            $data = [$k,$r];
-            array_push($anlyt,$data);
+    
+            return response()->json([
+                'title' => __('msg.success'),
+                'data' => $anlyt
+            ]);
+        }else{
+            return response()->json([
+                'title' => __('msg.success'),
+                'data' => [[Carbon::now()->format('Y-m-d'),0]]
+            ]);
         }
-
-        return response()->json([
-            'title' => __('msg.success'),
-            'data' => $anlyt
-        ]);
+        
     }
 
     /**

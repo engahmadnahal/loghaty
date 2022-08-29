@@ -5,7 +5,11 @@ use App\Http\Controllers\Api\Auth\AuthForgotPasswordController;
 use App\Http\Controllers\Api\Auth\AuthLoginController;
 use App\Http\Controllers\Api\ChildrenController;
 use App\Http\Controllers\Api\FatherController;
+use App\Http\Controllers\Api\GameController;
+use App\Http\Controllers\Api\LevelController;
+use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\PlanController;
+use App\Http\Controllers\Api\QsController;
 use App\Http\Controllers\Api\SemesterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,7 +37,6 @@ Route::middleware('Local')->group(function(){
 
     });
     
-
     
     
     /// ------- Auth Route
@@ -89,6 +92,24 @@ Route::middleware('Local')->group(function(){
             Route::get('articals/{artical}','getSingleArtical');
         });
 
+        Route::controller(LevelController::class)->group(function(){
+            Route::get('levels','getAllLevels');
+            Route::get('levels/{level}','getSingleLevels');
+        });
+
+        Route::controller(GameController::class)->group(function(){
+            Route::get('games','getAllGame');
+            Route::get('games/{game}','getSingleGame');
+        });
+
+        Route::controller(QsController::class)->group(function(){
+            Route::get('qs_complete_latter/{qs_complete_latter}','getQsCompleteLatter');
+            Route::get('qs_latter_bettween_words/{qs_latter_bettween_word}','getQsLatterBettweenWord');
+            Route::get('qs_order_latters/{qs_order_latter}','getQsOrderdLatter');
+            Route::get('qs_playings/{qs_playing}','getQsPlaying');
+        });
+
+       
     });
 
 });

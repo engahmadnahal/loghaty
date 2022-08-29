@@ -166,7 +166,7 @@ class AdminController extends Controller
 
     public function getImageValidate($bool){
         if($bool){
-            return ['image_avater' => 'nullable|image|mimes:jpg,png,jpeg,gif'];
+            return ['image_avater' => 'required|image|mimes:jpg,png,jpeg,gif'];
         }
         return ['image_avater' => 'nullable'];
     }

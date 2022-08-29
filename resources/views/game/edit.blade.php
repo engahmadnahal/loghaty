@@ -56,7 +56,13 @@
                                     </div>
 
 
-                                    
+                                    <div class="col-md-12 col-12">
+                                        <div class="form-label-group">
+                                            <input type="file" id="image" class="form-control" placeholder="{{__('dash.upload_image')}}" required>
+                                            <label for="image">{{__('dash.upload_image')}}</label>
+                                            <p class="text-muted ml-75 mt-50"><small>JPG,JPGE, GIF or PNG. </small></p>
+                                        </div>
+                                    </div>
                                     
                                     <div class="col-md-12 col-12">
                                         <div class="form-label-group">
@@ -91,19 +97,19 @@
         let plan_id = document.getElementById('plan_id').value;
         let level_id = document.getElementById('level_id').value;
         let active = document.getElementById('active').checked;
+        let image = document.getElementById('image').files[0];
+        let formData = new FormData();
 
-        let dataObj = {
-            name_ar : name_ar,
-            name_en : name_en,
-            level_id : level_id,
-            plan_id : plan_id,
-            active : active,
-            _method : 'PUT'
-
-        };
+        formData.append('name_ar',name_ar);
+        formData.append('name_en',name_en);
+        formData.append('level_id',level_id);
+        formData.append('plan_id',plan_id);
+        formData.append('active',active);
+        formData.append('image',image);
+        formData.append('_method','PUT');
 
   
-        performUpdateWithTostar('/games/{{$game->id}}',dataObj);
+        performUpdateWithTostar('/games/{{$game->id}}',formData);
     }
 </script>
 @endsection

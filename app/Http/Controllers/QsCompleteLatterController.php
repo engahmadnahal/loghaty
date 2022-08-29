@@ -137,7 +137,7 @@ class QsCompleteLatterController extends Controller
 
             $data = [
                 'title' => __('dash.notfy_add_qs_title'),
-                'body' => __('dash.notfy_add_qs_body') . App::isLocal('ar') ? $QsCompleteLatter->name_ar : $QsCompleteLatter->name_en
+                'body' => __('dash.notfy_add_qs_body')
             ];
             // Send Notification only Admin has permission revers_notification
             $admins = Admin::all();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Trait\CustomTrait;
 use App\Models\Admin;
 use App\Models\Game;
 use App\Models\Level;
@@ -13,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class GameController extends Controller
 {
+    use CustomTrait;
 
     public function __construct()
     {
@@ -63,17 +65,22 @@ class GameController extends Controller
             'name_ar' => 'required|string',
             'level_id' => 'required|string|exists:levels,id',
             'plan_id' => 'required|string|exists:plans,id',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif',
             'active'=> 'required'
         ]);
 
 
         if(!$validator->fails()){
 
+            if($request->hasFile('image')){
+                $filePath = $this->uploadFile($request->file('image'));
+            }
             $game = new Game;
             $game->name_en = $request->input('name_en');
             $game->name_ar = $request->input('name_ar');
             $game->level_id = $request->input('level_id');
             $game->plan_id = $request->input('plan_id');
+            $game->image = $filePath;
             $game->active = $request->input('active') == "true" ? true : false;
             $game->save();
 
@@ -146,6 +153,7 @@ class GameController extends Controller
             'name_ar' => 'required|string',
             'level_id' => 'required|string|exists:levels,id',
             'plan_id' => 'required|string|exists:plans,id',
+            $this->getImageValidate($request->hasFile('image'))['image'],
             'active'=> 'required'
         ]);
 
@@ -156,6 +164,11 @@ class GameController extends Controller
             $game->name_ar = $request->input('name_ar');
             $game->level_id = $request->input('level_id');
             $game->plan_id = $request->input('plan_id');
+            if($request->hasFile('image')){
+                $filePath = $this->uploadFile($request->file('image'));
+                $game->image = $filePath;
+
+            }
             $game->active = $request->input('active') == "true" ? true : false;
             $game->save();
 
@@ -169,6 +182,13 @@ class GameController extends Controller
             return response()->json(['title'=>__('msg.error'),'message'=>$validator->getMessageBag()->first()],Response::HTTP_BAD_REQUEST);
 
         }
+    }
+
+    public function getImageValidate($bool){
+        if($bool){
+            return ['image' => 'required|image|mimes:jpg,png,jpeg,gif'];
+        }
+        return ['image' => 'nullable'];
     }
 
     /**
