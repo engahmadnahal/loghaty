@@ -66,7 +66,7 @@
                             <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600">{{auth()->user()->name}}</span><span class="user-status">{{__('dash.available')}}</span></div><span>
                                 <img class="round" src="{{auth()->user()->image_profile}}" alt="avatar" height="40" width="40"></span>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="{{route('admins.show',auth()->user()->id)}}"><i class="feather icon-user"></i> {{__('dash.edit_profile')}}</a><a class="dropdown-item" href="app-email.html"><i class="feather icon-mail"></i> {{__('dash.my_notification')}}</a>
+                        <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="{{route('admins.show',auth()->user()->id)}}"><i class="feather icon-user"></i> {{__('dash.edit_profile')}}</a><a class="dropdown-item" href="{{route('admins.notification')}}"><i class="feather icon-mail"></i> {{__('dash.my_notification')}}</a>
                             <div class="dropdown-divider"></div>
                             <form action="{{route('auth.logout')}}" method="post">
                                 @csrf

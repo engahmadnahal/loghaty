@@ -31,6 +31,13 @@ class AuthLoginController extends Controller
             
             if(!is_null($userLoing)){
                 if(Hash::check($request->input('password'), $userLoing->password)){
+                    if($userLoing->status == 'block'){
+                        return response()->json([
+                            'status'=>false,
+                            'title'=> ApiMsg::getMsg($request,'error'),
+                            'message'=> ApiMsg::getMsg($request,'block_account')
+                        ],Response::HTTP_BAD_REQUEST);
+                    }
                    return $this->grantPGCT($request);
                 }else{
                     return new MainResource([],Response::HTTP_BAD_REQUEST,ApiMsg::getMsg($request,'password_faild'));

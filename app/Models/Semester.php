@@ -15,7 +15,7 @@ class Semester extends Model
     protected $fillable = [
         'name_en' ,
         'name_ar',
-     'teacher_id',
+        'teacher_id',
          'status'
     ];
     public function teacher(){
@@ -37,9 +37,11 @@ class Semester extends Model
     }
 
 
+  
+
     public function state() : Attribute {
         return Attribute::make(
-            get:fn() => $this->status = 'active' ? __('dash.available') : __('dash.block'),
-        ); 
+            get : fn() => $this->status == "active" ? __('dash.available') : __('dash.block')
+        );
     }
 }

@@ -19,7 +19,7 @@ class QsCompleteLatterController extends Controller
 
     public function __construct()
     {
-        $this->authorizeResource(QsCompleteLatter::class,'qs_complete_latters');
+        $this->authorizeResource(QsCompleteLatter::class);
         
     }
 
@@ -158,20 +158,7 @@ class QsCompleteLatterController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\QsCompleteLatter  $QsCompleteLatter
-     * @return \Illuminate\Http\Response
-     */
-    // public function show(QsCompleteLatter $QsCompleteLatter)
-    // {
-    //     // return view('QsCompleteLatter.show',[
-    //     //     'QsCompleteLatter' => $QsCompleteLatter
-    //     // ]);
-    //     return redirect()->route('qs_complete_latters.edit');
-    //     //
-    // }
+    
 
     /**
      * Show the form for editing the specified resource.

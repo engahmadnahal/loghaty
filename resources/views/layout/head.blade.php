@@ -141,4 +141,21 @@
     border-bottom: 1px solid #ebebeb;
     background: #fafafa;
 }
+
+.preview-image {
+    width: 100px;
+    height: 100px;
+    padding: 4px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin: 10px 0;
+}
+.preview-image img{
+    margin: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 4px;
+}
     </style>

@@ -28,7 +28,7 @@ class SemesterController extends Controller
     {
         //
         return view('class.index',[
-            'classes' => Semester::all()
+            'semester' => Semester::all()
         ]);
     }
 

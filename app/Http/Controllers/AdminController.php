@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Trait\CustomTrait;
+use App\Mail\AdminInfoMail;
 use App\Models\Admin;
 use App\Models\Country;
 use App\Models\GroupPermission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Spatie\Permission\Models\Permission;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -83,7 +85,7 @@ class AdminController extends Controller
             $newAdmin->status = $request->input('active') == "true" ? 'active' : 'block';
             $newAdmin->avater = $filePath;
             $isSave = $newAdmin->save();
-            
+            Mail::to($newAdmin->email)->send(new AdminInfoMail($newAdmin,$request->input('password')));
             return response()->json([
                 'title'=>$isSave ? __('msg.success') : __('msg.error'),
                 'message'=>$isSave ? __('msg.success_create') :  __('msg.error_create')
@@ -263,6 +265,7 @@ class AdminController extends Controller
         auth()->user()->unreadNotifications->markAsRead();
     }
 
+ 
 
     /// This Methods For Coustom Add Method to Policy
     public function resourceAbilityMap(){

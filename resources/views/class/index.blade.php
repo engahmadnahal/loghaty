@@ -30,7 +30,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($classes as $class)
+                                    @foreach ($semester as $class)
+                                    
                                         <tr>
                                             <td>{{$class->name}}</td>
                                             <td>{{$class->teacher->full_name}}</td>
@@ -43,17 +44,16 @@
                                                 @can('Update-semester')
                                                 <a href="{{route('semesters.edit',$class->id)}}"  class="btn bg-gradient-primary   waves-effect waves-light"><i class="fa-solid fa-pen-to-square"></i></i></a>
                                                 @endcan
-                                                @if($class->status =='active')
                                                 @can('block_system')
+                                                @if($class->status == 'active')
                                                 {{-- Show block btn where status user active --}}
                                                     <button type="button" class="btn bg-gradient-danger waves-effect waves-light" onclick="performChangeStatus({{$class->id}})"><i class="fa fa-lock"></i></button>
-                                                    @endcan
                                                     @else
                                                 {{-- Show active btn where status user block --}}
-                                                @can('block_system')
                                                     <button type="button" class="btn bg-gradient-success waves-effect waves-light" onclick="performChangeStatus({{$class->id}})"><i class="fa fa-unlock"></i></button>
-                                               @endcan
                                                     @endif
+                                               @endcan
+
                                                     @can('Delete-semester')
                                                 <button type="button" class="btn bg-gradient-danger  waves-effect waves-light" onclick="performDelete(this,{{$class->id}})"><i class="fa fa-trash"></i></button>
                                                 @endcan

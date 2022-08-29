@@ -174,7 +174,6 @@ return [
     'send_email'=> 'ارسل ايميل',
     'send_email_forgot'=> 'أرسل ايمل لاعادة كلمة المرور',
     'send_email_forgot_body'=> 'سيتم ارسال لك ايميل لتتمكن من استعادة حسابك',
-
     'reset_password'=> ' إعادة تعيين كلمة المرور',
     'reset_password_title'=> 'إعادة تعيين كلمة المرور',
     'reset_password_body'=> 'قم باعادة كتابة كلمة المرور الجديدة',
@@ -263,47 +262,36 @@ return [
     'body' => 'المحتوى',
     'notfy_add_children_body' => 'تم اضافة طفل جديد للنظام',
     'notfy_add_children_title' => '  طفل جديد ',
-
     'notfy_add_teacher_body' => 'تم اضافة معلم جديد للنظام',
     'notfy_add_teacher_title' => '  معلم جديد ',
-
     'notfy_add_admin_body' => 'تم اضافة مالك جديد للنظام',
     'notfy_add_admin_title' => '  مالك جديد ',
-
     'notfy_add_father_body' => 'تم اضافة اب جديد للنظام',
     'notfy_add_father_title' => '  اب جديد ',
-
-
-
     'notfy_add_level_body' => 'تم اضافة مستوى جديد للنظام',
     'notfy_add_level_title' => '  مستوى جديد ',
-
     'notfy_add_game_body' => 'تم اضافة لعبة جديدة للنظام',
     'notfy_add_game_title' => '  لعبة جديدة ',
-
     'notfy_add_qs_body' => 'تم اضافة سؤال جديد للنظام',
     'notfy_add_qs_title' => '  سؤال جديد ',
-
     'notfy_add_class_body' => 'تم اضافة صف جديد للنظام',
     'notfy_add_class_title' => '  صف جديد ',
-
     'notfy_add_plan_body' => 'تم اضافة خطة جديدة للنظام',
     'notfy_add_plan_title' => '  خطة جديدة ',
-
     'notfy_add_subs_body' => 'تم اضافة مشترك جديد للنظام',
     'notfy_add_subs_title' => '  مشترك جديد ',
-
     'notfy_add_artical_body' => 'تم اضافة سياسة او مقالة جديد للنظام',
     'notfy_add_artical_title' => '  سياسة او مقالة جديدة ',
-
     'notfy_add_country_body' => 'تم اضافة دولة جديد للنظام',
     'notfy_add_country_title' => '  دولة جديدة ',
-
     'notfy_subs_game_title' => ' اضافة لعبة ',
     'notfy_subs_game_body' => 'تم اضافة لعبة جديدة',
-
     'last_playing_game' => 'اخر الالعاب المستخدمة',
     'latest_subscripers' => 'اخر المشتركين',
-    'semester' => 'الصف'
+    'semester' => 'الصف',
+    'send_email_virfy_title' => 'قم بتأكيد الايميل',
+    'send_email_virfy_body' => 'سنرسل لك ايميل تأكيد للايميل الخاص بك',
+    'account_block_title' => 'الحساب محظور',
+    'account_block_body' => 'هذا الحساب تم حظره من قبل الادارة'
 
 ];

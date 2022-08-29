@@ -65,7 +65,7 @@
 <script>
 
     function performDelete(el,id){
-        performDeleteWithTostar('/qs_complete_latters/'+id,{"_method" : 'DELETE'},el,'tr');
+        performDeleteWithTostar('/qs_order_latters/'+id,{"_method" : 'DELETE'},el,'tr');
     }
 </script>
 @endsection

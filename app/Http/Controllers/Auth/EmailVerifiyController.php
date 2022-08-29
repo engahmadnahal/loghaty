@@ -18,7 +18,8 @@ class EmailVerifiyController extends Controller
     public function sendVerifiyEmail(Request $request){
         $request->user()->sendEmailVerificationNotification();
         return response()->json([
-            'msg'=>"Check your email to verify your account."
+            'title' => __('msg.success'),
+            'message'=> __('msg.check_email')
         ],Response::HTTP_OK);
     }
 

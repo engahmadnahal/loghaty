@@ -7,6 +7,7 @@
 
 <div class="row">
   
+    @can('Read-admin')
     <div class="col-lg-3 col-sm-6 col-12">
         <div class="card">
             <a href="{{route('admins.index')}}" class='anlytics'>
@@ -24,7 +25,10 @@
             </a>
         </div>
     </div>
+    @endcan
 
+    @can('Read-teacher')
+        
     <div class="col-lg-3 col-sm-6 col-12">
         <div class="card">
             <a href="{{route('teachers.index')}}" class='anlytics'>
@@ -43,9 +47,12 @@
         </a>
         </div>
     </div>
+    @endcan
 
 
 
+    @can('Read-father')
+        
     <div class="col-lg-3 col-sm-6 col-12">
         <div class="card">
             <a href="{{route('fathers.index')}}" class='anlytics'>
@@ -64,8 +71,11 @@
             </a>
         </div>
     </div>
+    @endcan
 
 
+    @can('Read-children')
+        
     <div class="col-lg-3 col-sm-6 col-12">
         <div class="card">
             <a href="{{route('childrens.index')}}" class='anlytics'>
@@ -84,6 +94,9 @@
             </a>
         </div>
     </div>
+    @endcan
+
+    @can('Read-subscrip')
 
     <div class="col-lg-3 col-sm-6 col-12">
         <div class="card">
@@ -103,7 +116,9 @@
             </a>
         </div>
     </div>
+    @endcan
 
+    @can('Read-plan')
     <div class="col-lg-3 col-sm-6 col-12">
         <div class="card">
             <a href="{{route('plans.index')}}" class='anlytics'>
@@ -122,7 +137,9 @@
             </a>
         </div>
     </div>
+    @endcan
 
+    @can('Read-level')
     <div class="col-lg-3 col-sm-6 col-12">
         <div class="card">
             <a href="{{route('levels.index')}}" class='anlytics'>
@@ -141,8 +158,9 @@
             </a>
         </div>
     </div>
+    @endcan
 
-
+    @can('Read-game')
     <div class="col-lg-3 col-sm-6 col-12">
         
         <div class="card">
@@ -161,7 +179,10 @@
         </a>
         </div>
     </div>
+    @endcan
 
+    @can('Read-semester')
+        
     <div class="col-lg-3 col-sm-6 col-12">
         
         <div class="card">
@@ -180,7 +201,9 @@
         </a>
         </div>
     </div>
+    @endcan
 
+    @can('giv_admin_permission')
     <div class="col-lg-3 col-sm-6 col-12">
 
         <div class="card">
@@ -197,12 +220,15 @@
             </div>
         </div>
     </div>
+    @endcan
 
 
     
 </div>
 
 <div class='row'>
+    @can('Read-admin')
+
     <div class="col-xl-4 col-md-6 col-sm-12">
         <div class="card" style="height: 469.227px;">
             <div class="card-content">
@@ -223,6 +249,8 @@
             </div>
         </div>
     </div>
+    @endcan
+    @can('Read-teacher')
 
     <div class="col-xl-4 col-md-6 col-sm-12">
         <div class="card" style="height: 469.227px;">
@@ -244,6 +272,9 @@
             </div>
         </div>
     </div>
+    @endcan
+
+    @can('Read-father')
 
     <div class="col-xl-4 col-md-6 col-sm-12">
         <div class="card" style="height: 469.227px;">
@@ -265,7 +296,10 @@
             </div>
         </div>
     </div>
+    @endcan
 </div>
+
+@can(['Read-admin','Read-teacher','Read-father','Read-children'])
 
 <div class='row'>
     <div class="col-xl-12 ">
@@ -310,8 +344,10 @@
     </div>
 
 </div>
+@endcan
 
 <div class='row'>
+    @can('Read-subscrip')
     <div class="col-xl-4 col-md-6 col-sm-12">
         <div class="card" style="height: 469.227px;">
             <div class="card-content">
@@ -332,7 +368,9 @@
             </div>
         </div>
     </div>
+    @endcan
 
+    @can('Read-children')
     <div class="col-xl-4 col-md-6 col-sm-12">
         <div class="card" style="height: 469.227px;">
             <div class="card-content">
@@ -353,7 +391,7 @@
             </div>
         </div>
     </div>
-
+@endcan
 
 </div>
 

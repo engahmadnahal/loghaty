@@ -33,7 +33,8 @@ class ApiMsg {
         'success_subs' => 'تم الاشتراك بنجاح' ,
         'already_added' => 'مضاف فعلا' ,
         'success_add' => 'تم الاضافة بنجاح',
-        'success_send' => 'تم الارسال بنجاح'
+        'success_send' => 'تم الارسال بنجاح',
+        'block_account' => 'هذا الحساب تم حظره'
 
 
 
@@ -72,7 +73,8 @@ class ApiMsg {
         'success_subs' => 'Subscribed successfully' ,
         'already_added' => 'already added' ,
         'success_add' => 'Add is successfully',
-        'success_send' => 'Send successfully'
+        'success_send' => 'Send successfully',
+        'block_account' => 'This account is block'
 
     ];
 

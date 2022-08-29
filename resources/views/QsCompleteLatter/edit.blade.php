@@ -140,6 +140,12 @@
                                                                 </div>
                                                             </div>
 
+                                                            <div class="col-md-12 col-sm-12">
+                                                                <div class="preview-image ">
+                                                                    <img src="{{Storage::url($qs->image_one)}}"  alt="">
+                                                                </div>
+                                                            </div>
+
 
                                     <div class="col-md-12 col-12">
                                         <div class="form-label-group">

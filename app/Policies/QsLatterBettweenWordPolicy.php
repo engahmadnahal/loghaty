@@ -30,6 +30,7 @@ class QsLatterBettweenWordPolicy
      */
     public function view($user, QsLatterBettweenWord $qsLatterBettweenWord)
     {
+        
         return $user->hasPermissionTo('Read-qs') ? $this->allow() : $this->deny();
     }
 
@@ -51,7 +52,7 @@ class QsLatterBettweenWordPolicy
      * @param  \App\Models\QsLatterBettweenWord  $qsLatterBettweenWord
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update($user, QsLatterBettweenWord $qsLatterBettweenWord)
+    public function update($user, QsLatterBettweenWord $QsLatterBettweenWord)
     {
         return $user->hasPermissionTo('Update-qs') ? $this->allow() : $this->deny();
     }

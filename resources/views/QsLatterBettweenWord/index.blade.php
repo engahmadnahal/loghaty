@@ -40,7 +40,7 @@
                                             <td class="action-table">
                                                 {{-- <a href="{{route('qs_complete_latters.show',$q->id)}}"  class="btn bg-gradient-info  waves-effect waves-light"><i class="fa fa-eye"></i></a> --}}
                                                 @can('Update-qs')
-                                                <a href="{{route('qs_complete_latters.edit',$q->id)}}"  class="btn bg-gradient-primary   waves-effect waves-light"><i class="fa-solid fa-pen-to-square"></i></i></a>
+                                                <a href="{{route('qs_latter_bettween_words.edit',$q->id)}}"  class="btn bg-gradient-primary   waves-effect waves-light"><i class="fa-solid fa-pen-to-square"></i></i></a>
                                                 @endcan
                                                 @can('Delete-qs')
                                                 <button type="button" class="btn bg-gradient-danger  waves-effect waves-light" onclick="performDelete(this,{{$q->id}})"><i class="fa fa-trash"></i></button>
@@ -65,7 +65,7 @@
 <script>
 
     function performDelete(el,id){
-        performDeleteWithTostar('/qs_complete_latters/'+id,{"_method" : 'DELETE'},el,'tr');
+        performDeleteWithTostar('/qs_latter_bettween_words/'+id,{"_method" : 'DELETE'},el,'tr');
     }
 </script>
 @endsection

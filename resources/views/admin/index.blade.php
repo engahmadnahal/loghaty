@@ -49,9 +49,9 @@
                                                 <a href="{{route('admins.permissions',$admin->id)}}"  class="btn bg-gradient-info  waves-effect waves-light"><i class="fa fa-gears"></i></a>
                                                 @endcan
 
-                                                @can('Read-admin')
+                                                {{-- @can('Read-admin')
                                                 <a href="{{route('admins.show',$admin->id)}}"  class="btn bg-gradient-info  waves-effect waves-light"><i class="fa fa-eye"></i></a>
-                                                @endcan
+                                                @endcan --}}
                                                 
                                                 @can('block_system')
                                                     @if($admin->status =='active')

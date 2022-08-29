@@ -20,7 +20,7 @@ class QsLatterBettweenWordController extends Controller
 
     public function __construct()
     {
-        $this->authorizeResource(QsLatterBettweenWord::class,'QsLatterBettweenWord');
+        $this->authorizeResource(QsLatterBettweenWord::class);
         
     }
     /**
@@ -320,5 +320,5 @@ class QsLatterBettweenWordController extends Controller
             'message' =>$isDelete ? __('msg.success_delete') : __('msg.error_delete')
         ],$isDelete ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
     }
-    //
+
 }

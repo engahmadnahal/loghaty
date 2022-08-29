@@ -1,63 +1,62 @@
-@extends('layouts.master2')
-@section('css')
-<!-- Sidemenu-respoansive-tabs css -->
-<link href="{{URL::asset('assets/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css')}}" rel="stylesheet">
-@endsection
-@section('content')
-		<div class="container-fluid">
-			<div class="row no-gutter">
-				<!-- The image half -->
-				<div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex bg-primary-transparent">
-					<div class="row wd-100p mx-auto text-center">
-						<div class="col-md-12 col-lg-12 col-xl-12 my-auto mx-auto wd-100p">
-							<img src="{{URL::asset('assets/img/media/reset.png')}}" class="my-auto ht-xl-80p wd-md-100p wd-xl-50p ht-xl-60p mx-auto" alt="logo">
+@extends('layout.master2')
+
+@section('body')
+<section class="row flexbox-container">
+	<div class="col-xl-7 col-md-9 col-10 d-flex justify-content-center px-0">
+		<div class="card bg-authentication rounded-0 mb-0">
+			<div class="row m-0">
+				<div class="col-lg-6 d-lg-block d-none text-center align-self-center">
+					<img src="{{asset('app-assets/images/pages/forgot-password.png')}}" alt="branding logo">
+				</div>
+				<div class="col-lg-6 col-12 p-0">
+					<div class="card rounded-0 mb-0 px-2 py-1" style=" height: 100%; ">
+						<div class="card-header pb-1">
+							<div class="card-title">
+								<h4 class="mb-0">{{__('dash.send_email_virfy_title')}}</h4>
+							</div>
+						</div>
+						<p class="px-2 mb-0">{{__('dash.send_email_virfy_body')}}</p>
+						
+						<div class="card-content">
+							<div class="card-body">
+								<div class="float-md-right d-block mb-1">
+									<button type="button" class="btn btn-primary btn-block px-75 waves-effect waves-light" onclick="performVerifyEmail()">{{__('dash.send_email')}}</a>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-				<!-- The content half -->
-				<div class="col-md-6 col-lg-6 col-xl-5 bg-white">
-					<div class="login d-flex align-items-center py-2">
-						<!-- Demo content-->
-						<div class="container p-0">
-							<div class="row">
-								<div class="col-md-10 col-lg-10 col-xl-9 mx-auto">
-									<div class="mb-5 d-flex"> <a href="{{ url('/' . $page='index') }}"><img src="{{URL::asset('assets/img/brand/favicon.png')}}" class="sign-favicon ht-40" alt="logo"></a><h1 class="main-logo1 ml-1 mr-0 my-auto tx-28">Va<span>le</span>x</h1></div>
-									<div class="main-card-signin d-md-flex">
-										<div class="wd-100p">
-											<div class="main-signin-header">
-												<div class="">
-													<h2>! مرحبا مرة أخرى </h2>
-													<h4 class="text-left">ارسال ايميل تفعيل الحساب</h4>
-													<form>
-
-
-														<button onclick="performVerifyEmail()" class="btn ripple btn-main-primary btn-block" type="button" >تفعيل</button>
-													</form>
-												</div>
-											</div>
-
-										</div>
-									</div>
-								</div>
-							</div>
-						</div><!-- End -->
-					</div>
-				</div><!-- End -->
 			</div>
 		</div>
+	</div>
+</section>
 @endsection
-@section('js')
+@section('scripts')
+<script src="{{asset('app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
 <script>
 
-    function performVerifyEmail(){
-        axios.post('/auth/send-verifiy').then(function(response){
-            console.log(response);
-            toastr.success(response.data.msg);
-        }).catch(function(error) {
-            toastr.error(error.response.data.message);
-            console.log(error.response.data.message);
 
+        function errorSweet(msg){
+            Swal.fire({
+                title: "حدث خطأ!",
+                text: ""+msg,
+                type: "error",
+                confirmButtonClass: 'btn btn-primary',
+                buttonsStyling: false,
+            });
+        }
+
+    function performVerifyEmail(){
+		try{
+			axios.post('/send-verifiy').then(function(response){
+            toastr.success(response.data.message,response.data.title, { "progressBar": true });
+        }).catch(function(error) {
+            toastr.error(error.response.data.message,error.response.data.title, { "progressBar": true });
         });
+		}catch(error){
+			errorSweet('حدث خطأ ما !');
+		}
+       
     }
 </script>
 @endsection

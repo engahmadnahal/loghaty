@@ -24,7 +24,7 @@
                                     <td>{{$admin->name}}</td>
                                 </tr>
                                 <tr>
-                                    <td class="font-weight-bold">{{__('dash.father')}}</td>
+                                    <td class="font-weight-bold">{{__('dash.email')}}</td>
                                     <td>{{$admin->email}}</td>
                                 </tr>
 

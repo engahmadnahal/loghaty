@@ -21,6 +21,7 @@ use App\Http\Controllers\QsPlayingController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\TeacherController;
+use App\Mail\AdminInfoMail;
 use App\Mail\ResetUserPassword;
 use App\Models\Admin;
 use App\Models\Artical;
@@ -53,16 +54,20 @@ Route::middleware('Local')->group(function(){
         Route::post('/reset-password',[RessetPasswordController::class , 'resetPassword'])->name('auth.reset_password');
     });
 
-    Route::middleware('auth:admin')->group(function(){
+    Route::middleware(['auth:admin','Block'])->group(function(){
         Route::get('/verifiy-email',[EmailVerifiyController::class , 'showVerifiyEmail'])->name('verification.notice');
         Route::get('/verifiy/{id}/{hash}',[EmailVerifiyController::class , 'verifiyEmail'])->name('verification.verify');
         Route::post('/send-verifiy',[EmailVerifiyController::class , 'sendVerifiyEmail'])->middleware('throttle:1,1')->name('verification.send');
     });
 
+    Route::middleware('auth:admin')->group(function(){
+        Route::get('/block',[AuthController::class , 'blockAccount'])->name('auth.block');
+    });
+
 
     /// -------------------- Auth Routes -------------
 
-    Route::middleware('auth:admin','verified')->group(function(){
+    Route::middleware(['auth:admin','verified','Block'])->group(function(){
         // ----- Global Settings Route ---------
         Route::post('logout', [AuthController::class , 'logoutUser'])->name('auth.logout');
         Route::get('/',[HomeController::class , 'index'])->name('home.index');
@@ -141,7 +146,6 @@ Route::middleware('Local')->group(function(){
 
     
 });
-
 
 
 

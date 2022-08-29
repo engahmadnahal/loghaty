@@ -56,14 +56,23 @@
                                     </div>
 
 
-                                    <div class="col-md-12 col-12">
-                                        <div class="form-label-group">
-                                            <input type="file" id="image" class="form-control" placeholder="{{__('dash.upload_image')}}" required>
-                                            <label for="image">{{__('dash.upload_image')}}</label>
-                                            <p class="text-muted ml-75 mt-50"><small>JPG,JPGE, GIF or PNG. </small></p>
+                                    <div class="col-12">
+                                                <div class="form-label-group">
+                                                    <input type="file" id="image" class="form-control" placeholder="{{__('dash.upload_image')}}" required>
+                                                    <label for="image">{{__('dash.upload_image')}}</label>
+                                                    <p class="text-muted ml-75 mt-50"><small>JPG,JPGE, GIF or PNG. </small></p>
+                                                </div>
+
+                                           
+                                            
                                         </div>
-                                    </div>
-                                    
+                                       
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="preview-image ">
+                                                <img src="{{Storage::url($game->image)}}"  alt="">
+                                            </div>
+                                        </div>
+                                        
                                     <div class="col-md-12 col-12">
                                         <div class="form-label-group">
                                             <div class="custom-control custom-switch custom-switch-success mr-2 mb-1">

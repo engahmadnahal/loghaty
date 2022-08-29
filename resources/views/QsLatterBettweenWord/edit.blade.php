@@ -93,6 +93,12 @@
                                                     </div>
                                                 </div>
 
+                                                <div class="col-md-12 col-sm-12">
+                                                    <div class="preview-image ">
+                                                        <img src="{{Storage::url($qs->image_one)}}"  alt="">
+                                                    </div>
+                                                </div>
+
 
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-label-group">
@@ -117,6 +123,11 @@
                                                         </div>
                                                     </div>
 
+                                                    <div class="col-md-12 col-sm-12">
+                                                        <div class="preview-image ">
+                                                            <img src="{{Storage::url($qs->image_two)}}"  alt="">
+                                                        </div>
+                                                    </div>
 
 
                                                     <div class="col-md-6 col-12">
@@ -139,6 +150,12 @@
                                                                 <input type="file" id="image_three" class="form-control" placeholder="{{__('dash.image_three')}}" required>
                                                                 <label for="image_three">{{__('dash.image_three')}}</label>
                                                                 <p class="text-muted ml-75 mt-50"><small>JPG,JPGE, GIF or PNG. </small></p>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-12 col-sm-12">
+                                                            <div class="preview-image ">
+                                                                <img src="{{Storage::url($qs->three)}}"  alt="">
                                                             </div>
                                                         </div>
 
@@ -242,7 +259,7 @@
 
         formData.append('_method','PUT');
   
-        performUpdateWithTostar('/qs_complete_latters/{{$qs->id}}',formData);
+        performUpdateWithTostar('/qs_latter_bettween_words/{{$qs->id}}',formData);
     }
 </script>
 @endsection
