@@ -53,4 +53,8 @@ class Teacher extends Authenticatable
             get : fn() => $this->fname ." " . $this->lname
         );
     }
+
+    public function findForPassport($username){
+        return $this->where('email',$username)->first();
+    }
 }

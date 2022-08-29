@@ -58,7 +58,6 @@ class AuthLoginController extends Controller
 
 
     function grantPGCT(Request $request){
-        dd($request->all());
         $response = Http::asForm()->post(env('APP_URL').'/oauth/token',[
             // $response = Http::asForm()->post('http://127.0.0.1:81/oauth/token',[
             'grant_type' => 'password',
