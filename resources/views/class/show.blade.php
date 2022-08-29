@@ -52,53 +52,86 @@
         </div>
         <!-- account end -->
         <!-- information start -->
-        <div class="col-md-6 col-12 ">
+        <div class="col-md-12 col-12 ">
             <div class="card">
-                <div class="card-header">
-                    <div class="card-title mb-2">{{__('dash.childrens')}}</div>
-                </div>
-                <div class="card-body">
-                    @forelse ($class->childrens->take(5) as $c)
-                    <div class="row pb-1">
-                        <div class="col-1"><i class="fa-solid fa-children" style=" font-size: 21px; "></i></div>
-                        <div class="col-6">{{$c->name}}</div>
-                        <div class="col-5">
-                            <div class="action-table">
-                                <p>{{$c->created_at->diffForHumans()}}</p>
-                            </div>
-                        </div>
-                   </div>
-                    @empty
-                        <p>{{__('dash.no_results')}}</p>
-                    @endforelse
                    
+                <div class="card-content">
+                    <div class="card-body card-dashboard">
+                        <div class="table-responsive">
+                            <h4 class="card-title">{{__('dash.childrens')}}</h4>
+                           
+                            <table class="table zero-configuration">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>{{__('dash.name')}}</th>
+                                        <th>{{__('dash.levels')}}</th>
+                                        <th>{{__('dash.add_date2')}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($class->childrens as $c)
+                                        <tr>
+                                           
+                                            <td>{{++$loop->index}}</td>
+                                            <td>{{$c->name}}</td>
+                                            <td>{{$c->level->name}}</td>
+                                            <td>{{$c->created_at->diffForHumans()}}</td>
+                                          
+                                            
+                                        </tr>
+                                    @endforeach
+                                    
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
         </div>
         <!-- information start -->
         <!-- social links end -->
-        <div class="col-md-6 col-12 ">
+        <div class="col-md-12 col-12 ">
+
             <div class="card">
-                <div class="card-header">
-                    <div class="card-title mb-2">{{__('dash.last_add_children')}}</div>
-                </div>
-                <div class="card-body">
-                    @forelse ($latestChild as $c)
-                    <div class="row pb-1">
-                        <div class="col-1"><i class="fa-solid fa-children" style=" font-size: 21px; "></i></div>
-                        <div class="col-6">{{$c->name}}</div>
-                        <div class="col-5">
-                            <div class="action-table">
-                                <p>{{$c->created_at->diffForHumans()}}</p>
-                            </div>
-                        </div>
-                   </div>
-                    @empty
-                        <p>{{__('dash.no_results')}}</p>
-                    @endforelse
                    
+                <div class="card-content">
+                    <div class="card-body card-dashboard">
+                        <div class="table-responsive">
+                            <h4 class="card-title">{{__('dash.last_add_children')}}</h4>
+                           
+                            <table class="table zero-configuration">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>{{__('dash.name')}}</th>
+                                        <th>{{__('dash.levels')}}</th>
+                                        <th>{{__('dash.add_date2')}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($latestChild as $c)
+                                        <tr>
+                                           
+                                            <td>{{++$loop->index}}</td>
+                                            <td>{{$c->name}}</td>
+                                            <td>{{$c->level->name}}</td>
+                                            <td>{{$c->created_at->diffForHumans()}}</td>
+                                          
+                                            
+                                        </tr>
+                                    @endforeach
+                                    
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
+          
         </div>
         <!-- social links end -->
        

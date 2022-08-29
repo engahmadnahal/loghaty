@@ -6,6 +6,7 @@ use App\Models\Admin;
 use App\Models\Children;
 use App\Models\Plan;
 use App\Notifications\AdminNotification;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
@@ -110,9 +111,15 @@ class PlanController extends Controller
         $childrens = Children::whereHas('father',function($q) use($plan){
             $q->where('plan_id',$plan->id);
         })->get();
+
+        $latestChild = Children::whereHas('father',function($q) use($plan){
+            $q->where('plan_id',$plan->id);
+        })->latest()->get();
+        
         return view('plan.show',[
             'plan'=>$plan,
-            'childrens' => $childrens
+            'childrens' => $childrens,
+            'latestChild' =>$latestChild
         ]);
 
     }

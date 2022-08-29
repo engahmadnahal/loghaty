@@ -93,6 +93,7 @@ Route::middleware('Local')->group(function(){
 
         // ----- plans Controller Route ---------
         Route::post('/plans/status/{plan}',[PlanController::class , 'changeStatus'])->name('plans.change_status');
+        Route::get('/plans/{plan}/anlytics',[PlanController::class ,'getAnlyt'])->name('plans.anlytics');
         Route::resource('plans',PlanController::class);
 
         // ----- classes Controller Route ---------
@@ -106,10 +107,12 @@ Route::middleware('Local')->group(function(){
 
         // ----- Levels Controller Route ---------
         Route::post('/levels/status/{level}',[LevelController::class , 'changeStatus'])->name('levels.change_status');
+        Route::get('/levels/{level}/anlytics',[LevelController::class ,'getAnlyt'])->name('levels.anlytics');
         Route::resource('levels',LevelController::class);
 
         // ----- Game Controller Route ---------
         Route::post('/games/status/{game}',[GameController::class , 'changeStatus'])->name('games.change_status');
+        Route::get('/games/{game}/anlytics',[GameController::class ,'getAnlyt'])->name('games.anlytics');
         Route::resource('games',GameController::class);
 
         // ----- QsCompleteLatter Controller Route ---------

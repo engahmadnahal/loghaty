@@ -8,6 +8,7 @@ use App\Models\Game;
 use App\Models\Level;
 use App\Models\Plan;
 use App\Notifications\AdminNotification;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Symfony\Component\HttpFoundation\Response;
@@ -115,9 +116,50 @@ class GameController extends Controller
     public function show(Game $game)
     {
         return view('game.show',[
-            'game' => $game
+            'game' => $game,
+            'histores' => $game->history
         ]);
         //
+    }
+
+    public function getAnlyt(Request $request , Game $game){
+        $result = [];
+        $count = 1;
+        $histores = $game->history;
+        if(!is_null($histores->first())){
+            $temp = $histores->first()->created_at->format('Y-m-d');
+            $histores->map(function($t) use(&$count,&$temp,&$result){
+                $date = $t->created_at->format('Y-m-d');
+                if($date == $temp){ 
+                    $count++;
+                }else{
+                    $count = 1;
+                }
+                $temp = $date;
+                if(!array_key_exists($date,$result)){
+                    $result[$temp] = $count;
+                }else{
+                    $result[$temp] = $count;
+                }
+            });
+    
+            $anlyt = [];
+            foreach($result As $k => $r){
+                $data = [$k,$r];
+                array_push($anlyt,$data);
+            }
+    
+            return response()->json([
+                'title' => __('msg.success'),
+                'data' => $anlyt
+            ]);
+        }else{
+            return response()->json([
+                'title' => __('msg.success'),
+                'data' => [[Carbon::now()->format('Y-m-d'),0]]
+            ]);
+        }
+        
     }
 
     /**

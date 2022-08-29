@@ -53,37 +53,72 @@
         <!-- information start -->
         <div class="col-md-6 col-12 ">
             <div class="card">
-                <div class="card-header">
-                    <div class="card-title mb-2">{{__('dash.subscripers')}}</div>
-                </div>
-                <div class="card-body">
-                    @forelse ($childrens as $c)
-                    <div class="row pb-1">
-                        <div class="col-1"><i class="fa-solid fa-children" style=" font-size: 21px; "></i></div>
-                        <div class="col-6">{{$c->name}}</div>
-                        <div class="col-5">
-                            <span>{{$c->created_at->diffForHumans()}}</span>
+                   
+                <div class="card-content">
+                    <div class="card-body card-dashboard">
+                        <div class="table-responsive">
+                            <h4 class="card-title">{{__('dash.subscripers')}}</h4>
+                           
+                            <table class="table zero-configuration">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>{{__('dash.name')}}</th>
+                                        <th>{{__('dash.semester')}}</th>
+                                        <th>{{__('dash.add_date2')}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($childrens as $c)
+                                        <tr>
+                                           
+                                            <td>{{++$loop->index}}</td>
+                                            <td>{{$c->name}}</td>
+                                            <td>{{$c->semester->name}}</td>
+                                            <td>{{$c->created_at->diffForHumans()}}</td>
+                                          
+                                            
+                                        </tr>
+                                    @endforeach
+                                    
+                                    
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    @empty
-                        <p class='text-center'>{{__('dash.no_results')}} </p>
-                    @endforelse
                 </div>
             </div>
+
+
+            
+          
+        </div>
+
+        <div class="col-md-6 col-12 ">
+            <div class="card" style="">
+                <div class="card-content">
+                    <div class="card-body">
+                        <h4 class="card-title">{{__('dash.latest_subscripers')}}</h4>
+                     
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        @foreach ($latestChild->take(10) as $c)
+                        <a href="{{route('childrens.show',$c->id)}}">
+                            <li class="list-group-item">
+                                <span class="badge badge-pill bg-primary float-right">{{$c->created_at->diffForHumans()}} </span>
+                                {{$c->name}}
+                            </li>
+                        </a>
+                        @endforeach
+                       
+                       
+                    </ul>
+                </div>
+            </div>
+          
         </div>
         <!-- information start -->
-        <!-- social links end -->
-        <div class="col-md-6 col-12 ">
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title mb-2">{{__('dash.activity_plan')}}</div>
-                </div>
-                <div class="card-body">
-                    <div id="line-chart" class="height-400"></div>
-                </div>
-            </div>
-        </div>
-        <!-- social links end -->
+       
        
     </div>
 </section>
@@ -111,45 +146,7 @@
 
     }
 
-    var lineChart = echarts.init(document.getElementById('line-chart'));
-
-    data = [["2000-06-05",116],["2000-06-06",129],["2000-06-07",135],["2000-06-08",86],["2000-06-09",73],["2000-06-10",85],["2000-06-11",73],["2000-06-12",68],["2000-06-13",92],["2000-06-14",130],["2000-06-15",245],["2000-06-16",139],["2000-06-17",115],["2000-06-18",111],["2000-06-19",309],["2000-06-20",206],["2000-06-21",137],["2000-06-22",128],["2000-06-23",85],["2000-06-24",94],["2000-06-25",71],["2000-06-26",106],["2000-06-27",84],["2000-06-28",93],["2000-06-29",85],["2000-06-30",73],["2000-07-01",83],["2000-07-02",125],["2000-07-03",107],["2000-07-04",82],["2000-07-05",44],["2000-07-06",72],["2000-07-07",106],["2000-07-08",107],["2000-07-09",66],["2000-07-10",91],["2000-07-11",92],["2000-07-12",113],["2000-07-13",107],["2000-07-14",131],["2000-07-15",111],["2000-07-16",64],["2000-07-17",69],["2000-07-18",88],["2000-07-19",77],["2000-07-20",83],["2000-07-21",111],["2000-07-22",57],["2000-07-23",55],["2000-07-24",60]];
-
-    var dateList = data.map(function (item) {
-        return item[0];
-    });
-    var valueList = data.map(function (item) {
-        return item[1];
-    });
-
-    var lineChartoption = {
-
-        // Make gradient line here
-        visualMap: [{
-            show: false,
-            type: 'continuous',
-            seriesIndex: 0,
-            min: 0,
-            max: 400,
-            color: [$dark_green, $lighten_green]
-        }],
-        tooltip: {
-            trigger: 'axis'
-        },
-        xAxis: [{
-            data: dateList,
-            splitLine: {show: true}
-        }],
-        yAxis: [{
-            splitLine: {show: false}
-        }],
-        series: [{
-            type: 'line',
-            showSymbol: false,
-            data: valueList
-        }]
-    };
-
-    lineChart.setOption(lineChartoption);
+    
+   
 </script>
 @endsection

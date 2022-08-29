@@ -59,47 +59,80 @@
         <!-- information start -->
         <div class="col-md-6 col-12 ">
             <div class="card">
-                <div class="card-header">
-                    <div class="card-title mb-2">{{__('dash.classes')}}</div>
-                </div>
-                <div class="card-body">
-                    @forelse ($classes as $c)
-                        <div class="row pb-1">
-                            <div class="col-1"><i class="fa-solid fa-person-chalkboard" style=" font-size: 21px; "></i></div>
-                            <div class="col-6">{{$c->name}}</div>
-                            <div class="col-5">
-                                <span>{{$c->created_at->diffForHumans()}}</span>
-                            </div>
+                   
+                <div class="card-content">
+                    <div class="card-body card-dashboard">
+                        <div class="table-responsive">
+                            <h4 class="card-title">{{__('dash.classes')}}</h4>
+                           
+                            <table class="table zero-configuration">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>{{__('dash.name')}}</th>
+                                        <th>{{__('dash.add_date2')}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($classes as $c)
+                                        <tr>
+                                           
+                                            <td>{{++$loop->index}}</td>
+                                            <td>{{$c->name}}</td>
+                                            <td>{{$c->created_at->diffForHumans()}}</td>
+                                          
+                                            
+                                        </tr>
+                                    @endforeach
+                                    
+                                    
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    @empty
-                        <p class='text-center'>{{__('dash.no_results')}} </p>
-                    @endforelse
-
                 </div>
             </div>
+            
+          
         </div>
         <!-- information start -->
         <!-- social links end -->
         <div class="col-md-6 col-12 ">
             <div class="card">
-                <div class="card-header">
-                    <div class="card-title mb-2">{{__('dash.last_add_children')}}</div>
-                </div>
-                <div class="card-body">
-
-                   @forelse ($childrens as $c)
-                        <div class="row pb-1">
-                            <div class="col-1"><i class="fa-solid fa-children" style=" font-size: 21px; "></i></div>
-                            <div class="col-6">{{$c->name}}</div>
-                            <div class="col-5">
-                                <span>{{$c->created_at->diffForHumans()}}</span>
-                            </div>
+                   
+                <div class="card-content">
+                    <div class="card-body card-dashboard">
+                        <div class="table-responsive">
+                            <h4 class="card-title">{{__('dash.last_add_children')}}</h4>
+                           
+                            <table class="table zero-configuration">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>{{__('dash.name')}}</th>
+                                        <th>{{__('dash.add_date2')}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($childrens as $c)
+                                        <tr>
+                                           
+                                            <td>{{++$loop->index}}</td>
+                                            <td>{{$c->name}}</td>
+                                            <td>{{$c->created_at->diffForHumans()}}</td>
+                                          
+                                            
+                                        </tr>
+                                    @endforeach
+                                    
+                                    
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    @empty
-                        <p class='text-center'>{{__('dash.no_results')}} </p>
-                    @endforelse
                 </div>
             </div>
+            
         </div>
         <!-- social links end -->
         <!-- permissions start -->
