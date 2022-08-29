@@ -58,6 +58,7 @@ class AuthLoginController extends Controller
 
 
     function grantPGCT(Request $request){
+        dd(env('APP_URL').'/oauth/token');
         $response = Http::asForm()->post(env('APP_URL').'/oauth/token',[
             // $response = Http::asForm()->post('http://127.0.0.1:81/oauth/token',[
             'grant_type' => 'password',
@@ -68,7 +69,6 @@ class AuthLoginController extends Controller
             'scope' => '*'
         ]);
         $decodedResponse = json_decode($response);
-        dd($decodedResponse);
         $user = $this->getUserLogin($request);
         $user->last_vist = Carbon::now();
         $user->save();
