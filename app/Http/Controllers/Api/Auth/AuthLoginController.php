@@ -57,7 +57,6 @@ class AuthLoginController extends Controller
     }
 
     function grantPGCT(Request $request){
-        dd(env('APP_URL').'/oauth/token');
         $response = Http::asForm()->post(Config::$URL_API_TOKEN,[
                 'grant_type' => 'password',
                 'client_id' => $this->getClientSecret($request->input('type'))['client_id'],
