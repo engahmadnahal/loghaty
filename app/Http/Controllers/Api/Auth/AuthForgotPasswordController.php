@@ -37,6 +37,7 @@ class AuthForgotPasswordController extends Controller
             $father = Father::where('email',$request->input('email'))->first();
 
             dd(
+                $_ENV,
                 env('MAIL_MAILER'),
                 env('MAIL_HOST'),
                 env('MAIL_PORT'),
