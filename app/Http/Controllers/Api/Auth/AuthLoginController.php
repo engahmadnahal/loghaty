@@ -93,7 +93,6 @@ class AuthLoginController extends Controller
 
     public function getClientSecret($type){
         
-        dd(env('TEACHER_CLIENT_ID'));
         $arr = [
             'client_id' => '',
             'client_secret' => ''
