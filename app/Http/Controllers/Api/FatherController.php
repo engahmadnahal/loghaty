@@ -48,10 +48,11 @@ class FatherController extends Controller
 
 
     function grantPGCT(Request $request){
-        $response = Http::asForm()->post('https://loghaty.ahmadnahal.com/oauth/token',[
+        $response = Http::asForm()->post(env('APP_URL').'/oauth/token',[
+        // $response = Http::asForm()->post('https://loghaty.ahmadnahal.com/oauth/token',[
             'grant_type' => 'password',
-            'client_id' => env('FATHER_CLIENT_ID'),
-            'client_secret'=>env('FATHER_CLIENT_SECRET'),
+            'client_id' => 4,
+            'client_secret'=>'qupjQR89J8JRN8jwKE46tQkGlXX95bYzm5lDWyRq',
             'username' => $request->input('email'),
             'password' =>$request->input('password'),
             'scope' => '*'
