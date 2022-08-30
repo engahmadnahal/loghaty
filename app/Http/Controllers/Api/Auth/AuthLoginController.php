@@ -27,11 +27,11 @@ class AuthLoginController extends Controller
         ]);
 
         if(!$validator->fails()){
-            $userLoing = $this->getUserLogin($request);
+            $userLogin = $this->getUserLogin($request);
             
-            if(!is_null($userLoing)){
-                if(Hash::check($request->input('password'), $userLoing->password)){
-                    if($userLoing->status == 'block'){
+            if(!is_null($userLogin)){
+                if(Hash::check($request->input('password'), $userLogin->password)){
+                    if($userLogin->status == 'block'){
                         return response()->json([
                             'status'=>false,
                             'title'=> ApiMsg::getMsg($request,'error'),
@@ -55,18 +55,16 @@ class AuthLoginController extends Controller
         }
     }
 
-
-
     function grantPGCT(Request $request){
         // $response = Http::asForm()->post(env('APP_URL').'/oauth/token',[
             $response = Http::asForm()->post('https://loghaty.ahmadnahal.com/oauth/token',[
-            'grant_type' => 'password',
-            'client_id' => $this->getClientSecret($request->input('type'))['client_id'],
-            'client_secret'=>$this->getClientSecret($request->input('type'))['client_secret'],
-            'username' => $request->input('email'),
-            'password' =>$request->input('password'),
-            'scope' => '*'
-        ]);
+                'grant_type' => 'password',
+                'client_id' => $this->getClientSecret($request->input('type'))['client_id'],
+                'client_secret'=>$this->getClientSecret($request->input('type'))['client_secret'],
+                'username' => $request->input('email'),
+                'password' =>$request->input('password'),
+                'scope' => '*'
+            ]);
         $decodedResponse = json_decode($response);
         $user = $this->getUserLogin($request);
         $user->last_vist = Carbon::now();
