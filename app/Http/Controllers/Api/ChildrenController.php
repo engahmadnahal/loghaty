@@ -115,8 +115,7 @@ class ChildrenController extends Controller
             $prog = Progress::where('children_id',$children->id)->get();
             $progSingle = Progress::where('children_id',$children->id)->first();
 
-            dd($prog,$progSingle);
-            if(!is_null($prog) || !is_null($progSingle)){
+            if(($prog->count() > 0) || !is_null($progSingle)){
                 $totalPoints = 0;
                 foreach($prog as $p){
                     $totalPoints += $p->points;
