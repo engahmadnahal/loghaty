@@ -56,6 +56,7 @@ class AuthLoginController extends Controller
     }
 
     function grantPGCT(Request $request){
+        dd(env('APP_URL').'/oauth/token');
         $response = Http::asForm()->post(env('APP_URL').'/oauth/token',[
             // $response = Http::asForm()->post('https://loghaty.ahmadnahal.com/oauth/token',[
                 'grant_type' => 'password',
