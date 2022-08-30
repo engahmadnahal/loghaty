@@ -65,8 +65,8 @@ class AuthLoginController extends Controller
                 'password' =>$request->input('password'),
                 'scope' => '*'
             ]);
+            dd($response);
         $decodedResponse = json_decode($response);
-        dd($decodedResponse->access_token);
         $user = $this->getUserLogin($request);
         $user->last_vist = Carbon::now();
         $user->save();
