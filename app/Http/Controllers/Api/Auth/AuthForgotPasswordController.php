@@ -37,13 +37,13 @@ class AuthForgotPasswordController extends Controller
             $father = Father::where('email',$request->input('email'))->first();
 
             dd(
-                config('MAIL_MAILER'),
-                config('MAIL_HOST'),
-                config('MAIL_PORT'),
-                config('MAIL_USERNAME'),
-                config('MAIL_PASSWORD'),
-                config('MAIL_ENCRYPTION'),
-                config('MAIL_FROM_ADDRESS')
+                env('MAIL_MAILER'),
+                env('MAIL_HOST'),
+                env('MAIL_PORT'),
+                env('MAIL_USERNAME'),
+                env('MAIL_PASSWORD'),
+                env('MAIL_ENCRYPTION'),
+                env('MAIL_FROM_ADDRESS')
             );
             Mail::to($father)->send(new ResetUserPassword($code));
 
