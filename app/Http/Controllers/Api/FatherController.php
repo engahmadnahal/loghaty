@@ -104,7 +104,7 @@ class FatherController extends Controller
             return new MainResource([
                 'lang_text' => $setting->lang_text,
                 'lang_voice' => $setting->lang_voice,
-                'is_music' => $setting->is_music
+                'is_music' => boolval($setting->is_music)
             ],Response::HTTP_OK,ApiMsg::getMsg($request,'success'));
         }else{
             return response()->json([
