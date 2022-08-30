@@ -20,9 +20,9 @@ class Father extends Authenticatable
     protected $fillabel = [
         'email',
         'password',
-         'plan_id',
-      'country_id',
-          'status',
+        'plan_id',
+        'country_id',
+        'status',
     ];
 
     public function payments(){
