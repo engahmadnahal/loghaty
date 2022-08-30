@@ -58,8 +58,8 @@ class AuthLoginController extends Controller
 
 
     function grantPGCT(Request $request){
-        $response = Http::asForm()->post(env('APP_URL').'/oauth/token',[
-            // $response = Http::asForm()->post('http://127.0.0.1:81/oauth/token',[
+        // $response = Http::asForm()->post(env('APP_URL').'/oauth/token',[
+            $response = Http::asForm()->post('https://loghaty.ahmadnahal.com/oauth/token',[
             'grant_type' => 'password',
             'client_id' => $this->getClientSecret($request->input('type'))['client_id'],
             'client_secret'=>$this->getClientSecret($request->input('type'))['client_secret'],
