@@ -34,7 +34,8 @@ class ApiMsg {
         'already_added' => 'مضاف فعلا' ,
         'success_add' => 'تم الاضافة بنجاح',
         'success_send' => 'تم الارسال بنجاح',
-        'block_account' => 'هذا الحساب تم حظره'
+        'block_account' => 'هذا الحساب تم حظره',
+        'not_result' => 'لايوجد نتائج '
 
 
 
@@ -74,7 +75,9 @@ class ApiMsg {
         'already_added' => 'already added' ,
         'success_add' => 'Add is successfully',
         'success_send' => 'Send successfully',
-        'block_account' => 'This account is block'
+        'block_account' => 'This account is block',
+        'not_result' => ' No Ant Results '
+
 
     ];
 

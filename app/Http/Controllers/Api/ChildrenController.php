@@ -111,15 +111,21 @@ class ChildrenController extends Controller
 
     public function getProgress(Request $request, Children $children){
         
+
             $prog = Progress::where('children_id',$children->id)->get();
             $progSingle = Progress::where('children_id',$children->id)->first();
 
-            $totalPoints = 0;
-            foreach($prog as $p){
-                $totalPoints += $p->points;
+            if(!is_null($prog) || !is_null($progSingle)){
+                $totalPoints = 0;
+                foreach($prog as $p){
+                    $totalPoints += $p->points;
+                }
+                $progSingle->setAttribute('totalpoints',$totalPoints);
+                return new MainResource(new ProgressResource($progSingle),Response::HTTP_OK,ApiMsg::getMsg($request,'success_get'));
             }
-            $progSingle->setAttribute('totalpoints',$totalPoints);
-            return new MainResource(new ProgressResource($progSingle),Response::HTTP_OK,ApiMsg::getMsg($request,'success_get'));
+
+            return response()->json(['status'=>false,'message'=>ApiMsg::getMsg($request,'not_result')],Response::HTTP_BAD_REQUEST);
+
             
     }
 
