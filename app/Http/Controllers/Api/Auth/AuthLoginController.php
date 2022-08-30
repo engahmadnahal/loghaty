@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Helper\ApiMsg;
+use App\Http\Helper\Config;
 use App\Http\Resources\FatherResource;
 use App\Http\Resources\MainResource;
 use App\Models\Father;
@@ -57,8 +58,7 @@ class AuthLoginController extends Controller
 
     function grantPGCT(Request $request){
         dd(env('APP_URL').'/oauth/token');
-        $response = Http::asForm()->post(env('APP_URL').'/oauth/token',[
-            // $response = Http::asForm()->post('https://loghaty.ahmadnahal.com/oauth/token',[
+        $response = Http::asForm()->post(Config::$URL_API_TOKEN,[
                 'grant_type' => 'password',
                 'client_id' => $this->getClientSecret($request->input('type'))['client_id'],
                 'client_secret'=>$this->getClientSecret($request->input('type'))['client_secret'],
@@ -99,11 +99,11 @@ class AuthLoginController extends Controller
             'client_secret' => ''
         ];
         if($type == 'teacher'){
-            $arr['client_id'] = 3;
-            $arr['client_secret'] = 'mvVKaVwPX6sqN0mwPuJGbeu08hKHA7R4DCJiblEb';
+            $arr['client_id'] = Config::$TEACHER_CLIENT_ID;
+            $arr['client_secret'] = Config::$TEACHER_CLIENT_SECRET;
         }else{
-            $arr['client_id'] = 4;
-            $arr['client_secret'] = 'qupjQR89J8JRN8jwKE46tQkGlXX95bYzm5lDWyRq';
+            $arr['client_id'] = Config::$FATHER_CLIENT_ID;
+            $arr['client_secret'] = Config::$FATHER_CLIENT_SECRET;
         }
 
         return $arr;
