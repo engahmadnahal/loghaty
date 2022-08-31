@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Helper\ApiMsg;
-use App\Http\Helper\Config;
 use App\Http\Resources\FatherResource;
 use App\Http\Resources\MainResource;
 use App\Models\Father;

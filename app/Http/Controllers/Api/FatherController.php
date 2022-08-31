@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Helper\ApiMsg;
-use App\Http\Helper\Config;
 use App\Http\Resources\FatherResource;
 use App\Http\Resources\MainResource;
 use App\Models\Father;
@@ -49,7 +48,7 @@ class FatherController extends Controller
 
 
     function grantPGCT(Request $request){
-        $response = Http::asForm()->post(Config::$URL_API_TOKEN,[
+        $response = Http::asForm()->post(env('URL_API_TOKEN'),[
             'grant_type' => 'password',
             'client_id' => env('FATHER_CLIENT_ID'),
             'client_secret'=>env('FATHER_CLIENT_SECRET'),

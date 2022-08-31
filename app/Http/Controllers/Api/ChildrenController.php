@@ -20,7 +20,6 @@ use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Spatie\FlareClient\Api;
 use Symfony\Component\HttpFoundation\Response;
 
 class ChildrenController extends Controller
