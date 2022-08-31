@@ -57,7 +57,7 @@ class AuthLoginController extends Controller
     }
 
     function grantPGCT(Request $request){
-        $response = Http::asForm()->post(Config::$URL_API_TOKEN,[
+        $response = Http::asForm()->post(env('URL_API_TOKEN'),[
                 'grant_type' => 'password',
                 'client_id' => $this->getClientSecret($request->input('type'))['client_id'],
                 'client_secret'=>$this->getClientSecret($request->input('type'))['client_secret'],
@@ -97,11 +97,11 @@ class AuthLoginController extends Controller
             'client_secret' => ''
         ];
         if($type == 'teacher'){
-            $arr['client_id'] = Config::$TEACHER_CLIENT_ID;
-            $arr['client_secret'] = Config::$TEACHER_CLIENT_SECRET;
+            $arr['client_id'] = env('TEACHER_CLIENT_ID');
+            $arr['client_secret'] = env('TEACHER_CLIENT_SECRET');
         }else{
-            $arr['client_id'] = Config::$FATHER_CLIENT_ID;
-            $arr['client_secret'] = Config::$FATHER_CLIENT_SECRET;
+            $arr['client_id'] = env('FATHER_CLIENT_ID');
+            $arr['client_secret'] = env('FATHER_CLIENT_SECRET');
         }
 
         return $arr;
