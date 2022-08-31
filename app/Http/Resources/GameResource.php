@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Father;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,6 +20,8 @@ class GameResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'image' => Storage::url($this->image),
+            
         ];
     }
+    
 }

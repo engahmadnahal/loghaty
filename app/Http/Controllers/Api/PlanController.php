@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Helper\ApiMsg;
+use App\Http\Resources\ChildrenResource;
 use App\Http\Resources\MainResource;
 use App\Http\Resources\PlanResource;
 use App\Http\Resources\SubscriptionResource;
@@ -12,6 +13,7 @@ use App\Models\Father;
 use App\Models\Plan;
 use App\Models\Subscription;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -27,19 +29,12 @@ class PlanController extends Controller
             'father_id' => 'required|exists:fathers,id'
         ]);
         if(!$validator->fails()){
-            (new PaymentController)->sendPaymentAndSubs($request);
-            $father = Father::find($request->input('father_id'));
-
-            // Start Change Plan if pyment Success
-            $father->plan_id = $plan->id;
-            $father->save();
-            // Add All Children refernsese father
-            $this->addAllChildrensSubs($father);
-            // End Change Plan if pyment Success
-            return response()->json([
-                'status' => true,
-                'title' => ApiMsg::getMsg($request,'success')
+            // Send Request To method , Request own , information Card  
+            $request->merge([
+                'plan' => $plan
             ]);
+            return (new PaymentController)->sendPaymentAndSubs($request);
+
         }else{
             return response()->json([
                 'status'=>false,
@@ -47,37 +42,6 @@ class PlanController extends Controller
                 'message'=> $validator->getMessageBag()->first()
             ],Response::HTTP_BAD_REQUEST);
         }
-    }
-
-    /// This method add childrens auto , where num children eqaul plan total child subs
-    public function addAllChildrensSubs(Father $father){
-        // Delete All subs own [father id]
-            Subscription::where('father_id',$father->id)->delete();
-            $plan = $father->plan;
-            $start = Carbon::now();
-            $end = Carbon::now()->addMonths($plan->sum_month);
-            $sumFatherSubs = Subscription::where('father_id',$father->id)->count();
-
-            if($plan->totale_child_subscrip < $sumFatherSubs){
-                return response()->json([
-                    'title'=> __('msg.error'),
-                    'message'=>__('msg.num_subs_grt_plan') 
-                ],Response::HTTP_BAD_REQUEST);
-            }
-
-            $count = 1;
-            foreach($father->childrens as $c){
-                if($count > $plan->totale_child_subscrip){
-                    return;
-                }
-                $subs = new Subscription;
-                $subs->father_id = $father->id;
-                $subs->children_id = $c->id;
-                $subs->start_subscrip_date = $start;
-                $subs->end_subscrip_date = $end;
-                $subs->save();
-                $count++;
-            }
     }
 
     /// Add Single Children to subs
@@ -144,5 +108,33 @@ class PlanController extends Controller
         $allChild = Subscription::where('children_id',$children->id)->get();
         return new MainResource(SubscriptionResource::collection($allChild),Response::HTTP_OK,ApiMsg::getMsg($request,'success_get'));
     }
+
+    public function checkExpired(Request $request){
+        try{
+            $father = Father::find(auth()->user()->id);
+            $subsChild = $father->subscriptions;
+            foreach($subsChild as $c){
+                $endDate = Carbon::parse($c->end_subscrip_date);
+                $now = Carbon::now();
+                if($endDate <= $now){
+                    $subs = Subscription::find($c->id);
+                    $subs->expire = Carbon::now();
+                    $subs->save();
+                }
+            }
+            return response()->json([
+                'status'=>true,
+                'message'=> ApiMsg::getMsg($request,'success_send'),
+            ],Response::HTTP_OK);
+            
+        }catch(Exception $ex){
+            return response()->json([
+                'status'=>false,
+                'message'=> ApiMsg::getMsg($request,'error'),
+                'messages'=> $ex->getMessage(),
+            ],Response::HTTP_BAD_REQUEST);
+        }
+    }
+
 
 }

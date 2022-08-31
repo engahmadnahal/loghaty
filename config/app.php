@@ -181,6 +181,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -215,6 +216,8 @@ return [
         'QusstionType' => App\Http\Helper\QusstionType::class,
         'ActiveRoute' => App\Http\Helper\ActiveRoute::class,
         'CustomPermission' => App\Http\Helper\CustomPermission::class,
+        'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class,
+
 
     ])->toArray(),
 

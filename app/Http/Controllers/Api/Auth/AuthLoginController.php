@@ -17,8 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AuthLoginController extends Controller
 {
-    //
-
+    
     public function login(Request $request){
         $validator = Validator($request->all(),[
             'email' => 'required|email',

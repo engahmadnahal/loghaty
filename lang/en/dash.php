@@ -303,5 +303,10 @@ return [
     'send_email_virfy_title' => 'Confirm email',
     'send_email_virfy_body' => 'We will send you a confirmation email to your email',
     'account_block_title' => 'Account is Block',
-    'account_block_body' => 'This account has been banned by the admin.'
+    'account_block_body' => 'This account has been banned by the admin.',
+
+    'notfy_plan_game_title' => 'New Plan',
+    'notfy_plan_game_body' => 'Add New Plan is successfuly ',
+    'new_subs_title' => 'new subscription ',
+    'new_subs_body' => 'There is a parent who has subscribed to the application. '
 ];

@@ -288,10 +288,16 @@ return [
     'notfy_subs_game_body' => 'تم اضافة لعبة جديدة',
     'last_playing_game' => 'اخر الالعاب المستخدمة',
     'latest_subscripers' => 'اخر المشتركين',
+
+    'notfy_plan_game_title' => '  خطة جديدة',
+    'notfy_plan_game_body' => 'تم انشاء خطة جديدة',
+
     'semester' => 'الصف',
     'send_email_virfy_title' => 'قم بتأكيد الايميل',
     'send_email_virfy_body' => 'سنرسل لك ايميل تأكيد للايميل الخاص بك',
     'account_block_title' => 'الحساب محظور',
-    'account_block_body' => 'هذا الحساب تم حظره من قبل الادارة'
+    'account_block_body' => 'هذا الحساب تم حظره من قبل الادارة',
+    'new_subs_title' => 'اشتراك جديد',
+    'new_subs_body' => 'هناك ولي امر قام بالاشتراك في التطبيق . '
 
 ];

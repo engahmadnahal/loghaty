@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::get('test',[PaymentController::class,'checkout']);
 Route::middleware('Local')->group(function(){
 
     Route::middleware('guest')->prefix('v1')->group(function(){
@@ -59,12 +60,10 @@ Route::middleware('Local')->group(function(){
             Route::get('plans','getPlans');
             Route::post('plans/{plan}','subsPlan');
             Route::post('subscription','addChildrenToSubs');
-
             Route::post('subscription/{father}/all','getAllChildrenSubs');
             Route::get('subscription/{children}','getSingleChildrenSubs');
+            Route::post('plan/check-expired','checkExpired');
 
-            
-            
         });
 
         Route::controller(SemesterController::class)->group(function(){

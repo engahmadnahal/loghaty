@@ -35,11 +35,13 @@ class ApiMsg {
         'success_add' => 'تم الاضافة بنجاح',
         'success_send' => 'تم الارسال بنجاح',
         'block_account' => 'هذا الحساب تم حظره',
-        'not_result' => 'لايوجد نتائج '
+        'not_result' => 'لايوجد نتائج ',
+        'error_payment' => 'حدث خطأ اثناء الدفع',
+        'error_payment_faild' => 'فشلت عملية الدفع',
+        'success_payment' => 'تمت عملية الدفع بنجاح'
 
 
 
-        
 
 
 
@@ -76,7 +78,10 @@ class ApiMsg {
         'success_add' => 'Add is successfully',
         'success_send' => 'Send successfully',
         'block_account' => 'This account is block',
-        'not_result' => ' No Ant Results '
+        'not_result' => ' No Ant Results ',
+        'error_payment' => 'An error occurred during payment',
+        'error_payment_faild' => 'Payment failed',
+        'success_payment' => 'Payment completed successfully'
 
 
     ];
