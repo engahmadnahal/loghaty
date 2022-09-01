@@ -49,6 +49,7 @@
                                                 @can('Update-plan')
                                                 <a href="{{route('plans.edit',$plan->id)}}"  class="btn bg-gradient-primary   waves-effect waves-light"><i class="fa-solid fa-pen-to-square"></i></i></a>
                                                 @endcan
+                                                @if($plan->id != 1)
                                                 @can('block_system')
                                                 @if($plan->active)
                                                 {{-- Show block btn where status user active --}}
@@ -59,10 +60,9 @@
                                                 @endif
                                                 @endcan
                                                 @can('Delete-plan')
-                                                @if($plan->id != 1)
                                                     <button type="button" class="btn bg-gradient-danger  waves-effect waves-light" onclick="performDelete(this,{{$plan->id}})"><i class="fa fa-trash"></i></button>
-                                                @endif
                                                 @endcan
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
