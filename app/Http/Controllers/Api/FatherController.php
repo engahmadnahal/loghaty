@@ -57,7 +57,7 @@ class FatherController extends Controller
             'scope' => '*'
         ]);
         $decodedResponse = json_decode($response);
-        dd(env('URL_API_TOKEN'),env('FATHER_CLIENT_ID'),env('FATHER_CLIENT_SECRET'),$response->json);
+        dd(env('URL_API_TOKEN'),env('FATHER_CLIENT_ID'),env('FATHER_CLIENT_SECRET'),$decodedResponse);
         $father = Father::where('email',$request->input('email'))->first();
         $father->setAttribute('token',$decodedResponse->access_token);
 
