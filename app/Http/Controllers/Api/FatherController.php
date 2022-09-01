@@ -9,6 +9,7 @@ use App\Http\Resources\MainResource;
 use App\Models\Father;
 use App\Models\Setting;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
@@ -48,20 +49,27 @@ class FatherController extends Controller
 
 
     function grantPGCT(Request $request){
-        $response = Http::asForm()->post(env('URL_API_TOKEN'),[
-            'grant_type' => 'password',
-            'client_id' => env('FATHER_CLIENT_ID'),
-            'client_secret'=>env('FATHER_CLIENT_SECRET'),
-            'username' => $request->input('email'),
-            'password' =>$request->input('password'),
-            'scope' => '*'
-        ]);
-        $decodedResponse = json_decode($response);
-        dd(env('URL_API_TOKEN'),env('FATHER_CLIENT_ID'),env('FATHER_CLIENT_SECRET'),$decodedResponse);
-        $father = Father::where('email',$request->input('email'))->first();
-        $father->setAttribute('token',$decodedResponse->access_token);
+        try{
 
-        return new MainResource(new FatherResource($father),Response::HTTP_OK,ApiMsg::getMsg($request,'success_create'));     
+            $response = Http::asForm()->post(env('URL_API_TOKEN'),[
+                'grant_type' => 'password',
+                'client_id' => '4',
+                'client_secret'=>'qupjQR89J8JRN8jwKE46tQkGlXX95bYzm5lDWyRq',
+                'username' => $request->input('email'),
+                'password' =>$request->input('password'),
+                'scope' => '*'
+            ]);
+            $decodedResponse = json_decode($response);
+            $father = Father::where('email',$request->input('email'))->first();
+            // $father->setAttribute('token',$decodedResponse->access_token);
+            
+            return new MainResource(new FatherResource($father),Response::HTTP_OK,ApiMsg::getMsg($request,'success_create'));     
+        }catch(Exception $e){
+            return response()->json([
+                'status'=>false,
+                'message'=> ApiMsg::getMsg($request,'error'),
+            ],Response::HTTP_BAD_REQUEST);
+        }
     }
 
     
