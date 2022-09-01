@@ -53,15 +53,16 @@ class FatherController extends Controller
 
             $response = Http::asForm()->post(env('URL_API_TOKEN'),[
                 'grant_type' => 'password',
-                'client_id' => '4',
-                'client_secret'=>'qupjQR89J8JRN8jwKE46tQkGlXX95bYzm5lDWyRq',
+                'client_id' => env('FATHER_CLIENT_ID'),
+                'client_secret'=>env('FATHER_CLIENT_SECRET'),
                 'username' => $request->input('email'),
                 'password' =>$request->input('password'),
                 'scope' => '*'
             ]);
             $decodedResponse = json_decode($response);
             $father = Father::where('email',$request->input('email'))->first();
-            // $father->setAttribute('token',$decodedResponse->access_token);
+            dd(env('URL_API_TOKEN'),env('FATHER_CLIENT_ID'),env('FATHER_CLIENT_SECRET'),$response);
+            $father->setAttribute('token',$decodedResponse->access_token);
             
             return new MainResource(new FatherResource($father),Response::HTTP_OK,ApiMsg::getMsg($request,'success_create'));     
         }catch(Exception $e){
