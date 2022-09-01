@@ -1,7 +1,7 @@
 @extends('layout.master')
 
-@section('title',__('dash.create_children'))
-@section('title_page',__('dash.create_children'))
+@section('title',__('dash.update_level'))
+@section('title_page',__('dash.update_level'))
 
 @section('content')
 <section id="multiple-column-form">

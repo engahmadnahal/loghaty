@@ -299,6 +299,6 @@ return [
     'account_block_body' => 'هذا الحساب تم حظره من قبل الادارة',
     'new_subs_title' => 'اشتراك جديد',
     'new_subs_body' => 'هناك ولي امر قام بالاشتراك في التطبيق . ',
-    'create_level' => 'انشاء مستوى جديد'
-
+    'create_level' => 'انشاء مستوى جديد',
+    'update_level' => 'تعديل مستوى'
 ];
