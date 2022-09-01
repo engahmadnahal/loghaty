@@ -59,7 +59,9 @@
                                                 @endif
                                                 @endcan
                                                 @can('Delete-plan')
-                                                <button type="button" class="btn bg-gradient-danger  waves-effect waves-light" onclick="performDelete(this,{{$plan->id}})"><i class="fa fa-trash"></i></button>
+                                                @if($plan->id != 1)
+                                                    <button type="button" class="btn bg-gradient-danger  waves-effect waves-light" onclick="performDelete(this,{{$plan->id}})"><i class="fa fa-trash"></i></button>
+                                                @endif
                                                 @endcan
                                             </td>
                                         </tr>
