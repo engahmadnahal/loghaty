@@ -21,6 +21,7 @@ class TeacherResource extends JsonResource
             'country' => $this->country->name,
             'avater' => $this->image_profile,
             'mobile' => $this->mobile,
+            'token' => $this->token
         ];
     }
 }
