@@ -48,6 +48,7 @@ class FatherController extends Controller
 
 
     function grantPGCT(Request $request){
+        dd(env('URL_API_TOKEN'),env('FATHER_CLIENT_ID'),env('FATHER_CLIENT_SECRET'));
         $response = Http::asForm()->post(env('URL_API_TOKEN'),[
             'grant_type' => 'password',
             'client_id' => env('FATHER_CLIENT_ID'),
