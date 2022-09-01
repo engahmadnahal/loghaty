@@ -61,9 +61,8 @@ class FatherController extends Controller
             ]);
             $decodedResponse = json_decode($response);
             $father = Father::where('email',$request->input('email'))->first();
-            dd(env('URL_API_TOKEN'),env('FATHER_CLIENT_ID'),env('FATHER_CLIENT_SECRET'),$decodedResponse);
-            // $father->setAttribute('token',$decodedResponse->access_token);
-            // return new MainResource(new FatherResource($father),Response::HTTP_OK,ApiMsg::getMsg($request,'success_create'));     
+            $father->setAttribute('token',$decodedResponse->access_token);
+            return new MainResource(new FatherResource($father),Response::HTTP_OK,ApiMsg::getMsg($request,'success_create'));     
         }catch(Exception $e){
             return response()->json([
                 'status'=>false,
