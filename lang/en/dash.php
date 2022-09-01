@@ -308,5 +308,7 @@ return [
     'notfy_plan_game_title' => 'New Plan',
     'notfy_plan_game_body' => 'Add New Plan is successfuly ',
     'new_subs_title' => 'new subscription ',
-    'new_subs_body' => 'There is a parent who has subscribed to the application. '
+    'new_subs_body' => 'There is a parent who has subscribed to the application. ',
+    'create_level' => 'Create new level'
+    
 ];
