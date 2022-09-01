@@ -21,6 +21,7 @@ class GameController extends Controller
         $games = Game::whereHas('plan',function($q){
             $q->where('active',true)->where('plan_id','<=',auth()->user()->plan_id);
         })->get();
+
         return new MainResource(GameResource::collection($games),Response::HTTP_OK,ApiMsg::getMsg($request,'success_get'));
     }
 

@@ -112,6 +112,8 @@ class PlanController extends Controller
     public function checkExpired(Request $request){
         try{
             $father = Father::find(auth()->user()->id);
+
+            $isExpire = false;
             $subsChild = $father->subscriptions;
             foreach($subsChild as $c){
                 $endDate = Carbon::parse($c->end_subscrip_date);
@@ -120,8 +122,19 @@ class PlanController extends Controller
                     $subs = Subscription::find($c->id);
                     $subs->expire = Carbon::now();
                     $subs->save();
+                    $isExpire = true;
                 }
             }
+            if($isExpire){
+                $father->plan_id = 1;
+                $father->save();
+
+                return response()->json([
+                    'status'=>true,
+                    'message'=> ApiMsg::getMsg($request,'subs_expire'),
+                ],Response::HTTP_OK);
+            }
+            
             return response()->json([
                 'status'=>true,
                 'message'=> ApiMsg::getMsg($request,'success_send'),

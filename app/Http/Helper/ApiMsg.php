@@ -38,7 +38,9 @@ class ApiMsg {
         'not_result' => 'لايوجد نتائج ',
         'error_payment' => 'حدث خطأ اثناء الدفع',
         'error_payment_faild' => 'فشلت عملية الدفع',
-        'success_payment' => 'تمت عملية الدفع بنجاح'
+        'success_payment' => 'تمت عملية الدفع بنجاح',
+        'subs_expire' => 'لقد انتهى الاشتراك وتم تحويلك للخطة المجانية'
+
 
 
 
@@ -81,7 +83,8 @@ class ApiMsg {
         'not_result' => ' No Ant Results ',
         'error_payment' => 'An error occurred during payment',
         'error_payment_faild' => 'Payment failed',
-        'success_payment' => 'Payment completed successfully'
+        'success_payment' => 'Payment completed successfully',
+        'subs_expire' => 'Your Subscribtion is expred , transferred to the free plan '
 
 
     ];
