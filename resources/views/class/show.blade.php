@@ -65,7 +65,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>{{__('dash.name')}}</th>
-                                        <th>{{__('dash.levels')}}</th>
+                                        <th>{{__('dash.father')}}</th>
                                         <th>{{__('dash.add_date2')}}</th>
                                     </tr>
                                 </thead>
@@ -75,7 +75,7 @@
                                            
                                             <td>{{++$loop->index}}</td>
                                             <td>{{$c->name}}</td>
-                                            <td>{{$c->level->name}}</td>
+                                            <td>{{$c->father->email}}</td>
                                             <td>{{$c->created_at->diffForHumans()}}</td>
                                           
                                             
@@ -107,7 +107,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>{{__('dash.name')}}</th>
-                                        <th>{{__('dash.levels')}}</th>
+                                        <th>{{__('dash.father')}}</th>
                                         <th>{{__('dash.add_date2')}}</th>
                                     </tr>
                                 </thead>
@@ -117,7 +117,7 @@
                                            
                                             <td>{{++$loop->index}}</td>
                                             <td>{{$c->name}}</td>
-                                            <td>{{$c->level->name}}</td>
+                                            <td>{{$c->father->email}}</td>
                                             <td>{{$c->created_at->diffForHumans()}}</td>
                                           
                                             

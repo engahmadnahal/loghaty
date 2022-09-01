@@ -125,7 +125,7 @@ return [
     'os_mobile' => 'operating system',
     'no_results'=>'no results found',
     'teacher_setting' => 'teacher settings',
-    'father_setting'=>'father_setting',
+    'father_setting'=>'father setting',
     'plan_setting' => 'plan settings',
     'points'=>'points',
 
@@ -310,7 +310,9 @@ return [
     'new_subs_title' => 'new subscription ',
     'new_subs_body' => 'There is a parent who has subscribed to the application. ',
     'create_level' => 'Create new level',
-    'update_level' => 'Edit Level'
+    'update_level' => 'Edit Level',
+    'index_notification' => 'All Notification'
+
 
     
 ];

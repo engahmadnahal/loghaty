@@ -27,12 +27,6 @@ class Local
 
         App::setlocale($isLangSelect);
         
-        // if(!is_null($isLangSelect)){
-        // }
-
-        // else{
-        //     App::setlocale('ar');
-        // }
         return $next($request);
     }
 }

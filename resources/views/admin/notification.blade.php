@@ -1,7 +1,7 @@
 @extends('layout.master')
 
-@section('title',__('dash.index_admin'))
-@section('title_page',__('dash.index_admin'))
+@section('title',__('dash.index_notification'))
+@section('title_page',__('dash.index_notification'))
 
 @section('content')
 

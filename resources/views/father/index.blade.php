@@ -23,7 +23,7 @@
                                         <th>{{__('dash.name_plan')}}</th>
                                         <th>{{__('dash.num_children')}}</th>
                                         <th>{{__('dash.add_date')}}</th>
-                                        <th>{{__('dash.status_email')}}</th>
+                                        {{-- <th>{{__('dash.status_email')}}</th> --}}
                                         <th>{{__('dash.status')}}</th>
                                         <th>{{__('dash.last_vist')}}</th>
                                         <th>{{__('dash.actions')}}</th>
@@ -37,7 +37,7 @@
                                             <td>{{$father->plan->name}}</td>
                                             <td>{{$father->childrens->count()}}</td>
                                             <td>{{$father->created_at->format('Y-m-d')}}</td>
-                                            <td> <span class="{{!is_null($father->email_verified_at) ? 'text-success' : 'text-danger'}}">{{$father->email_status}}</span></td>
+                                            {{-- <td> <span class="{{!is_null($father->email_verified_at) ? 'text-success' : 'text-danger'}}">{{$father->email_status}}</span></td> --}}
                                             <td><span class="{{$father->status == 'active' ? 'text-success' : 'text-danger'}}">{{$father->status_user}}</span></td>
                                             <td>{{$father->last_login}}</td>
                                             <td class="action-table">

@@ -300,5 +300,6 @@ return [
     'new_subs_title' => 'اشتراك جديد',
     'new_subs_body' => 'هناك ولي امر قام بالاشتراك في التطبيق . ',
     'create_level' => 'انشاء مستوى جديد',
-    'update_level' => 'تعديل مستوى'
+    'update_level' => 'تعديل مستوى',
+    'index_notification' => 'كل الاشعارات'
 ];
