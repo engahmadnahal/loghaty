@@ -42,6 +42,8 @@ Route::middleware('Local')->group(function(){
     /// ------- Auth Route
     Route::middleware('auth:api-techer,api-father')->prefix('v1')->group(function(){
 
+        Route::post('auth/logout',[AuthLoginController::class , 'logout']);
+
         Route::controller(FatherController::class)->group(function(){
 
             Route::post('father/{father}/setting','sendSetting');

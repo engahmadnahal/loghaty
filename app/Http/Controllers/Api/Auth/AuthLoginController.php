@@ -11,6 +11,7 @@ use App\Models\Father;
 use App\Models\Teacher;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use PhpParser\Node\Expr\FuncCall;
@@ -110,5 +111,14 @@ class AuthLoginController extends Controller
         }
 
         return $arr;
+    }
+
+    public function logout(Request $request){
+        $token = Auth::user()->token();
+        $token->revoke();
+        return response()->json([
+            'status' => true,
+            'message' => ApiMsg::getMsg($request,'success')
+        ],Response::HTTP_OK);
     }
 }
