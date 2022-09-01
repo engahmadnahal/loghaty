@@ -26,7 +26,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('test',[PaymentController::class,'checkout']);
 Route::middleware('Local')->group(function(){
 
     Route::middleware('guest')->prefix('v1')->group(function(){
