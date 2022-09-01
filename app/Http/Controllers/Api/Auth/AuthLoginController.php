@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Helper\ApiMsg;
 use App\Http\Resources\FatherResource;
 use App\Http\Resources\MainResource;
+use App\Http\Resources\TeacherResource;
 use App\Models\Father;
 use App\Models\Teacher;
 use Carbon\Carbon;
@@ -39,7 +40,10 @@ class AuthLoginController extends Controller
                     }
                    return $this->grantPGCT($request);
                 }else{
-                    return new MainResource([],Response::HTTP_BAD_REQUEST,ApiMsg::getMsg($request,'password_faild'));
+                    return response()->json([
+                        'status'=>false,
+                        'message' => ApiMsg::getMsg($request,'password_faild')
+                    ],Response::HTTP_BAD_REQUEST);
                 }
             }else{
                 return new MainResource([],Response::HTTP_BAD_REQUEST,ApiMsg::getMsg($request,'notfound_account'));
@@ -69,6 +73,9 @@ class AuthLoginController extends Controller
         $user->last_vist = Carbon::now();
         $user->save();
         $user->setAttribute('token',$decodedResponse->access_token);
+        if($request->input('type') == 'teacher'){
+            return new MainResource(new TeacherResource($user),Response::HTTP_OK,ApiMsg::getMsg($request,'success_login'));
+        }
         return new MainResource(new FatherResource($user),Response::HTTP_OK,ApiMsg::getMsg($request,'success_login'));     
     }
 
