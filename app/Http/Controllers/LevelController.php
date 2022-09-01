@@ -16,7 +16,6 @@ class LevelController extends Controller
     public function __construct()
     {
         $this->authorizeResource(Level::class,'level');
-        
     }
     /**
      * Display a listing of the resource.
@@ -53,7 +52,6 @@ class LevelController extends Controller
     public function store(Request $request)
     {
         //
-
         $validator = Validator($request->all(),[
             'name_en' => 'required|string',
             'name_ar' => 'required|string',
@@ -64,8 +62,6 @@ class LevelController extends Controller
 
 
         if(!$validator->fails()){
-
-
             $level = new Level;
             $level->name_en = $request->input('name_en');
             $level->name_ar = $request->input('name_ar');
@@ -77,7 +73,7 @@ class LevelController extends Controller
             // Data For Notification AdminNotification
             $data = [
                 'title' => __('dash.notfy_add_level_title'),
-                'body' => __('dash.notfy_add_level_body') . App::isLocal('ar') ? $level->name_ar : $level->name_en
+                'body' => __('dash.notfy_add_level_body') . App::isLocale('ar') ? $level->name_ar : $level->name_en
             ];
             // Send Notification only Admin has permission revers_notification
             $admins = Admin::all();
@@ -86,7 +82,6 @@ class LevelController extends Controller
                     $a->notify(new AdminNotification($data));
                 }
             }
-
             
             return response()->json([
                 'title'=> __('msg.success'),
@@ -94,10 +89,7 @@ class LevelController extends Controller
             ],Response::HTTP_OK);
         }else{
             return response()->json(['title'=>__('msg.error'),'message'=>$validator->getMessageBag()->first()],Response::HTTP_BAD_REQUEST);
-
         }
-
-
     }
 
     /**

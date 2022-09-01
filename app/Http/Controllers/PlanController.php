@@ -79,7 +79,7 @@ class PlanController extends Controller
 
             $data = [
                 'title' => __('dash.notfy_plan_game_title'),
-                'body' => __('dash.notfy_plan_game_body') . App::isLocal('ar') ? $plan->name_ar : $plan->name_en
+                'body' => __('dash.notfy_plan_game_body') . App::isLocale('ar') ? $plan->name_ar : $plan->name_en
             ];
             // Send Notification only Admin has permission revers_notification
             $admins = Admin::all();

@@ -88,7 +88,7 @@ class PaymentController extends Controller
 
                 $data = [
                     'title' => __('dash.new_subs_title'),
-                    'body' =>  App::isLocal('ar') ? $request->plan->name_ar : $request->plan->name_en
+                    'body' =>  App::isLocale('ar') ? $request->plan->name_ar : $request->plan->name_en
                 ];
                 // Send Notification only Admin has permission revers_notification
                 $admins = Admin::all();
@@ -177,4 +177,5 @@ class PaymentController extends Controller
             $count++;
         }
     }
+
 }

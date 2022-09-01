@@ -72,7 +72,7 @@ class ArticalController extends Controller
             
             $data = [
                 'title' => __('dash.notfy_add_artical_title'),
-                'body' => __('dash.notfy_add_artical_body') . App::isLocal('ar') ? $artical->name_ar : $artical->name_en
+                'body' => __('dash.notfy_add_artical_body') . App::isLocale('ar') ? $artical->name_ar : $artical->name_en
             ];
             // Send Notification only Admin has permission revers_notification
             $admins = Admin::all();

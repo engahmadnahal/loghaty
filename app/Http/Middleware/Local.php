@@ -17,16 +17,14 @@ class Local
      */
     public function handle(Request $request, Closure $next)
     {
-
-        if(!$request->expectsJson()){
+        
+        $isLangSelect = '';
+        if (!$request->expectsJson()) {
             $isLangSelect = session()->get('lang') ?? 'ar';
-        }else{
+        } else {
             $isLangSelect = $request->header('lang') ?? 'ar';
         }
-
-
         App::setlocale($isLangSelect);
-        
         return $next($request);
     }
 }

@@ -87,7 +87,7 @@ class GameController extends Controller
 
             $data = [
                 'title' => __('dash.notfy_add_game_title'),
-                'body' => __('dash.notfy_add_game_body') . App::isLocal('ar') ? $game->name_ar : $game->name_en
+                'body' => __('dash.notfy_add_game_body') . App::isLocale('ar') ? $game->name_ar : $game->name_en
             ];
             // Send Notification only Admin has permission revers_notification
             $admins = Admin::all();

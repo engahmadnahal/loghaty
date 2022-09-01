@@ -44,7 +44,7 @@
 
         let date = new Date();
         document.getElementById('copyYear').innerHTML = ""+date.getFullYear();
-
+        axios.defaults.headers.post['lang'] = '{{App::getLocale()}}';
 
 
         

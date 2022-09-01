@@ -73,7 +73,7 @@ class SemesterController extends Controller
             
             $data = [
                 'title' => __('dash.notfy_add_class_title'),
-                'body' => __('dash.notfy_add_class_body') . App::isLocal('ar') ? $semester->name_ar : $semester->name_en
+                'body' => __('dash.notfy_add_class_body') . App::isLocale('ar') ? $semester->name_ar : $semester->name_en
             ];
             // Send Notification only Admin has permission revers_notification
             $admins = Admin::all();

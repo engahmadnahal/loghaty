@@ -65,7 +65,7 @@ class CountryController extends Controller
             $isSave = $country->save();
             $data = [
                 'title' => __('dash.notfy_country_game_title'),
-                'body' => __('dash.notfy_country_game_body') . App::isLocal('ar') ? $country->name_ar : $country->name_en
+                'body' => __('dash.notfy_country_game_body') . App::isLocale('ar') ? $country->name_ar : $country->name_en
             ];
             // Send Notification only Admin has permission revers_notification
             $admins = Admin::all();
