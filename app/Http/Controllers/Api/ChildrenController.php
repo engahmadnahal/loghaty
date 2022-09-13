@@ -17,8 +17,10 @@ use App\Models\History;
 use App\Models\Progress;
 use App\Notifications\AdminNotification;
 use Carbon\Carbon;
+use Cartalyst\Stripe\Api\Api;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -28,15 +30,51 @@ class ChildrenController extends Controller
     //
 
     public function getAllChildren(Request $request){
+        if(!Auth::guard('api-father')->check()){
+            return response()->json([
+                'status' => false,
+                'message' => ApiMsg::getMsg($request,'unauthorization')
+            ],Response::HTTP_BAD_REQUEST);
+        }
         $childrens = Children::where('status','active')->where('father_id',auth()->user()->id)->get();
         return new MainResource(ChildrenResource::collection($childrens),Response::HTTP_OK,ApiMsg::getMsg($request,'success_get'));
     }
 
     public function getSingleChildren(Request $request,Children $children){
+        if(!Auth::guard('api-father')->check() ){
+            return response()->json([
+                'status' => false,
+                'message' => ApiMsg::getMsg($request,'unauthorization')
+            ],Response::HTTP_BAD_REQUEST);
+        }
+
+        if(auth()->user()->id != $children->father_id){
+            return response()->json([
+                'status' => false,
+                'message' => ApiMsg::getMsg($request,'unauthorization')
+            ],Response::HTTP_BAD_REQUEST);
+        }
+       
         return new MainResource(new ChildrenSingleResource($children),Response::HTTP_OK,ApiMsg::getMsg($request,'success_get'));
     }
 
     public function deleteChildren(Request $request,Children $children){
+        if(!Auth::guard('api-father')->check() ){
+            return response()->json([
+                'status' => false,
+                'message' => ApiMsg::getMsg($request,'unauthorization')
+            ],Response::HTTP_BAD_REQUEST);
+        }
+
+        if(auth()->user()->id != $children->father_id){
+            return response()->json(
+                [
+                    'status'=>false,
+                    'message' =>ApiMsg::getMsg($request,'error_owner'),
+                ],Response::HTTP_OK
+            );
+        }
+
         $children->delete();
         return response()->json(
             [
@@ -47,6 +85,12 @@ class ChildrenController extends Controller
     }
 
     public function addChildren(Request $request){
+        if(!Auth::guard('api-father')->check() ){
+            return response()->json([
+                'status' => false,
+                'message' => ApiMsg::getMsg($request,'unauthorization')
+            ],Response::HTTP_BAD_REQUEST);
+        }
         $validator = Validator($request->all(),[
             'name' => 'required|string',
             'dob' => 'required|string',
@@ -92,6 +136,12 @@ class ChildrenController extends Controller
     }
 
     public function sendProgress(Request $request, Children $children){
+        if(!Auth::guard('api-father')->check() ){
+            return response()->json([
+                'status' => false,
+                'message' => ApiMsg::getMsg($request,'unauthorization')
+            ],Response::HTTP_BAD_REQUEST);
+        }
         $validator = Validator($request->all(),[
             'level_id' => 'required|numeric|exists:levels,id',
             'points' => 'required|string',
@@ -109,7 +159,12 @@ class ChildrenController extends Controller
     }
 
     public function getProgress(Request $request, Children $children){
-        
+        if(!Auth::guard('api-father')->check() ){
+            return response()->json([
+                'status' => false,
+                'message' => ApiMsg::getMsg($request,'unauthorization')
+            ],Response::HTTP_BAD_REQUEST);
+        }
 
             $prog = Progress::where('children_id',$children->id)->get();
             $progSingle = Progress::where('children_id',$children->id)->first();
@@ -129,6 +184,7 @@ class ChildrenController extends Controller
     }
 
     public function sendDateLastVist(Request $request,Children $children){
+        
         //last_vist sum_day
         if( 
             Carbon::parse($children->last_vist)->format('Y-m-d') == Carbon::today()->addDay(-1)->format('Y-m-d')
@@ -175,4 +231,8 @@ class ChildrenController extends Controller
             return response()->json(['status'=>false,'message'=>$validator->getMessageBag()->first()],Response::HTTP_BAD_REQUEST);
         }
     }
+
+
+
+    
 }

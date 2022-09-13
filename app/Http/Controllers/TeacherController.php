@@ -6,6 +6,7 @@ use App\Http\Trait\CustomTrait;
 use App\Models\Children;
 use App\Models\Classe;
 use App\Models\Country;
+use App\Models\PlanTeacher;
 use App\Models\Semester;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
@@ -47,6 +48,7 @@ class TeacherController extends Controller
         //
         
         return view('teacher.create',[
+            'plans' => PlanTeacher::where('active',true)->get(),
             'countres' =>$this->countres 
         ]);
 
@@ -69,7 +71,8 @@ class TeacherController extends Controller
             'email' => 'required|email|unique:teachers',
             'password' => 'required|string|min:6|max:12',
             'image_avater' => 'required|image|mimes:jpg,png,jpeg,gif',
-            'active'=> 'required'
+            'active'=> 'required',
+            'plan_id' => 'required|numeric|exists:plan_teachers,id'
         ]);
 
         if(!$validator->fails()){
@@ -88,6 +91,7 @@ class TeacherController extends Controller
             $teacher->country_id = $request->input('country');
             $teacher->status = $request->input('active') == "true" ? 'active' : 'block';
             $teacher->avater = $filePath;
+            $teacher->plan_teacher_id = $request->input('plan_id');
             $isSave = $teacher->save();
             
             return response()->json([
@@ -132,6 +136,7 @@ class TeacherController extends Controller
         //
         return view('teacher.edit',[
             'teacher' => $teacher,
+            'plans' => PlanTeacher::where('active',true)->get(),
             'countres' =>$this->countres 
 
         ]);
@@ -156,6 +161,7 @@ class TeacherController extends Controller
             'country' => 'required|numeric|exists:countries,id',
             'email' => 'required|email|unique:admins',
             'active'=> 'required',
+            'plan_id' => 'required|numeric|exists:plan_teachers,id',
             $this->getImageValidate($request->hasFile('image_avater'))['image_avater']
         ]);
 
@@ -168,6 +174,7 @@ class TeacherController extends Controller
             $teacher->email = $request->input('email');
             $teacher->country_id = $request->input('country');
             $teacher->status = $request->input('active') == "true" ? 'active' : 'block';
+            $teacher->plan_teacher_id = $request->input('plan_id');
             if($request->hasFile('image_avater')){
                 $filePath = $this->uploadFile($request->file('image_avater'));
                 $teacher->avater = $filePath;

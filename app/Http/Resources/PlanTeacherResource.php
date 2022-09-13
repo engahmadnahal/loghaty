@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class FatherResource extends JsonResource
+class PlanTeacherResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,13 +15,13 @@ class FatherResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'type' => 'father',
             'id' => $this->id,
-            'email' => $this->email,
-            'email_verified_at' => is_null($this->email_verified_at) ? 'inactive' : 'active',
-            'plan' => $this->plan->name,
-            'country_id' => $this->country->name,
-            'token' => $this->token
+            'name' => $this->name,
+            'total_month' => $this->sum_month,
+            'price_usd' => $this->price_usd,
+            'price_aed' => $this->price_aed,
+            'total_class' => $this->max_class,
+            'total_children' => $this->max_children,
         ];
     }
 }

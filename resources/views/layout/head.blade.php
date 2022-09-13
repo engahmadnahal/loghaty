@@ -158,4 +158,7 @@
     text-align: center;
     padding: 4px;
 }
+.promotionTable td{
+                    padding-bottom: 1.8rem !important; 
+                }
     </style>

@@ -104,6 +104,10 @@ class PermissionSeeder extends Seeder
         Permission::create(['guard_name'=>'admin','name' => 'block_system']);
         Permission::create(['guard_name'=>'admin','name' => 'revers_notification']);
 
+        Permission::create(['guard_name'=>'admin','name' => 'Delete-promotion']);
+        Permission::create(['guard_name'=>'admin','name' => 'Read-promotion']);
+        Permission::create(['guard_name'=>'admin','name' => 'Accept-promotion']);
+
         
 
 

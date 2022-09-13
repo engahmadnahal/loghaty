@@ -72,6 +72,18 @@
                                             <p class="text-muted ml-75 mt-50"><small>JPG,JPGE, GIF or PNG. </small></p>
                                         </div>
                                     </div>
+
+                                    <div class="col-md-12 col-12">
+                                        <div class="form-label-group">
+                                            <label for="city-column">{{__('dash.countries')}}</label>
+
+                                            <select class="select2 form-control select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true" id="plan_id">
+                                                @foreach ($plans as $plan)
+                                                    <option value="{{$plan->id}}">{{$plan->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
                                     
                                     <div class="col-md-12 col-12">
                                         <div class="form-label-group">
@@ -109,6 +121,7 @@
         let mobile = document.getElementById('mobile').value;
         let image_avater = document.getElementById('image_avater').files[0];
         let active = document.getElementById('active').checked;
+        let plan_id = document.getElementById('plan_id').value;
 
         let formData = new FormData();
         formData.append('fname',fname);
@@ -119,6 +132,7 @@
         formData.append('mobile',mobile);
         formData.append('image_avater',image_avater);
         formData.append('active',active);
+        formData.append('plan_id',plan_id);
         formData.append('_method','PUT');
 
   

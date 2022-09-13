@@ -25,6 +25,9 @@ class Father extends Authenticatable
         'status',
     ];
 
+    public function promotions(){
+        return $this->hasMany(PromotionRequest::class);
+    }
     public function payments(){
         return $this->hasMany(Payment::class);
     }

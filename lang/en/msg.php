@@ -17,5 +17,8 @@ return [
     'giv_permission' => 'The user has been given permission',
     'sucess_login' => 'successfully registered',
     'error_data_login' => 'Wrong login information',
-    'check_email' => 'Check your email'
+    'check_email' => 'Check your email',
+
+    'promotion_success' => 'Upgrade completed successfully'
+
 ];

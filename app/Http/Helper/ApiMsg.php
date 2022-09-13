@@ -39,8 +39,16 @@ class ApiMsg {
         'error_payment' => 'حدث خطأ اثناء الدفع',
         'error_payment_faild' => 'فشلت عملية الدفع',
         'success_payment' => 'تمت عملية الدفع بنجاح',
-        'subs_expire' => 'لقد انتهى الاشتراك وتم تحويلك للخطة المجانية'
+        'subs_expire' => 'لقد انتهى الاشتراك وتم تحويلك للخطة المجانية',
+        'error_owner' => 'هذا الطفل غير تابع لك',
+        'promotion_success' => 'تم تقديم الطلب بنجاح بانتظار موافقة المالك ' ,
+        'max_class' => 'لقد وصلت لعدد الصفوف المحدد لك في الخطة',
+        'max_children' => ' لقد تجاوزت العدد الاقصى من الطلاب ',
+        'unauthorization' => 'ليس لك صلاحية'
+        
 
+
+        
 
 
 
@@ -84,7 +92,12 @@ class ApiMsg {
         'error_payment' => 'An error occurred during payment',
         'error_payment_faild' => 'Payment failed',
         'success_payment' => 'Payment completed successfully',
-        'subs_expire' => 'Your Subscribtion is expred , transferred to the free plan '
+        'subs_expire' => 'Your Subscribtion is expred , transferred to the free plan ',
+        'error_owner' => 'This child does not belong to you',
+        'promotion_success' => 'The application has been submitted successfully and is awaiting owner approval',
+        'max_class' => 'You have reached the number of rows specified in the plan',
+        'max_children' => 'You have exceeded the maximum number of students',
+        'unauthorization' => 'Unauthorization'
 
 
     ];

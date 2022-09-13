@@ -288,10 +288,8 @@ return [
     'notfy_subs_game_body' => 'تم اضافة لعبة جديدة',
     'last_playing_game' => 'اخر الالعاب المستخدمة',
     'latest_subscripers' => 'اخر المشتركين',
-
     'notfy_plan_game_title' => '  خطة جديدة',
     'notfy_plan_game_body' => 'تم انشاء خطة جديدة',
-
     'semester' => 'الصف',
     'send_email_virfy_title' => 'قم بتأكيد الايميل',
     'send_email_virfy_body' => 'سنرسل لك ايميل تأكيد للايميل الخاص بك',
@@ -301,5 +299,21 @@ return [
     'new_subs_body' => 'هناك ولي امر قام بالاشتراك في التطبيق . ',
     'create_level' => 'انشاء مستوى جديد',
     'update_level' => 'تعديل مستوى',
-    'index_notification' => 'كل الاشعارات'
+    'index_notification' => 'كل الاشعارات',
+
+
+    'index_promotion' => 'كل الطلبات',
+    'show_promotion' => 'مراجعة طلب',
+    'promotion_requests' => 'طلبات الترقية',
+    'accept' => 'تمت الموافقة',
+    'wating' => 'في الانتظار',
+    'cancel' => 'تم الرفض',
+    'promotion' => 'ترقية',
+    'details' => 'تفاصيل الطلب',
+    'notes' => 'ملاحظات',
+    'amount_paid' => 'المبلغ المدفوع',
+    'plan_teacher' => 'خطط المعلم',
+    'max_class' => 'العدد الكلي للصفوف',
+    'max_children' => 'العدد الكلي للاطفال',
+
 ];

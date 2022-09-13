@@ -311,7 +311,21 @@ return [
     'new_subs_body' => 'There is a parent who has subscribed to the application. ',
     'create_level' => 'Create new level',
     'update_level' => 'Edit Level',
-    'index_notification' => 'All Notification'
+    'index_notification' => 'All Notification',
+
+    'index_promotion'       => 'All Requests',
+    'show_promotion'        => 'review request',
+    'promotion_requests'    => 'Upgrade Requests',
+    'accept'                => 'Has been approved',
+    'wating'                => 'waiting',
+    'cancel'                => 'rejected',
+    'promotion'             => 'Promotion',
+    'details'               => 'Order details',
+    'notes'                 => 'Notes',
+    'amount_paid'           => 'The amount paid',
+    'plan_teacher'          => 'teacher plans',
+    'max_class'             => 'total number of classes',
+    'max_children'          => 'total number of children',
 
 
     

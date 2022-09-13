@@ -77,6 +77,18 @@
                                             <p class="text-muted ml-75 mt-50"><small>JPG,JPGE, GIF or PNG. </small></p>
                                         </div>
                                     </div>
+
+                                    <div class="col-md-12 col-12">
+                                        <div class="form-label-group">
+                                            <label for="city-column">{{__('dash.countries')}}</label>
+
+                                            <select class="select2 form-control select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true" id="plan_id">
+                                                @foreach ($plans as $plan)
+                                                    <option value="{{$plan->id}}">{{$plan->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
                                     
                                     <div class="col-md-12 col-12">
                                         <div class="form-label-group">
@@ -87,6 +99,8 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    
                                    
                                     <div class="col-12">
                                         <button type="button" class="btn btn-primary mr-1 mb-1 waves-effect waves-light" onclick="performStore()">{{__('dash.save')}}</button>
@@ -113,6 +127,7 @@
         let password = document.getElementById('password').value;
         let national_id = document.getElementById('national_id').value;
         let mobile = document.getElementById('mobile').value;
+        let plan_id = document.getElementById('plan_id').value;
         let image_avater = document.getElementById('image_avater').files[0];
         let active = document.getElementById('active').checked;
 
@@ -126,6 +141,8 @@
         formData.append('mobile',mobile);
         formData.append('image_avater',image_avater);
         formData.append('active',active);
+        formData.append('plan_id',plan_id);
+        
 
   
         performStoreWithTostar('/teachers',formData,'form');

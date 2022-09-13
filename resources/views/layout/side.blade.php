@@ -26,7 +26,8 @@
             @canany(['Create-level','Update-level','Delete-level','Read-level',
             'Create-game','Update-game','Delete-game','Read-game',
             'Create-qs','Update-qs','Delete-qs','Read-qs',
-            'Create-class','Update-class','Delete-class','Read-class'
+            'Create-class','Update-class','Delete-class','Read-class',
+            'Read-promotion','Delete-promotion'
             ])
             <li class=" navigation-header"><span>{{__('dash.content_manger')}}</span>
             </li>
@@ -96,6 +97,18 @@
                     </li>
                 </ul>
             </li>
+
+            <li class=" nav-item"><a href="#"><i class="fa-solid fa-chart-line"></i><span class="menu-title" data-i18n="{{__('dash.promotion_requests')}}">{{__('dash.promotion_requests')}}</span></a>
+                <ul class="menu-content">
+                    @canany(['Read-promotion','Delete-promotion'])
+                    <li class="{{ActiveRoute::isActive('promotion_requests.index')}}"><a  href="{{route('promotion_requests.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
+                    </li>
+                    @endcanany
+                    
+                    </li>
+                </ul>
+            </li>
+
             @endcanany
             <!-- END: Content Manger -->
 
@@ -210,6 +223,21 @@
                     @endcanany
                     @can('Create-plan')
                     <li class="{{ActiveRoute::isActive('plans.create')}}"><a  href="{{route('plans.create')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.create')}}">{{__('dash.create')}}</span></a>
+                    </li>
+                    </li>
+                    @endcan
+                </ul>
+            </li>
+
+            <li class=" nav-item"><a href="#"><i class="fa-solid fa-dollar-sign"></i><span class="menu-title" data-i18n="{{__('dash.plan_teacher')}}">{{__('dash.plan_teacher')}}</span></a>
+                <ul class="menu-content">
+                    @canany(['Update-plan','Read-plan','Delete-plan'])
+
+                    <li class="{{ActiveRoute::isActive('plan_teachers.index')}}" ><a href="{{route('plan_teachers.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.list')}}">{{__('dash.list')}}</span></a>
+                    </li>
+                    @endcanany
+                    @can('Create-plan')
+                    <li class="{{ActiveRoute::isActive('plan_teachers.create')}}"><a  href="{{route('plan_teachers.create')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="{{__('dash.create')}}">{{__('dash.create')}}</span></a>
                     </li>
                     </li>
                     @endcan

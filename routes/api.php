@@ -9,6 +9,8 @@ use App\Http\Controllers\Api\GameController;
 use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\PlanController;
+use App\Http\Controllers\Api\PlanTeacherController;
+use App\Http\Controllers\Api\PromotionRequsetController;
 use App\Http\Controllers\Api\QsController;
 use App\Http\Controllers\Api\SemesterController;
 use Illuminate\Http\Request;
@@ -64,8 +66,16 @@ Route::middleware('Local')->group(function(){
             Route::post('subscription/{father}/all','getAllChildrenSubs');
             Route::get('subscription/{children}','getSingleChildrenSubs');
             Route::post('plan/check-expired','checkExpired');
+            
 
         });
+
+        Route::controller(PlanTeacherController::class)->group(function(){
+            Route::get('plans/teacher','getPlans');
+            Route::post('plan/teacher/check-expired','checkExpired');
+        });
+
+        
 
         Route::controller(SemesterController::class)->group(function(){
             Route::get('classes','getAllSemester');
@@ -109,7 +119,10 @@ Route::middleware('Local')->group(function(){
             Route::get('qs_playings/{qs_playing}','getQsPlaying');
         });
 
-       
+        Route::controller(PromotionRequsetController::class)->group(function(){
+            Route::post('send-promotion','sendPromotion');
+        });
+
     });
 
 });

@@ -14,6 +14,8 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\PlanTeacherController;
+use App\Http\Controllers\PromotionRequestController;
 use App\Http\Controllers\QsCompleteLatterController;
 use App\Http\Controllers\QsLatterBettweenWordController;
 use App\Http\Controllers\QsOrderLatterController;
@@ -26,6 +28,7 @@ use App\Mail\ResetUserPassword;
 use App\Models\Admin;
 use App\Models\Artical;
 use App\Models\Country;
+use App\Models\PromotionRequest;
 use App\Models\QsCompleteLatter;
 use App\Models\Subscription;
 use Illuminate\Mail\Markdown;
@@ -139,6 +142,13 @@ Route::middleware('Local')->group(function(){
 
         // ----- Articals Controller Route ---------
         Route::resource('articals',ArticalController::class);
+
+        // ----- Promotion Controller Route ---------
+        Route::resource('promotion_requests',PromotionRequestController::class);
+        // ----- Plan Teacher Controller Route ---------
+        Route::post('/plan_teachers/status/{plan_teacher}',[PlanTeacherController::class , 'changeStatus'])->name('plans.change_status');
+        Route::resource('plan_teachers',PlanTeacherController::class);
+
 
         
 

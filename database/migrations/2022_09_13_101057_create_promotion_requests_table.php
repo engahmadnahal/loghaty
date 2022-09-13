@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Father;
 use App\Models\PlanTeacher;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -14,19 +15,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('teachers', function (Blueprint $table) {
+        Schema::create('promotion_requests', function (Blueprint $table) {
             $table->id();
             $table->string('fname');
             $table->string('lname');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
             $table->string('mobile');
-            $table->string('national_id')->nullable();
-            $table->foreignIdFor(PlanTeacher::class)->constrained();
-            $table->enum('status',['active','block'])->default('active');
-            $table->timestamp('last_vist')->nullable();
-            $table->softDeletes();
+            $table->string('national_id');
+            $table->longText('notes');
+            $table->enum('status',['accept','wating','cancel'])->default('wating');
+            $table->foreignIdFor(Father::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(PlanTeacher::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -38,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teachers');
+        Schema::dropIfExists('promotion_requests');
     }
 };

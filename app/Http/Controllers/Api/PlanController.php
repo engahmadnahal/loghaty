@@ -15,6 +15,7 @@ use App\Models\Subscription;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class PlanController extends Controller
@@ -22,6 +23,10 @@ class PlanController extends Controller
     public function getPlans(Request $request){
         $plans = Plan::where('active',true)->get();
         return new MainResource(PlanResource::collection($plans),Response::HTTP_OK,ApiMsg::getMsg($request,'success_get'));
+    }
+
+    public function getSinglePlans(Request $request,Plan $plan){
+        return new MainResource(new PlanResource($plan),Response::HTTP_OK,ApiMsg::getMsg($request,'success_get'));
     }
 
     public function subsPlan(Request $request , Plan $plan){
@@ -46,16 +51,20 @@ class PlanController extends Controller
 
     /// Add Single Children to subs
     public function addChildrenToSubs(Request $request){
+        if(!Auth::guard('api-father')->check()){
+            return response()->json([
+                'status' => false,
+                'message' => ApiMsg::getMsg($request,'unauthorization')
+            ],Response::HTTP_BAD_REQUEST);
+        }
         $validator = validator($request->all(),[
-            'father_id' => 'required|exists:fathers,id',
             'children_id' => 'required|exists:childrens,id',
         ]);
 
         if(!$validator->fails()){
             $checkSubsCild = Subscription::where('children_id',$request->input('children_id'))->first();
-            
             if(is_null($checkSubsCild)){
-                $father = Father::find($request->input('father_id'));
+                $father = Father::find(auth()->user()->id);
                 $plan = $father->plan;
                 $start = Carbon::now();
                 $end = Carbon::now()->addMonths($plan->sum_month);

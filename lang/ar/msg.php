@@ -17,5 +17,7 @@ return [
     'giv_permission' => 'تم اعطاء الصلاحية للمستخدم',
     'sucess_login' => 'تم التسجيل بنجاح',
     'error_data_login' => 'بيانات الدخول خاطئة',
-    'check_email' => 'تحقق من الايميل الخاص بك'
+    'check_email' => 'تحقق من الايميل الخاص بك',
+
+    'promotion_success' => 'تم الترقية بنجاح'
 ];

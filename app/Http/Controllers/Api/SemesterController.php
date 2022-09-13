@@ -13,6 +13,7 @@ use App\Models\Semester;
 use App\Notifications\AdminNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class SemesterController extends Controller
@@ -20,7 +21,7 @@ class SemesterController extends Controller
     //
 
     public function getAllSemester(Request $request){
-        $semsters = Semester::where('status',true)->get();
+        $semsters = Semester::where('status',true)->where('teacher_id',auth()->user()->id)->get();
         return new MainResource(SemesterResource::collection($semsters),Response::HTTP_OK,ApiMsg::getMsg($request,'success_get'));
     }
 
@@ -32,15 +33,23 @@ class SemesterController extends Controller
         $validator = Validator($request->all(),[
             'name_en' => 'required|string',
             'name_ar' => 'required|string',
-            'teacher_id' => 'required|numeric|exists:teachers,id',
         ]);
 
         if(!$validator->fails()){
+            $countClassesForTeacher = auth()->user()->classes->count();
+            $planForTeacher = auth()->user()->planTeacher;
+
+            if($countClassesForTeacher == $planForTeacher->max_class){
+                return response()->json([
+                    'status' => false,
+                    'message' => ApiMsg::getMsg($request,'max_class')
+                ],Response::HTTP_BAD_GATEWAY);
+            }
 
             $semester = Semester::create([
                 'name_ar' => $request->input('name_ar'),
                 'name_en' => $request->input('name_en'),
-                'teacher_id' => $request->input('teacher_id'),
+                'teacher_id' => auth()->user()->id,
             ]);
             
             $data = [
@@ -71,6 +80,15 @@ class SemesterController extends Controller
         ]);
 
         if(!$validator->fails()){
+            $countChildrenForTeacherInClass = Children::where('semester_id',$semester->id)->count();
+            $planForTeacher = auth()->user()->planTeacher;
+
+            if($countChildrenForTeacherInClass == $planForTeacher->max_children){
+                return response()->json([
+                    'status' => false,
+                    'message' => ApiMsg::getMsg($request,'max_children')
+                ],Response::HTTP_BAD_GATEWAY);
+            }
 
             $children = Children::find($request->input('children_id'));
             $children->semester_id = $semester->id;

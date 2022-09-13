@@ -24,6 +24,16 @@ class Teacher extends Authenticatable
         return $this->belongsTo(Country::class);
     }
 
+    public function planTeacher(){
+        return $this->belongsTo(PlanTeacher::class);
+    }
+
+    public function subscribtionTeacher(){
+        return $this->hasOne(SubscribtionTeacher::class);
+    }
+
+    
+
     public function imageProfile() : Attribute {
         return Attribute::make(
             get : fn() => is_null($this->avater) ? asset('assets/images/avater.png') : Storage::url($this->avater)

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Plan;
+use App\Models\PlanTeacher;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -39,6 +40,15 @@ class PlanSeeder extends Seeder
         'price_usd' => 12.99,
         'price_aed' => 24.55,
         'totale_child_subscrip' => 10,
+        'active' => true]);
+
+        PlanTeacher::create(['name_en' => 'Free Plan',
+        'name_ar' => 'الخطة المجانية',
+        'sum_month' => 99999,
+        'price_usd' => 0.00,
+        'price_aed' => 0.00,
+        'max_class' => 2,
+        'max_children' => 3,
         'active' => true]);
     }
 }
