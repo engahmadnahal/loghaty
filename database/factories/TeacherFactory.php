@@ -25,6 +25,7 @@ class TeacherFactory extends Factory
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
             'mobile' => '1233423534645',
             'national_id' => '123124235345',
+            'plan_teacher_id' => 1,
             'status' => 'active',
         ];
     }
