@@ -23,7 +23,7 @@ class ApiMsg {
         'num_subs_grt_plan' => 'عدد الاشتراكات تجاوز الحد لهذه الخطة'  ,
         'giv_permission' => 'تم اعطاء الصلاحية للمستخدم',
         'success_login' => 'تم التسجيل بنجاح',
-        'notfound_account' => 'انت غير مسجل في الظام',
+        'notfound_account' => 'انت غير مسجل في النظام',
         'password_faild' => 'كلمة المرور خاطئة',
         'send_code' => 'تم ارسال الرمز بنجاح',
         'expire_code' => 'انتهت صلاحية الرمز',
