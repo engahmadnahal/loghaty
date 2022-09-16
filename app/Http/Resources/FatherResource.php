@@ -14,13 +14,13 @@ class FatherResource extends JsonResource
      */
     public function toArray($request)
     {
+        
         return [
             'type' => 'father',
             'id' => $this->id,
             'email' => $this->email,
-            'email_verified_at' => is_null($this->email_verified_at) ? 'inactive' : 'active',
             'plan' => $this->plan->name,
-            'country_id' => $this->country->name,
+            'country' => $this->country->name,
             'token' => $this->token
         ];
     }
