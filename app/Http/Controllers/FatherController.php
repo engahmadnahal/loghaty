@@ -79,7 +79,7 @@ class FatherController extends Controller
 
             $father = new Father;
             $father->email = $request->input('email');
-            $father->password = $request->input('password');
+            $father->password = Hash::make($request->input('password'));
             $father->plan_id = $request->input('plan_id');
             $father->country_id = $request->input('country_id');
             $father->status = $request->input('active') == "true" ? 'active' : 'block';
@@ -159,7 +159,7 @@ class FatherController extends Controller
             $father->email = $request->input('email');
             if(!is_null($request->input('password'))){
 
-                $father->password =  $request->input('password') ;
+                $father->password =  Hash::make($request->input('password'));
             }
             $father->plan_id = $request->input('plan_id');
             $father->country_id = $request->input('country_id');
