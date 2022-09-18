@@ -315,5 +315,8 @@ return [
     'plan_teacher' => 'خطط المعلم',
     'max_class' => 'العدد الكلي للصفوف',
     'max_children' => 'العدد الكلي للاطفال',
+    "Delete-promotion"	=> 'حذف طلب ترقية',
+	"Read-promotion"	=> 'قراءة الترقيات',
+	"Accept-promotion" => 'قبول الترقيات'
 
 ];

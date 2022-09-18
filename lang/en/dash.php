@@ -327,6 +327,10 @@ return [
     'max_class'             => 'total number of classes',
     'max_children'          => 'total number of children',
 
+    "Delete-promotion"	=> 'Delete an upgrade request',
+	"Read-promotion"	=> ' Read promotions',
+	"Accept-promotion" => 'Accept promotions'
+
 
     
 ];
