@@ -65,7 +65,7 @@ class CountryPolicy
      */
     public function delete($user, Country $country)
     {
-        return $user->hasPermissionTo('Delete-father') ? $this->allow() : $this->deny();
+        return $user->hasPermissionTo('Delete-country') ? $this->allow() : $this->deny();
     }
 
     /**
@@ -77,7 +77,7 @@ class CountryPolicy
      */
     public function restore($user, Country $country)
     {
-        return $user->hasPermissionTo('Delete-father') ? $this->allow() : $this->deny();
+        return $user->hasPermissionTo('Delete-country') ? $this->allow() : $this->deny();
     }
 
     /**
@@ -89,6 +89,6 @@ class CountryPolicy
      */
     public function forceDelete($user, Country $country)
     {
-        return $user->hasPermissionTo('Delete-father') ? $this->allow() : $this->deny();
+        return $user->hasPermissionTo('Delete-country') ? $this->allow() : $this->deny();
     }
 }
