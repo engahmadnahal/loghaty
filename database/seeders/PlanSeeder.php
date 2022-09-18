@@ -42,13 +42,6 @@ class PlanSeeder extends Seeder
         'totale_child_subscrip' => 10,
         'active' => true]);
 
-        PlanTeacher::create(['name_en' => 'Free Plan',
-        'name_ar' => 'الخطة المجانية',
-        'sum_month' => 99999,
-        'price_usd' => 0.00,
-        'price_aed' => 0.00,
-        'max_class' => 2,
-        'max_children' => 3,
-        'active' => true]);
+        
     }
 }
